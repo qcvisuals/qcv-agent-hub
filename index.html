@@ -659,18 +659,24 @@ function generateQR(url, size) {
 function downloadFlyer() {
   var canvas = document.getElementById('flyer-canvas');
   var occasion = selectedOccasion.toLowerCase().replace(/ /g, '-');
-  canvas.toBlob(function(blob) {
-    var url = URL.createObjectURL(blob);
-    var link = document.createElement('a');
-    link.download = 'qcv-flyer-' + occasion + '.png';
-    link.href = url;
-    document.body.appendChild(link);
-    link.click();
-    document.body.removeChild(link);
-    URL.revokeObjectURL(url);
-  }, 'image/png', 1.0);
+  var isMobile = /iPhone|iPad|iPod|Android/i.test(navigator.userAgent);
+  if (isMobile) {
+    var dataUrl = canvas.toDataURL('image/png', 1.0);
+    var win = window.open();
+    win.document.write('<img src="' + dataUrl + '" style="max-width:100%;display:block;margin:0 auto;" /><p style="text-align:center;font-family:sans-serif;color:#666;padding:16px;">Press and hold the image to save it to your device.</p>');
+  } else {
+    canvas.toBlob(function(blob) {
+      var url = URL.createObjectURL(blob);
+      var link = document.createElement('a');
+      link.download = 'qcv-flyer-' + occasion + '.png';
+      link.href = url;
+      document.body.appendChild(link);
+      link.click();
+      document.body.removeChild(link);
+      URL.revokeObjectURL(url);
+    }, 'image/png', 1.0);
+  }
 }
-
 async function generateCopy() {
   var f = document.getElementById('f5').value;
   if (!f) { alert('Please enter key features.'); return; }

@@ -34,7 +34,6 @@ textarea { resize: none; }
 .btn { width: 100%; padding: 14px; background: #1a1a1a; color: #fff; border: none; border-radius: 6px; font-size: 14px; letter-spacing: 0.05em; cursor: pointer; font-family: Georgia, serif; margin-top: 20px; transition: opacity 0.15s; }
 .btn:hover { opacity: 0.8; }
 .btn:disabled { opacity: 0.4; cursor: default; }
-.btn-orange { background: #F47920; }
 .loading { display: none; text-align: center; padding: 40px; color: #888; font-size: 14px; }
 .results { display: none; flex-direction: column; gap: 16px; }
 .result-card { background: #fff; border: 1px solid #ddd; border-radius: 8px; overflow: hidden; }
@@ -46,26 +45,29 @@ textarea { resize: none; }
 .cta-bar { padding: 24px; background: #f9f9f9; border: 1px solid #ddd; border-radius: 8px; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 12px; margin-top: 8px; }
 .cta-bar p { font-size: 13px; color: #666; }
 .cta-bar a { font-size: 13px; color: #1a1a1a; text-decoration: none; border-bottom: 1px solid #1a1a1a; padding-bottom: 2px; }
-.occasion-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px; margin-bottom: 20px; }
-.occasion-btn { padding: 12px; border: 1px solid #ddd; border-radius: 6px; background: #fff; cursor: pointer; font-size: 13px; font-family: Georgia, serif; color: #666; text-align: center; transition: all 0.15s; }
-.occasion-btn.active { background: #F47920; color: #fff; border-color: #F47920; }
-.occasion-btn:hover:not(.active) { border-color: #F47920; color: #F47920; }
-.format-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 10px; margin-bottom: 20px; }
-.format-btn { padding: 12px 8px; border: 1px solid #ddd; border-radius: 6px; background: #fff; cursor: pointer; font-size: 12px; font-family: Georgia, serif; color: #666; text-align: center; transition: all 0.15s; }
-.format-btn.active { background: #1a1a1a; color: #fff; border-color: #1a1a1a; }
-.format-btn:hover:not(.active) { border-color: #1a1a1a; color: #1a1a1a; }
-.upload-area { border: 2px dashed #ddd; border-radius: 8px; padding: 40px; text-align: center; cursor: pointer; transition: all 0.15s; margin-bottom: 16px; }
-.upload-area:hover { border-color: #F47920; }
-.upload-area p { font-size: 14px; color: #888; margin-bottom: 8px; }
+.option-grid-3 { display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px; margin-bottom: 20px; }
+.option-grid-4 { display: grid; grid-template-columns: repeat(4, 1fr); gap: 10px; margin-bottom: 20px; }
+.option-grid-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin-bottom: 20px; }
+.opt-btn { padding: 12px 8px; border: 1px solid #ddd; border-radius: 6px; background: #fff; cursor: pointer; font-size: 13px; font-family: Georgia, serif; color: #666; text-align: center; transition: all 0.15s; }
+.opt-btn.active { background: #1a1a1a; color: #fff; border-color: #1a1a1a; }
+.opt-btn:hover:not(.active) { border-color: #1a1a1a; color: #1a1a1a; }
+.theme-btn { padding: 16px 12px; border: 2px solid #ddd; border-radius: 8px; cursor: pointer; font-size: 13px; font-family: Georgia, serif; text-align: center; transition: all 0.15s; }
+.theme-btn.active { border-color: #1a1a1a; }
+.theme-classic { background: #ffffff; color: #1a1a1a; }
+.theme-dark { background: #1a1a1a; color: #ffffff; }
+.theme-warm { background: #f5f0e8; color: #3d2b1f; }
+.theme-bold { background: #0d2137; color: #ffffff; }
+.upload-area { border: 2px dashed #ddd; border-radius: 8px; padding: 30px; text-align: center; cursor: pointer; transition: all 0.15s; margin-bottom: 12px; }
+.upload-area:hover { border-color: #1a1a1a; }
+.upload-area p { font-size: 14px; color: #888; margin-bottom: 4px; }
 .upload-area span { font-size: 12px; color: #bbb; }
-#photoInput { display: none; }
-.preview-img { width: 100%; max-height: 300px; object-fit: cover; border-radius: 6px; margin-bottom: 16px; display: none; }
-#flyer-output { display: none; margin-top: 20px; }
-#flyer-canvas { width: 100%; border-radius: 8px; border: 1px solid #ddd; }
-.download-btn { width: 100%; padding: 14px; background: #F47920; color: #fff; border: none; border-radius: 6px; font-size: 14px; letter-spacing: 0.05em; cursor: pointer; font-family: Georgia, serif; margin-top: 12px; }
+.preview-img { width: 100%; max-height: 180px; object-fit: cover; border-radius: 6px; margin-bottom: 12px; display: none; }
+#flyer-output { display: none; margin-top: 20px; text-align: center; }
+#flyer-canvas { max-width: 100%; height: auto; border-radius: 8px; border: 1px solid #ddd; display: block; margin: 0 auto; }
+.download-btn { width: 100%; padding: 14px; background: #1a1a1a; color: #fff; border: none; border-radius: 6px; font-size: 14px; letter-spacing: 0.05em; cursor: pointer; font-family: Georgia, serif; margin-top: 12px; }
 #gate { display: block; }
 #main-content { display: none; }
-.powered { text-align: center; padding: 40px; font-size: 12px; color: #bbb; letter-spacing: 0.04em; }
+.powered { text-align: center; padding: 40px; font-size: 11px; color: #bbb; letter-spacing: 0.04em; }
 </style>
 </head>
 <body>
@@ -94,7 +96,7 @@ textarea { resize: none; }
         <div class="field-label">Email Address</div>
         <input type="email" id="gemail" placeholder="sarah@atlrealty.com" />
       </div>
-      <button class="btn btn-orange" onclick="unlock()">Access Free Tools</button>
+      <button class="btn" onclick="unlock()">Access Free Tools</button>
     </div>
   </div>
 </div>
@@ -115,49 +117,16 @@ textarea { resize: none; }
     <div id="tool-copy" class="tool-panel active">
       <div class="card">
         <div class="grid2">
-          <div>
-            <div class="field-label">Property Address</div>
-            <input type="text" id="f1" placeholder="123 Peachtree St, Atlanta" />
+          <div><div class="field-label">Property Address</div><input type="text" id="f1" placeholder="123 Peachtree St, Atlanta" /></div>
+          <div><div class="field-label">Square Footage</div><input type="text" id="f2" placeholder="2,400 sq ft" /></div>
+          <div><div class="field-label">Beds / Baths</div><input type="text" id="f3" placeholder="4 bed / 3 bath" /></div>
+          <div><div class="field-label">List Price</div><input type="text" id="f4" placeholder="$750,000" /></div>
+          <div class="full"><div class="field-label">Key Features</div><textarea id="f5" rows="3" placeholder="Open concept kitchen, quartz counters, primary suite with spa bath, screened porch..."></textarea></div>
+          <div><div class="field-label">Property Vibe</div>
+            <select id="f6"><option value="">Select...</option><option>Modern & sleek</option><option>Warm & inviting</option><option>Luxury & upscale</option><option>Charming & classic</option><option>Urban & contemporary</option><option>Family-friendly</option></select>
           </div>
-          <div>
-            <div class="field-label">Square Footage</div>
-            <input type="text" id="f2" placeholder="2,400 sq ft" />
-          </div>
-          <div>
-            <div class="field-label">Beds / Baths</div>
-            <input type="text" id="f3" placeholder="4 bed / 3 bath" />
-          </div>
-          <div>
-            <div class="field-label">List Price</div>
-            <input type="text" id="f4" placeholder="$750,000" />
-          </div>
-          <div class="full">
-            <div class="field-label">Key Features</div>
-            <textarea id="f5" rows="3" placeholder="Open concept kitchen, quartz counters, primary suite with spa bath, screened porch..."></textarea>
-          </div>
-          <div>
-            <div class="field-label">Property Vibe</div>
-            <select id="f6">
-              <option value="">Select...</option>
-              <option>Modern & sleek</option>
-              <option>Warm & inviting</option>
-              <option>Luxury & upscale</option>
-              <option>Charming & classic</option>
-              <option>Urban & contemporary</option>
-              <option>Family-friendly</option>
-            </select>
-          </div>
-          <div>
-            <div class="field-label">Target Buyer</div>
-            <select id="f7">
-              <option value="">Select...</option>
-              <option>Move-up families</option>
-              <option>First-time buyers</option>
-              <option>Luxury buyers</option>
-              <option>Young professionals</option>
-              <option>Empty nesters</option>
-              <option>Investors</option>
-            </select>
+          <div><div class="field-label">Target Buyer</div>
+            <select id="f7"><option value="">Select...</option><option>Move-up families</option><option>First-time buyers</option><option>Luxury buyers</option><option>Young professionals</option><option>Empty nesters</option><option>Investors</option></select>
           </div>
         </div>
         <button class="btn" id="copy-btn" onclick="generateCopy()">Generate My Listing Copy</button>
@@ -185,66 +154,72 @@ textarea { resize: none; }
 
     <div id="tool-flyer" class="tool-panel">
       <div class="card">
-        <h3>Select Occasion</h3>
-        <p>Choose what this flyer is for.</p>
-        <div class="occasion-grid">
-          <button class="occasion-btn active" onclick="setOccasion(this)">New Listing</button>
-          <button class="occasion-btn" onclick="setOccasion(this)">Just Sold</button>
-          <button class="occasion-btn" onclick="setOccasion(this)">Under Contract</button>
-          <button class="occasion-btn" onclick="setOccasion(this)">Price Drop</button>
-          <button class="occasion-btn" onclick="setOccasion(this)">Open House</button>
-          <button class="occasion-btn" onclick="setOccasion(this)">Custom</button>
+
+        <h3 style="margin-bottom:6px;">Occasion</h3>
+        <p>What is this flyer for?</p>
+        <div class="option-grid-3">
+          <button class="opt-btn active" onclick="setOpt(this,'occasion')">New Listing</button>
+          <button class="opt-btn" onclick="setOpt(this,'occasion')">Just Sold</button>
+          <button class="opt-btn" onclick="setOpt(this,'occasion')">Under Contract</button>
+          <button class="opt-btn" onclick="setOpt(this,'occasion')">Price Drop</button>
+          <button class="opt-btn" onclick="setOpt(this,'occasion')">Open House</button>
+          <button class="opt-btn" onclick="setOpt(this,'occasion')">Custom</button>
         </div>
 
-        <h3 style="margin-bottom:6px;">Select Format</h3>
+        <h3 style="margin-bottom:6px;">Format</h3>
         <p>Choose your flyer size.</p>
-        <div class="format-grid">
-          <button class="format-btn active" onclick="setFormat(this)" data-w="400" data-h="900">4×9<br><span style="font-size:10px;opacity:0.7;">Door Hanger</span></button>
-          <button class="format-btn" onclick="setFormat(this)" data-w="450" data-h="800">9×16<br><span style="font-size:10px;opacity:0.7;">Story</span></button>
-          <button class="format-btn" onclick="setFormat(this)" data-w="600" data-h="600">1×1<br><span style="font-size:10px;opacity:0.7;">Square Post</span></button>
-          <button class="format-btn" onclick="setFormat(this)" data-w="612" data-h="792">8.5×11<br><span style="font-size:10px;opacity:0.7;">Print</span></button>
+        <div class="option-grid-4">
+          <button class="opt-btn active" onclick="setFormat(this)" data-w="1200" data-h="2700">4×9<br><span style="font-size:10px;opacity:0.7;">Door Hanger</span></button>
+          <button class="opt-btn" onclick="setFormat(this)" data-w="1080" data-h="1920">9×16<br><span style="font-size:10px;opacity:0.7;">Story</span></button>
+          <button class="opt-btn" onclick="setFormat(this)" data-w="1080" data-h="1080">1×1<br><span style="font-size:10px;opacity:0.7;">Square Post</span></button>
+          <button class="opt-btn" onclick="setFormat(this)" data-w="2550" data-h="3300">8.5×11<br><span style="font-size:10px;opacity:0.7;">Print</span></button>
         </div>
 
-        <h3 style="margin-bottom:6px;">Upload Photo</h3>
-        <p style="margin-bottom:16px;">Upload your property photo.</p>
-        <div class="upload-area" onclick="document.getElementById('photoInput').click()">
-          <p>Click to upload your photo</p>
-          <span>JPG, PNG — recommended 2MB or less</span>
+        <h3 style="margin-bottom:6px;">Color Theme</h3>
+        <p>Choose a look for your flyer.</p>
+        <div class="option-grid-2" style="margin-bottom:20px;">
+          <button class="theme-btn theme-classic active" onclick="setTheme(this,'classic')" data-theme="classic">Classic<br><span style="font-size:11px;opacity:0.6;">White · Clean · Minimal</span></button>
+          <button class="theme-btn theme-dark" onclick="setTheme(this,'dark')" data-theme="dark">Dark<br><span style="font-size:11px;opacity:0.6;">Black · Bold · Dramatic</span></button>
+          <button class="theme-btn theme-warm" onclick="setTheme(this,'warm')" data-theme="warm">Warm<br><span style="font-size:11px;opacity:0.6;">Cream · Soft · Elegant</span></button>
+          <button class="theme-btn theme-bold" onclick="setTheme(this,'bold')" data-theme="bold">Bold<br><span style="font-size:11px;opacity:0.6;">Navy · Sharp · Premium</span></button>
         </div>
-        <input type="file" id="photoInput" accept="image/*" onchange="handlePhoto(event)" />
-        <img id="preview-img" class="preview-img" />
 
-        <div class="grid2">
-          <div class="full">
-            <div class="field-label">Headline</div>
-            <input type="text" id="fl-headline" placeholder="Stunning 4BR Home in Buckhead" />
-          </div>
-          <div>
-            <div class="field-label">Address</div>
-            <input type="text" id="fl-address" placeholder="123 Peachtree St" />
-          </div>
-          <div>
-            <div class="field-label">Price</div>
-            <input type="text" id="fl-price" placeholder="$750,000" />
-          </div>
-          <div>
-            <div class="field-label">Beds / Baths</div>
-            <input type="text" id="fl-beds" placeholder="4 bed / 3 bath" />
-          </div>
-          <div>
-            <div class="field-label">Square Footage</div>
-            <input type="text" id="fl-sqft" placeholder="2,400 sq ft" />
-          </div>
-          <div>
-            <div class="field-label">Agent Name</div>
-            <input type="text" id="fl-agent" placeholder="Sarah Johnson" />
-          </div>
-          <div>
-            <div class="field-label">Phone</div>
-            <input type="text" id="fl-phone" placeholder="(404) 555-0100" />
-          </div>
+        <h3 style="margin-bottom:6px;">Layout</h3>
+        <p>How many photos?</p>
+        <div class="option-grid-2">
+          <button class="opt-btn active" onclick="setLayout(this)" data-layout="single">Single Image<br><span style="font-size:11px;opacity:0.6;">One hero photo</span></button>
+          <button class="opt-btn" onclick="setLayout(this)" data-layout="double">Two Images<br><span style="font-size:11px;opacity:0.6;">Side by side</span></button>
         </div>
-        <button class="btn btn-orange" onclick="generateFlyer()">Generate Flyer</button>
+
+        <h3 style="margin-bottom:6px;margin-top:4px;">Upload Photo(s)</h3>
+        <p style="margin-bottom:16px;">Use the highest resolution photos available for best results.</p>
+        <div id="upload1-wrap">
+          <div class="upload-area" onclick="document.getElementById('photo1').click()">
+            <p>Click to upload photo 1</p>
+            <span>JPG or PNG — highest resolution available</span>
+          </div>
+          <input type="file" id="photo1" accept="image/*" onchange="handlePhoto(event,1)" style="display:none;" />
+          <img id="preview1" class="preview-img" />
+        </div>
+        <div id="upload2-wrap" style="display:none;">
+          <div class="upload-area" onclick="document.getElementById('photo2').click()">
+            <p>Click to upload photo 2</p>
+            <span>JPG or PNG — highest resolution available</span>
+          </div>
+          <input type="file" id="photo2" accept="image/*" onchange="handlePhoto(event,2)" style="display:none;" />
+          <img id="preview2" class="preview-img" />
+        </div>
+
+        <div class="grid2" style="margin-top:20px;">
+          <div class="full"><div class="field-label">Headline</div><input type="text" id="fl-headline" placeholder="Stunning 4BR Home in Buckhead" /></div>
+          <div><div class="field-label">Address</div><input type="text" id="fl-address" placeholder="123 Peachtree St" /></div>
+          <div><div class="field-label">Price</div><input type="text" id="fl-price" placeholder="$750,000" /></div>
+          <div><div class="field-label">Beds / Baths</div><input type="text" id="fl-beds" placeholder="4 bed / 3 bath" /></div>
+          <div><div class="field-label">Square Footage</div><input type="text" id="fl-sqft" placeholder="2,400 sq ft" /></div>
+          <div><div class="field-label">Agent Name</div><input type="text" id="fl-agent" placeholder="Sarah Johnson" /></div>
+          <div><div class="field-label">Phone</div><input type="text" id="fl-phone" placeholder="(404) 555-0100" /></div>
+        </div>
+        <button class="btn" onclick="generateFlyer()">Generate Flyer</button>
       </div>
 
       <div id="flyer-output">
@@ -263,11 +238,20 @@ textarea { resize: none; }
 <div class="powered">Powered by Quality Capture Visuals · qualitycapturevisuals.com</div>
 
 <script>
-
 var selectedOccasion = 'New Listing';
-var selectedW = 400;
-var selectedH = 900;
-var uploadedPhoto = null;
+var selectedW = 1200;
+var selectedH = 2700;
+var selectedLayout = 'single';
+var selectedTheme = 'classic';
+var uploadedPhoto1 = null;
+var uploadedPhoto2 = null;
+
+var themes = {
+  classic: { bg: '#ffffff', text: '#1a1a1a', sub: '#555555', accent: '#1a1a1a' },
+  dark:    { bg: '#1a1a1a', text: '#ffffff', sub: '#aaaaaa', accent: '#ffffff' },
+  warm:    { bg: '#f5f0e8', text: '#3d2b1f', sub: '#7a6055', accent: '#3d2b1f' },
+  bold:    { bg: '#0d2137', text: '#ffffff', sub: '#8aaabb', accent: '#ffffff' }
+};
 
 function unlock() {
   var n = document.getElementById('gname').value.trim();
@@ -285,34 +269,75 @@ function switchTool(tool, btn) {
   document.getElementById('tool-' + tool).classList.add('active');
 }
 
-function setOccasion(btn) {
-  document.querySelectorAll('.occasion-btn').forEach(function(b) { b.classList.remove('active'); });
+function setOpt(btn, group) {
+  btn.closest('.option-grid-3, .option-grid-2').querySelectorAll('.opt-btn').forEach(function(b) { b.classList.remove('active'); });
   btn.classList.add('active');
-  selectedOccasion = btn.textContent;
+  if (group === 'occasion') selectedOccasion = btn.textContent.split('\n')[0].trim();
 }
 
 function setFormat(btn) {
-  document.querySelectorAll('.format-btn').forEach(function(b) { b.classList.remove('active'); });
+  document.querySelectorAll('.option-grid-4 .opt-btn').forEach(function(b) { b.classList.remove('active'); });
   btn.classList.add('active');
   selectedW = parseInt(btn.dataset.w);
   selectedH = parseInt(btn.dataset.h);
 }
 
-function handlePhoto(e) {
+function setTheme(btn, theme) {
+  document.querySelectorAll('.theme-btn').forEach(function(b) { b.classList.remove('active'); });
+  btn.classList.add('active');
+  selectedTheme = theme;
+}
+
+function setLayout(btn) {
+  btn.closest('.option-grid-2').querySelectorAll('.opt-btn').forEach(function(b) { b.classList.remove('active'); });
+  btn.classList.add('active');
+  selectedLayout = btn.dataset.layout;
+  document.getElementById('upload2-wrap').style.display = selectedLayout === 'double' ? 'block' : 'none';
+}
+
+function handlePhoto(e, num) {
   var file = e.target.files[0];
   if (!file) return;
   var reader = new FileReader();
   reader.onload = function(ev) {
-    uploadedPhoto = ev.target.result;
-    var img = document.getElementById('preview-img');
-    img.src = uploadedPhoto;
-    img.style.display = 'block';
+    if (num === 1) { uploadedPhoto1 = ev.target.result; var img = document.getElementById('preview1'); img.src = uploadedPhoto1; img.style.display = 'block'; }
+    else { uploadedPhoto2 = ev.target.result; var img = document.getElementById('preview2'); img.src = uploadedPhoto2; img.style.display = 'block'; }
   };
   reader.readAsDataURL(file);
 }
 
+function drawCover(ctx, img, x, y, w, h) {
+  var ia = img.width / img.height;
+  var ca = w / h;
+  var dw, dh, dx, dy;
+  if (ia > ca) { dh = h; dw = dh * ia; dx = x + (w - dw) / 2; dy = y; }
+  else { dw = w; dh = dw / ia; dx = x; dy = y + (h - dh) / 2; }
+  ctx.save();
+  ctx.beginPath();
+  ctx.rect(x, y, w, h);
+  ctx.clip();
+  ctx.drawImage(img, dx, dy, dw, dh);
+  ctx.restore();
+}
+
+function wrapText(ctx, text, x, y, maxW, lineH) {
+  var words = text.split(' ');
+  var line = '';
+  var lines = [];
+  for (var i = 0; i < words.length; i++) {
+    var test = line + words[i] + ' ';
+    if (ctx.measureText(test).width > maxW && i > 0) { lines.push(line); line = words[i] + ' '; }
+    else { line = test; }
+  }
+  lines.push(line);
+  for (var j = 0; j < lines.length; j++) { ctx.fillText(lines[j], x, y + j * lineH); }
+  return lines.length;
+}
+
 function generateFlyer() {
-  if (!uploadedPhoto) { alert('Please upload a photo first.'); return; }
+  if (!uploadedPhoto1) { alert('Please upload at least one photo.'); return; }
+  if (selectedLayout === 'double' && !uploadedPhoto2) { alert('Please upload a second photo.'); return; }
+
   var headline = document.getElementById('fl-headline').value || selectedOccasion;
   var address = document.getElementById('fl-address').value;
   var price = document.getElementById('fl-price').value;
@@ -320,88 +345,93 @@ function generateFlyer() {
   var sqft = document.getElementById('fl-sqft').value;
   var agent = document.getElementById('fl-agent').value;
   var phone = document.getElementById('fl-phone').value;
+  var t = themes[selectedTheme];
 
   var canvas = document.getElementById('flyer-canvas');
   canvas.width = selectedW;
   canvas.height = selectedH;
+  canvas.style.maxWidth = '400px';
+  canvas.style.height = 'auto';
+
   var ctx = canvas.getContext('2d');
+  ctx.imageSmoothingEnabled = true;
+  ctx.imageSmoothingQuality = 'high';
 
-  var img = new Image();
-  img.onload = function() {
-    var imgAspect = img.width / img.height;
-var canvasAspect = selectedW / (selectedH * 0.65);
-var drawW, drawH, drawX, drawY;
-if (imgAspect > canvasAspect) {
-  drawH = selectedH * 0.65;
-  drawW = drawH * imgAspect;
-  drawX = (selectedW - drawW) / 2;
-  drawY = 0;
-} else {
-  drawW = selectedW;
-  drawH = drawW / imgAspect;
-  drawX = 0;
-  drawY = (selectedH * 0.65 - drawH) / 2;
-}
-ctx.save();
-ctx.beginPath();
-ctx.rect(0, 0, selectedW, selectedH * 0.65);
-ctx.clip();
-ctx.drawImage(img, drawX, drawY, drawW, drawH);
-ctx.restore();
-    
-    ctx.fillStyle = '#1a1a1a';
-    ctx.fillRect(0, selectedH * 0.65, selectedW, selectedH * 0.35);
-    ctx.fillStyle = '#F47920';
-    ctx.fillRect(0, selectedH * 0.65, selectedW, 4);
-    ctx.fillStyle = '#ffffff';
-    ctx.font = 'bold ' + Math.round(selectedW * 0.045) + 'px Georgia';
-    ctx.fillText(selectedOccasion.toUpperCase(), 24, selectedH * 0.68);
-    ctx.font = Math.round(selectedW * 0.038) + 'px Georgia';
-    wrapText(ctx, headline, 24, selectedH * 0.72, selectedW - 48, Math.round(selectedW * 0.044));
-    ctx.fillStyle = '#F47920';
-    ctx.font = 'bold ' + Math.round(selectedW * 0.05) + 'px Georgia';
-    ctx.fillText(price, 24, selectedH * 0.80);
-    ctx.fillStyle = '#cccccc';
-    ctx.font = Math.round(selectedW * 0.032) + 'px Georgia';
-    if (address) ctx.fillText(address, 24, selectedH * 0.845);
-    var details = [beds, sqft].filter(Boolean).join('  ·  ');
-    if (details) ctx.fillText(details, 24, selectedH * 0.875);
-    ctx.fillStyle = '#ffffff';
-    ctx.font = 'bold ' + Math.round(selectedW * 0.032) + 'px Georgia';
-    if (agent) ctx.fillText(agent, 24, selectedH * 0.92);
-    ctx.fillStyle = '#999999';
-    ctx.font = Math.round(selectedW * 0.028) + 'px Georgia';
-    if (phone) ctx.fillText(phone, 24, selectedH * 0.945);
-    ctx.fillStyle = 'rgba(244,121,32,0.15)';
-    ctx.fillRect(selectedW - 140, selectedH - 32, 136, 28);
-    ctx.fillStyle = '#F47920';
-    ctx.font = Math.round(selectedW * 0.022) + 'px Georgia';
-    ctx.fillText('Quality Capture Visuals', selectedW - 136, selectedH - 12);
-    document.getElementById('flyer-output').style.display = 'block';
-    document.getElementById('flyer-output').scrollIntoView({behavior:'smooth'});
+  var photoH = Math.round(selectedH * 0.60);
+  var pad = Math.round(selectedW * 0.07);
+  var fs = Math.round(selectedW * 0.042);
+  var lh = Math.round(fs * 1.5);
+
+  var img1 = new Image();
+  img1.onload = function() {
+    ctx.fillStyle = t.bg;
+    ctx.fillRect(0, 0, selectedW, selectedH);
+
+    if (selectedLayout === 'single') {
+      drawCover(ctx, img1, 0, 0, selectedW, photoH);
+    } else {
+      var img2 = new Image();
+      img2.onload = function() {
+        drawCover(ctx, img1, 0, 0, selectedW / 2 - 3, photoH);
+        drawCover(ctx, img2, selectedW / 2 + 3, 0, selectedW / 2 - 3, photoH);
+        drawTextBlock(ctx, t, pad, fs, lh, photoH, headline, address, price, beds, sqft, agent, phone);
+      };
+      img2.src = uploadedPhoto2;
+      return;
+    }
+    drawTextBlock(ctx, t, pad, fs, lh, photoH, headline, address, price, beds, sqft, agent, phone);
   };
-  img.src = uploadedPhoto;
+  img1.src = uploadedPhoto1;
 }
 
-function wrapText(ctx, text, x, y, maxWidth, lineHeight) {
-  var words = text.split(' ');
-  var line = '';
-  for (var i = 0; i < words.length; i++) {
-    var testLine = line + words[i] + ' ';
-    if (ctx.measureText(testLine).width > maxWidth && i > 0) {
-      ctx.fillText(line, x, y);
-      line = words[i] + ' ';
-      y += lineHeight;
-    } else { line = testLine; }
+function drawTextBlock(ctx, t, pad, fs, lh, photoH, headline, address, price, beds, sqft, agent, phone) {
+  var y = photoH + pad;
+  var maxW = selectedW - pad * 2;
+
+  ctx.fillStyle = t.accent;
+  ctx.font = 'bold ' + Math.round(fs * 0.7) + 'px Georgia';
+  ctx.fillText(selectedOccasion.toUpperCase(), pad, y);
+  y += Math.round(fs * 1.1);
+
+  ctx.fillStyle = t.text;
+  ctx.font = 'bold ' + fs + 'px Georgia';
+  var lines = wrapText(ctx, headline, pad, y, maxW, lh);
+  y += lines * lh + Math.round(lh * 0.4);
+
+  if (price) {
+    ctx.fillStyle = t.text;
+    ctx.font = 'bold ' + Math.round(fs * 1.1) + 'px Georgia';
+    ctx.fillText(price, pad, y);
+    y += lh * 1.2;
   }
-  ctx.fillText(line, x, y);
+
+  ctx.fillStyle = t.sub;
+  ctx.font = Math.round(fs * 0.75) + 'px Georgia';
+  if (address) { ctx.fillText(address, pad, y); y += lh; }
+  var details = [beds, sqft].filter(Boolean).join('   ·   ');
+  if (details) { ctx.fillText(details, pad, y); y += lh; }
+
+  y += Math.round(lh * 0.5);
+  ctx.fillStyle = t.text;
+  ctx.font = 'bold ' + Math.round(fs * 0.78) + 'px Georgia';
+  if (agent) { ctx.fillText(agent, pad, y); y += lh; }
+  ctx.fillStyle = t.sub;
+  ctx.font = Math.round(fs * 0.68) + 'px Georgia';
+  if (phone) { ctx.fillText(phone, pad, y); }
+
+  ctx.fillStyle = t.sub;
+  ctx.font = Math.round(selectedW * 0.022) + 'px Georgia';
+  ctx.fillText('Powered by Quality Capture Visuals', pad, selectedH - Math.round(selectedW * 0.03));
+
+  document.getElementById('flyer-output').style.display = 'block';
+  document.getElementById('flyer-output').scrollIntoView({ behavior: 'smooth' });
 }
 
 function downloadFlyer() {
   var canvas = document.getElementById('flyer-canvas');
   var link = document.createElement('a');
-  link.download = 'qcv-flyer-' + selectedOccasion.toLowerCase().replace(/ /g,'-') + '.png';
-  link.href = canvas.toDataURL();
+  link.download = 'qcv-flyer-' + selectedOccasion.toLowerCase().replace(/ /g, '-') + '.png';
+  link.href = canvas.toDataURL('image/png', 1.0);
   link.click();
 }
 
@@ -413,14 +443,14 @@ async function generateCopy() {
   document.getElementById('copy-results').style.display = 'none';
   var prompt = 'You are a real estate copywriter. Property: Address:' + document.getElementById('f1').value + ' Sqft:' + document.getElementById('f2').value + ' Beds/Baths:' + document.getElementById('f3').value + ' Price:' + document.getElementById('f4').value + ' Features:' + f + ' Vibe:' + document.getElementById('f6').value + ' Buyer:' + document.getElementById('f7').value + '. Return ONLY valid JSON with keys mls, social, email. No markdown. No extra text. mls=100-150 word MLS description. social=punchy Instagram caption under 150 words with 5-8 hashtags. email=80-100 word just-listed client email blurb.';
   try {
-var res = await fetch('/.netlify/functions/generate', {
-      method:'POST',
-headers:{'Content-Type':'application/json'},
-body:JSON.stringify({prompt:prompt})
+    var res = await fetch('/.netlify/functions/generate', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ prompt: prompt })
     });
     var data = await res.json();
-    var txt = data.content.map(function(i){return i.text||'';}).join('');
-    var clean = txt.replace(/```json|```/g,'').trim();
+    var txt = data.content.map(function(i) { return i.text || ''; }).join('');
+    var clean = txt.replace(/```json|```/g, '').trim();
     var p = JSON.parse(clean);
     document.getElementById('r1').textContent = p.mls;
     document.getElementById('r2').textContent = p.social;
@@ -435,9 +465,9 @@ body:JSON.stringify({prompt:prompt})
 }
 
 function cp(id, btn) {
-  navigator.clipboard.writeText(document.getElementById(id).textContent).then(function(){
+  navigator.clipboard.writeText(document.getElementById(id).textContent).then(function() {
     btn.textContent = 'Copied!';
-    setTimeout(function(){ btn.textContent = 'Copy'; }, 2000);
+    setTimeout(function() { btn.textContent = 'Copy'; }, 2000);
   });
 }
 </script>

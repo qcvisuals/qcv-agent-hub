@@ -1,0 +1,425 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>QCV Agent Hub — Free Tools for Atlanta Real Estate Agents</title>
+<style>
+* { box-sizing: border-box; margin: 0; padding: 0; }
+body { font-family: Georgia, serif; background: #f5f5f3; color: #1a1a1a; }
+.header { background: #1a1a1a; padding: 20px 40px; display: flex; align-items: center; gap: 16px; }
+.header-logo { width: 44px; height: 44px; background: #F47920; border-radius: 8px; display: flex; align-items: center; justify-content: center; }
+.header-logo svg { width: 26px; height: 26px; fill: white; }
+.header h1 { color: white; font-size: 18px; font-weight: 400; letter-spacing: 0.04em; }
+.header span { color: #F47920; }
+.hero { text-align: center; padding: 60px 40px 40px; }
+.hero h2 { font-size: 32px; font-weight: 400; margin-bottom: 12px; }
+.hero p { font-size: 16px; color: #666; max-width: 500px; margin: 0 auto; line-height: 1.6; }
+.tools-nav { display: flex; justify-content: center; gap: 12px; padding: 0 40px 40px; flex-wrap: wrap; }
+.tool-tab { padding: 12px 28px; border: 1px solid #ddd; border-radius: 6px; background: #fff; cursor: pointer; font-size: 14px; font-family: Georgia, serif; color: #666; transition: all 0.15s; }
+.tool-tab.active { background: #1a1a1a; color: #fff; border-color: #1a1a1a; }
+.tool-tab:hover:not(.active) { border-color: #1a1a1a; color: #1a1a1a; }
+.container { max-width: 800px; margin: 0 auto; padding: 0 40px 80px; }
+.tool-panel { display: none; }
+.tool-panel.active { display: block; }
+.card { background: #fff; border: 1px solid #ddd; border-radius: 8px; padding: 36px; margin-bottom: 20px; }
+.card h3 { font-size: 18px; font-weight: 400; margin-bottom: 6px; }
+.card p { font-size: 13px; color: #888; margin-bottom: 24px; line-height: 1.5; }
+.grid2 { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+.full { grid-column: 1/-1; }
+.field-label { font-size: 11px; letter-spacing: 0.07em; text-transform: uppercase; color: #888; margin-bottom: 6px; }
+input[type=text], input[type=email], textarea, select { width: 100%; padding: 10px 14px; border: 1px solid #ddd; border-radius: 6px; font-size: 14px; font-family: Georgia, serif; background: #fff; }
+input:focus, textarea:focus, select:focus { outline: none; border-color: #1a1a1a; }
+textarea { resize: none; }
+.btn { width: 100%; padding: 14px; background: #1a1a1a; color: #fff; border: none; border-radius: 6px; font-size: 14px; letter-spacing: 0.05em; cursor: pointer; font-family: Georgia, serif; margin-top: 20px; transition: opacity 0.15s; }
+.btn:hover { opacity: 0.8; }
+.btn:disabled { opacity: 0.4; cursor: default; }
+.btn-orange { background: #F47920; }
+.loading { display: none; text-align: center; padding: 40px; color: #888; font-size: 14px; }
+.results { display: none; flex-direction: column; gap: 16px; }
+.result-card { background: #fff; border: 1px solid #ddd; border-radius: 8px; overflow: hidden; }
+.result-header { display: flex; justify-content: space-between; align-items: center; padding: 12px 20px; background: #f9f9f9; border-bottom: 1px solid #ddd; }
+.result-label { font-size: 11px; letter-spacing: 0.07em; text-transform: uppercase; color: #888; }
+.copy-btn { font-size: 12px; padding: 4px 12px; border: 1px solid #ddd; border-radius: 4px; background: #fff; cursor: pointer; color: #666; font-family: Georgia, serif; }
+.copy-btn:hover { border-color: #1a1a1a; color: #1a1a1a; }
+.result-body { padding: 20px; font-size: 14px; line-height: 1.8; white-space: pre-wrap; }
+.cta-bar { padding: 24px; background: #f9f9f9; border: 1px solid #ddd; border-radius: 8px; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 12px; margin-top: 8px; }
+.cta-bar p { font-size: 13px; color: #666; }
+.cta-bar a { font-size: 13px; color: #1a1a1a; text-decoration: none; border-bottom: 1px solid #1a1a1a; padding-bottom: 2px; }
+.occasion-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px; margin-bottom: 20px; }
+.occasion-btn { padding: 12px; border: 1px solid #ddd; border-radius: 6px; background: #fff; cursor: pointer; font-size: 13px; font-family: Georgia, serif; color: #666; text-align: center; transition: all 0.15s; }
+.occasion-btn.active { background: #F47920; color: #fff; border-color: #F47920; }
+.occasion-btn:hover:not(.active) { border-color: #F47920; color: #F47920; }
+.format-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 10px; margin-bottom: 20px; }
+.format-btn { padding: 12px 8px; border: 1px solid #ddd; border-radius: 6px; background: #fff; cursor: pointer; font-size: 12px; font-family: Georgia, serif; color: #666; text-align: center; transition: all 0.15s; }
+.format-btn.active { background: #1a1a1a; color: #fff; border-color: #1a1a1a; }
+.format-btn:hover:not(.active) { border-color: #1a1a1a; color: #1a1a1a; }
+.upload-area { border: 2px dashed #ddd; border-radius: 8px; padding: 40px; text-align: center; cursor: pointer; transition: all 0.15s; margin-bottom: 16px; }
+.upload-area:hover { border-color: #F47920; }
+.upload-area p { font-size: 14px; color: #888; margin-bottom: 8px; }
+.upload-area span { font-size: 12px; color: #bbb; }
+#photoInput { display: none; }
+.preview-img { width: 100%; max-height: 300px; object-fit: cover; border-radius: 6px; margin-bottom: 16px; display: none; }
+#flyer-output { display: none; margin-top: 20px; }
+#flyer-canvas { width: 100%; border-radius: 8px; border: 1px solid #ddd; }
+.download-btn { width: 100%; padding: 14px; background: #F47920; color: #fff; border: none; border-radius: 6px; font-size: 14px; letter-spacing: 0.05em; cursor: pointer; font-family: Georgia, serif; margin-top: 12px; }
+#gate { display: block; }
+#main-content { display: none; }
+.powered { text-align: center; padding: 40px; font-size: 12px; color: #bbb; letter-spacing: 0.04em; }
+</style>
+</head>
+<body>
+
+<div class="header">
+  <div class="header-logo">
+    <svg viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 14.5v-9l6 4.5-6 4.5z"/></svg>
+  </div>
+  <h1>QCV <span>Agent Hub</span></h1>
+</div>
+
+<div id="gate">
+  <div class="hero">
+    <h2>Free Marketing Tools for Atlanta Agents</h2>
+    <p>Generate listing copy, social captions, client emails, and branded flyers — all in one place.</p>
+  </div>
+  <div class="container">
+    <div class="card">
+      <h3>Get started — it's free</h3>
+      <p>Enter your name and email to access all tools.</p>
+      <div style="margin-bottom:16px;">
+        <div class="field-label">Full Name</div>
+        <input type="text" id="gname" placeholder="Sarah Johnson" />
+      </div>
+      <div style="margin-bottom:4px;">
+        <div class="field-label">Email Address</div>
+        <input type="email" id="gemail" placeholder="sarah@atlrealty.com" />
+      </div>
+      <button class="btn btn-orange" onclick="unlock()">Access Free Tools</button>
+    </div>
+  </div>
+</div>
+
+<div id="main-content">
+  <div class="hero">
+    <h2>Your Agent Marketing Hub</h2>
+    <p>Everything you need to market your listings — copy, captions, emails, and flyers.</p>
+  </div>
+
+  <div class="tools-nav">
+    <button class="tool-tab active" onclick="switchTool('copy', this)">Listing Copy Generator</button>
+    <button class="tool-tab" onclick="switchTool('flyer', this)">Flyer Builder</button>
+  </div>
+
+  <div class="container">
+
+    <div id="tool-copy" class="tool-panel active">
+      <div class="card">
+        <div class="grid2">
+          <div>
+            <div class="field-label">Property Address</div>
+            <input type="text" id="f1" placeholder="123 Peachtree St, Atlanta" />
+          </div>
+          <div>
+            <div class="field-label">Square Footage</div>
+            <input type="text" id="f2" placeholder="2,400 sq ft" />
+          </div>
+          <div>
+            <div class="field-label">Beds / Baths</div>
+            <input type="text" id="f3" placeholder="4 bed / 3 bath" />
+          </div>
+          <div>
+            <div class="field-label">List Price</div>
+            <input type="text" id="f4" placeholder="$750,000" />
+          </div>
+          <div class="full">
+            <div class="field-label">Key Features</div>
+            <textarea id="f5" rows="3" placeholder="Open concept kitchen, quartz counters, primary suite with spa bath, screened porch..."></textarea>
+          </div>
+          <div>
+            <div class="field-label">Property Vibe</div>
+            <select id="f6">
+              <option value="">Select...</option>
+              <option>Modern & sleek</option>
+              <option>Warm & inviting</option>
+              <option>Luxury & upscale</option>
+              <option>Charming & classic</option>
+              <option>Urban & contemporary</option>
+              <option>Family-friendly</option>
+            </select>
+          </div>
+          <div>
+            <div class="field-label">Target Buyer</div>
+            <select id="f7">
+              <option value="">Select...</option>
+              <option>Move-up families</option>
+              <option>First-time buyers</option>
+              <option>Luxury buyers</option>
+              <option>Young professionals</option>
+              <option>Empty nesters</option>
+              <option>Investors</option>
+            </select>
+          </div>
+        </div>
+        <button class="btn" id="copy-btn" onclick="generateCopy()">Generate My Listing Copy</button>
+      </div>
+      <div class="loading" id="copy-loading">Writing your listing copy...</div>
+      <div class="results" id="copy-results">
+        <div class="result-card">
+          <div class="result-header"><span class="result-label">MLS Description</span><button class="copy-btn" onclick="cp('r1',this)">Copy</button></div>
+          <div class="result-body" id="r1"></div>
+        </div>
+        <div class="result-card">
+          <div class="result-header"><span class="result-label">Instagram / Facebook Caption</span><button class="copy-btn" onclick="cp('r2',this)">Copy</button></div>
+          <div class="result-body" id="r2"></div>
+        </div>
+        <div class="result-card">
+          <div class="result-header"><span class="result-label">Client Email</span><button class="copy-btn" onclick="cp('r3',this)">Copy</button></div>
+          <div class="result-body" id="r3"></div>
+        </div>
+        <div class="cta-bar">
+          <p>Want photos that match your copy? Quality Capture Visuals — Atlanta's premier real estate media company.</p>
+          <a href="https://qualitycapturevisuals.com/contact-us">Contact Us</a>
+        </div>
+      </div>
+    </div>
+
+    <div id="tool-flyer" class="tool-panel">
+      <div class="card">
+        <h3>Select Occasion</h3>
+        <p>Choose what this flyer is for.</p>
+        <div class="occasion-grid">
+          <button class="occasion-btn active" onclick="setOccasion(this)">New Listing</button>
+          <button class="occasion-btn" onclick="setOccasion(this)">Just Sold</button>
+          <button class="occasion-btn" onclick="setOccasion(this)">Under Contract</button>
+          <button class="occasion-btn" onclick="setOccasion(this)">Price Drop</button>
+          <button class="occasion-btn" onclick="setOccasion(this)">Open House</button>
+          <button class="occasion-btn" onclick="setOccasion(this)">Custom</button>
+        </div>
+
+        <h3 style="margin-bottom:6px;">Select Format</h3>
+        <p>Choose your flyer size.</p>
+        <div class="format-grid">
+          <button class="format-btn active" onclick="setFormat(this)" data-w="400" data-h="900">4×9<br><span style="font-size:10px;opacity:0.7;">Door Hanger</span></button>
+          <button class="format-btn" onclick="setFormat(this)" data-w="450" data-h="800">9×16<br><span style="font-size:10px;opacity:0.7;">Story</span></button>
+          <button class="format-btn" onclick="setFormat(this)" data-w="600" data-h="600">1×1<br><span style="font-size:10px;opacity:0.7;">Square Post</span></button>
+          <button class="format-btn" onclick="setFormat(this)" data-w="612" data-h="792">8.5×11<br><span style="font-size:10px;opacity:0.7;">Print</span></button>
+        </div>
+
+        <h3 style="margin-bottom:6px;">Upload Photo</h3>
+        <p style="margin-bottom:16px;">Upload your property photo.</p>
+        <div class="upload-area" onclick="document.getElementById('photoInput').click()">
+          <p>Click to upload your photo</p>
+          <span>JPG, PNG — recommended 2MB or less</span>
+        </div>
+        <input type="file" id="photoInput" accept="image/*" onchange="handlePhoto(event)" />
+        <img id="preview-img" class="preview-img" />
+
+        <div class="grid2">
+          <div class="full">
+            <div class="field-label">Headline</div>
+            <input type="text" id="fl-headline" placeholder="Stunning 4BR Home in Buckhead" />
+          </div>
+          <div>
+            <div class="field-label">Address</div>
+            <input type="text" id="fl-address" placeholder="123 Peachtree St" />
+          </div>
+          <div>
+            <div class="field-label">Price</div>
+            <input type="text" id="fl-price" placeholder="$750,000" />
+          </div>
+          <div>
+            <div class="field-label">Beds / Baths</div>
+            <input type="text" id="fl-beds" placeholder="4 bed / 3 bath" />
+          </div>
+          <div>
+            <div class="field-label">Square Footage</div>
+            <input type="text" id="fl-sqft" placeholder="2,400 sq ft" />
+          </div>
+          <div>
+            <div class="field-label">Agent Name</div>
+            <input type="text" id="fl-agent" placeholder="Sarah Johnson" />
+          </div>
+          <div>
+            <div class="field-label">Phone</div>
+            <input type="text" id="fl-phone" placeholder="(404) 555-0100" />
+          </div>
+        </div>
+        <button class="btn btn-orange" onclick="generateFlyer()">Generate Flyer</button>
+      </div>
+
+      <div id="flyer-output">
+        <canvas id="flyer-canvas"></canvas>
+        <button class="download-btn" onclick="downloadFlyer()">Download Flyer</button>
+        <div class="cta-bar" style="margin-top:12px;">
+          <p>Want professional photos for your next listing? Quality Capture Visuals — Atlanta's premier real estate media company.</p>
+          <a href="https://qualitycapturevisuals.com/contact-us">Contact Us</a>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<div class="powered">Powered by Quality Capture Visuals · qualitycapturevisuals.com</div>
+
+<script>
+var ANT_KEY = 'YOUR_ANTHROPIC_KEY_HERE';
+var selectedOccasion = 'New Listing';
+var selectedW = 400;
+var selectedH = 900;
+var uploadedPhoto = null;
+
+function unlock() {
+  var n = document.getElementById('gname').value.trim();
+  var e = document.getElementById('gemail').value.trim();
+  if (!n || !e) { alert('Please enter your name and email.'); return; }
+  if (e.indexOf('@') < 0) { alert('Please enter a valid email.'); return; }
+  document.getElementById('gate').style.display = 'none';
+  document.getElementById('main-content').style.display = 'block';
+}
+
+function switchTool(tool, btn) {
+  document.querySelectorAll('.tool-tab').forEach(function(t) { t.classList.remove('active'); });
+  document.querySelectorAll('.tool-panel').forEach(function(p) { p.classList.remove('active'); });
+  btn.classList.add('active');
+  document.getElementById('tool-' + tool).classList.add('active');
+}
+
+function setOccasion(btn) {
+  document.querySelectorAll('.occasion-btn').forEach(function(b) { b.classList.remove('active'); });
+  btn.classList.add('active');
+  selectedOccasion = btn.textContent;
+}
+
+function setFormat(btn) {
+  document.querySelectorAll('.format-btn').forEach(function(b) { b.classList.remove('active'); });
+  btn.classList.add('active');
+  selectedW = parseInt(btn.dataset.w);
+  selectedH = parseInt(btn.dataset.h);
+}
+
+function handlePhoto(e) {
+  var file = e.target.files[0];
+  if (!file) return;
+  var reader = new FileReader();
+  reader.onload = function(ev) {
+    uploadedPhoto = ev.target.result;
+    var img = document.getElementById('preview-img');
+    img.src = uploadedPhoto;
+    img.style.display = 'block';
+  };
+  reader.readAsDataURL(file);
+}
+
+function generateFlyer() {
+  if (!uploadedPhoto) { alert('Please upload a photo first.'); return; }
+  var headline = document.getElementById('fl-headline').value || selectedOccasion;
+  var address = document.getElementById('fl-address').value;
+  var price = document.getElementById('fl-price').value;
+  var beds = document.getElementById('fl-beds').value;
+  var sqft = document.getElementById('fl-sqft').value;
+  var agent = document.getElementById('fl-agent').value;
+  var phone = document.getElementById('fl-phone').value;
+
+  var canvas = document.getElementById('flyer-canvas');
+  canvas.width = selectedW;
+  canvas.height = selectedH;
+  var ctx = canvas.getContext('2d');
+
+  var img = new Image();
+  img.onload = function() {
+    ctx.drawImage(img, 0, 0, selectedW, selectedH * 0.65);
+    ctx.fillStyle = '#1a1a1a';
+    ctx.fillRect(0, selectedH * 0.65, selectedW, selectedH * 0.35);
+    ctx.fillStyle = '#F47920';
+    ctx.fillRect(0, selectedH * 0.65, selectedW, 4);
+    ctx.fillStyle = '#ffffff';
+    ctx.font = 'bold ' + Math.round(selectedW * 0.045) + 'px Georgia';
+    ctx.fillText(selectedOccasion.toUpperCase(), 24, selectedH * 0.68);
+    ctx.font = Math.round(selectedW * 0.038) + 'px Georgia';
+    wrapText(ctx, headline, 24, selectedH * 0.72, selectedW - 48, Math.round(selectedW * 0.044));
+    ctx.fillStyle = '#F47920';
+    ctx.font = 'bold ' + Math.round(selectedW * 0.05) + 'px Georgia';
+    ctx.fillText(price, 24, selectedH * 0.80);
+    ctx.fillStyle = '#cccccc';
+    ctx.font = Math.round(selectedW * 0.032) + 'px Georgia';
+    if (address) ctx.fillText(address, 24, selectedH * 0.845);
+    var details = [beds, sqft].filter(Boolean).join('  ·  ');
+    if (details) ctx.fillText(details, 24, selectedH * 0.875);
+    ctx.fillStyle = '#ffffff';
+    ctx.font = 'bold ' + Math.round(selectedW * 0.032) + 'px Georgia';
+    if (agent) ctx.fillText(agent, 24, selectedH * 0.92);
+    ctx.fillStyle = '#999999';
+    ctx.font = Math.round(selectedW * 0.028) + 'px Georgia';
+    if (phone) ctx.fillText(phone, 24, selectedH * 0.945);
+    ctx.fillStyle = 'rgba(244,121,32,0.15)';
+    ctx.fillRect(selectedW - 140, selectedH - 32, 136, 28);
+    ctx.fillStyle = '#F47920';
+    ctx.font = Math.round(selectedW * 0.022) + 'px Georgia';
+    ctx.fillText('Quality Capture Visuals', selectedW - 136, selectedH - 12);
+    document.getElementById('flyer-output').style.display = 'block';
+    document.getElementById('flyer-output').scrollIntoView({behavior:'smooth'});
+  };
+  img.src = uploadedPhoto;
+}
+
+function wrapText(ctx, text, x, y, maxWidth, lineHeight) {
+  var words = text.split(' ');
+  var line = '';
+  for (var i = 0; i < words.length; i++) {
+    var testLine = line + words[i] + ' ';
+    if (ctx.measureText(testLine).width > maxWidth && i > 0) {
+      ctx.fillText(line, x, y);
+      line = words[i] + ' ';
+      y += lineHeight;
+    } else { line = testLine; }
+  }
+  ctx.fillText(line, x, y);
+}
+
+function downloadFlyer() {
+  var canvas = document.getElementById('flyer-canvas');
+  var link = document.createElement('a');
+  link.download = 'qcv-flyer-' + selectedOccasion.toLowerCase().replace(/ /g,'-') + '.png';
+  link.href = canvas.toDataURL();
+  link.click();
+}
+
+async function generateCopy() {
+  var f = document.getElementById('f5').value;
+  if (!f) { alert('Please enter key features.'); return; }
+  document.getElementById('copy-btn').disabled = true;
+  document.getElementById('copy-loading').style.display = 'block';
+  document.getElementById('copy-results').style.display = 'none';
+  var prompt = 'You are a real estate copywriter. Property: Address:' + document.getElementById('f1').value + ' Sqft:' + document.getElementById('f2').value + ' Beds/Baths:' + document.getElementById('f3').value + ' Price:' + document.getElementById('f4').value + ' Features:' + f + ' Vibe:' + document.getElementById('f6').value + ' Buyer:' + document.getElementById('f7').value + '. Return ONLY valid JSON with keys mls, social, email. No markdown. No extra text. mls=100-150 word MLS description. social=punchy Instagram caption under 150 words with 5-8 hashtags. email=80-100 word just-listed client email blurb.';
+  try {
+    var res = await fetch('https://api.anthropic.com/v1/messages', {
+      method:'POST',
+      headers:{'Content-Type':'application/json','x-api-key':ANT_KEY,'anthropic-version':'2023-06-01','anthropic-dangerous-direct-browser-access':'true'},
+      body:JSON.stringify({model:'claude-sonnet-4-20250514',max_tokens:1000,messages:[{role:'user',content:prompt}]})
+    });
+    var data = await res.json();
+    var txt = data.content.map(function(i){return i.text||'';}).join('');
+    var clean = txt.replace(/```json|```/g,'').trim();
+    var p = JSON.parse(clean);
+    document.getElementById('r1').textContent = p.mls;
+    document.getElementById('r2').textContent = p.social;
+    document.getElementById('r3').textContent = p.email;
+    document.getElementById('copy-loading').style.display = 'none';
+    document.getElementById('copy-results').style.display = 'flex';
+  } catch(e) {
+    document.getElementById('copy-loading').style.display = 'none';
+    alert('Something went wrong. Please try again.');
+  }
+  document.getElementById('copy-btn').disabled = false;
+}
+
+function cp(id, btn) {
+  navigator.clipboard.writeText(document.getElementById(id).textContent).then(function(){
+    btn.textContent = 'Copied!';
+    setTimeout(function(){ btn.textContent = 'Copy'; }, 2000);
+  });
+}
+</script>
+</body>
+</html>

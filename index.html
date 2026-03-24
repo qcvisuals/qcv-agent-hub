@@ -263,7 +263,7 @@ textarea { resize: none; }
 <div class="powered">Powered by Quality Capture Visuals · qualitycapturevisuals.com</div>
 
 <script>
-var ANT_KEY = 'YOUR_ANTHROPIC_KEY_HERE';
+
 var selectedOccasion = 'New Listing';
 var selectedW = 400;
 var selectedH = 900;
@@ -393,10 +393,10 @@ async function generateCopy() {
   document.getElementById('copy-results').style.display = 'none';
   var prompt = 'You are a real estate copywriter. Property: Address:' + document.getElementById('f1').value + ' Sqft:' + document.getElementById('f2').value + ' Beds/Baths:' + document.getElementById('f3').value + ' Price:' + document.getElementById('f4').value + ' Features:' + f + ' Vibe:' + document.getElementById('f6').value + ' Buyer:' + document.getElementById('f7').value + '. Return ONLY valid JSON with keys mls, social, email. No markdown. No extra text. mls=100-150 word MLS description. social=punchy Instagram caption under 150 words with 5-8 hashtags. email=80-100 word just-listed client email blurb.';
   try {
-    var res = await fetch('https://api.anthropic.com/v1/messages', {
+var res = await fetch('/.netlify/functions/generate', {
       method:'POST',
-      headers:{'Content-Type':'application/json','x-api-key':ANT_KEY,'anthropic-version':'2023-06-01','anthropic-dangerous-direct-browser-access':'true'},
-      body:JSON.stringify({model:'claude-sonnet-4-20250514',max_tokens:1000,messages:[{role:'user',content:prompt}]})
+headers:{'Content-Type':'application/json'},
+body:JSON.stringify({prompt:prompt})
     });
     var data = await res.json();
     var txt = data.content.map(function(i){return i.text||'';}).join('');

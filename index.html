@@ -328,7 +328,27 @@ function generateFlyer() {
 
   var img = new Image();
   img.onload = function() {
-    ctx.drawImage(img, 0, 0, selectedW, selectedH * 0.65);
+    var imgAspect = img.width / img.height;
+var canvasAspect = selectedW / (selectedH * 0.65);
+var drawW, drawH, drawX, drawY;
+if (imgAspect > canvasAspect) {
+  drawH = selectedH * 0.65;
+  drawW = drawH * imgAspect;
+  drawX = (selectedW - drawW) / 2;
+  drawY = 0;
+} else {
+  drawW = selectedW;
+  drawH = drawW / imgAspect;
+  drawX = 0;
+  drawY = (selectedH * 0.65 - drawH) / 2;
+}
+ctx.save();
+ctx.beginPath();
+ctx.rect(0, 0, selectedW, selectedH * 0.65);
+ctx.clip();
+ctx.drawImage(img, drawX, drawY, drawW, drawH);
+ctx.restore();
+    
     ctx.fillStyle = '#1a1a1a';
     ctx.fillRect(0, selectedH * 0.65, selectedW, selectedH * 0.35);
     ctx.fillStyle = '#F47920';

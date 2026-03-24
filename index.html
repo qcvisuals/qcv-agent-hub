@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>QCV Agent Hub — Free Tools for Real Estate Professionals</title>
+<title>QCV Agent Hub — Marketing Tools for Real Estate Professionals</title>
 <style>
 * { box-sizing: border-box; margin: 0; padding: 0; }
 body { font-family: Georgia, serif; background: #f5f5f3; color: #1a1a1a; }
@@ -17,7 +17,7 @@ body { font-family: Georgia, serif; background: #f5f5f3; color: #1a1a1a; }
 .header-link:hover { color: #ffffff; border-color: #ffffff; }
 .hero { text-align: center; padding: 60px 40px 40px; }
 .hero h2 { font-size: 32px; font-weight: 400; margin-bottom: 12px; }
-.hero p { font-size: 16px; color: #666; max-width: 500px; margin: 0 auto; line-height: 1.6; }
+.hero p { font-size: 16px; color: #666; max-width: 520px; margin: 0 auto; line-height: 1.6; }
 .tools-nav { display: flex; justify-content: center; gap: 12px; padding: 0 40px 40px; flex-wrap: wrap; }
 .tool-tab { padding: 12px 28px; border: 1px solid #ddd; border-radius: 6px; background: #fff; cursor: pointer; font-size: 14px; font-family: Georgia, serif; color: #666; transition: all 0.15s; }
 .tool-tab.active { background: #1a1a1a; color: #fff; border-color: #1a1a1a; }
@@ -70,7 +70,15 @@ textarea { resize: none; }
 .download-btn { max-width: 400px; width: 100%; padding: 14px; background: #1a1a1a; color: #fff; border: none; border-radius: 6px; font-size: 14px; letter-spacing: 0.05em; cursor: pointer; font-family: Georgia, serif; margin: 12px auto 0; display: block; }
 #gate { display: block; }
 #main-content { display: none; }
-.book-cta { background: #1a1a1a; padding: 48px 40px; text-align: center; margin-top: 40px; }
+.waitlist-bar { background: #f5f0e8; border-top: 1px solid #e0d8cc; padding: 40px; text-align: center; margin-top: 40px; }
+.waitlist-bar h3 { font-size: 20px; font-weight: 400; margin-bottom: 8px; color: #1a1a1a; }
+.waitlist-bar p { font-size: 14px; color: #7a6055; margin-bottom: 20px; line-height: 1.6; }
+.waitlist-form { display: flex; gap: 10px; max-width: 440px; margin: 0 auto; flex-wrap: wrap; }
+.waitlist-form input { flex: 1; min-width: 200px; padding: 12px 16px; border: 1px solid #ddd; border-radius: 6px; font-size: 14px; font-family: Georgia, serif; background: #fff; }
+.waitlist-form button { padding: 12px 24px; background: #1a1a1a; color: #fff; border: none; border-radius: 6px; font-size: 14px; font-family: Georgia, serif; cursor: pointer; white-space: nowrap; transition: opacity 0.15s; }
+.waitlist-form button:hover { opacity: 0.8; }
+.waitlist-confirm { display: none; font-size: 14px; color: #3d2b1f; margin-top: 12px; }
+.book-cta { background: #1a1a1a; padding: 48px 40px; text-align: center; }
 .book-cta h3 { color: #ffffff; font-size: 22px; font-weight: 400; margin-bottom: 10px; }
 .book-cta p { color: #aaaaaa; font-size: 14px; margin-bottom: 24px; line-height: 1.6; }
 .book-cta a { display: inline-block; padding: 14px 36px; background: #F47920; color: #fff; text-decoration: none; border-radius: 6px; font-size: 14px; letter-spacing: 0.05em; transition: opacity 0.15s; }
@@ -94,12 +102,12 @@ textarea { resize: none; }
 
 <div id="gate">
   <div class="hero">
-    <h2>Free Marketing Tools for Atlanta Agents</h2>
-    <p>Generate listing copy, social captions, client emails, and branded flyers — all in one place.</p>
+    <h2>Marketing Tools for Real Estate Professionals</h2>
+    <p>Generate listing copy, social captions, client emails, and branded flyers — all in one place. Built for agents, developers, and property professionals everywhere.</p>
   </div>
   <div class="container">
     <div class="card">
-      <h3>Get started — it's free</h3>
+      <h3>Get started</h3>
       <p>Enter your name and email to access all tools.</p>
       <div style="margin-bottom:16px;">
         <div class="field-label">Full Name</div>
@@ -109,7 +117,7 @@ textarea { resize: none; }
         <div class="field-label">Email Address</div>
         <input type="email" id="gemail" placeholder="sarah@atlrealty.com" />
       </div>
-      <button class="btn" onclick="unlock()">Access Free Tools</button>
+      <button class="btn" onclick="unlock()">Access Tools</button>
     </div>
   </div>
 </div>
@@ -160,7 +168,7 @@ textarea { resize: none; }
           <div class="result-body" id="r3"></div>
         </div>
         <div class="cta-bar">
-          <p>Want photos that match your copy? Quality Capture Visuals — Atlanta's premier real estate media company.</p>
+          <p>Want photos that match your copy? Quality Capture Visuals — real estate media for professionals.</p>
           <a href="https://qualitycapturevisuals.com/contact-us">Contact Us</a>
         </div>
         <button class="transfer-btn" style="margin-top:12px;" onclick="goToFlyer()">Now build your flyer with these details →</button>
@@ -281,12 +289,22 @@ textarea { resize: none; }
         <canvas id="flyer-canvas"></canvas>
         <button class="download-btn" onclick="downloadFlyer()">Download Flyer</button>
         <div class="cta-bar" style="margin-top:12px;max-width:400px;margin-left:auto;margin-right:auto;">
-          <p>Want professional photos for your next listing? Quality Capture Visuals — Atlanta's premier real estate media company.</p>
+          <p>Want professional photos for your next listing? Quality Capture Visuals — real estate media for professionals.</p>
           <a href="https://qualitycapturevisuals.com/contact-us">Contact Us</a>
         </div>
       </div>
     </div>
 
+  </div>
+
+  <div class="waitlist-bar">
+    <h3>Pro plan coming soon</h3>
+    <p>Unlimited flyers, advanced layouts, and priority features. Be the first to know.</p>
+    <div class="waitlist-form">
+      <input type="email" id="wl-email" placeholder="your@email.com" />
+      <button onclick="joinWaitlist()">Join the Waitlist</button>
+    </div>
+    <div class="waitlist-confirm" id="wl-confirm">You're on the list — we'll be in touch.</div>
   </div>
 
   <div class="book-cta">
@@ -341,10 +359,23 @@ function unlock() {
   fetch('https://formspree.io/f/mwvwekvj', {
     method: 'POST',
     headers: { 'Content-Type': 'application/json' },
-    body: JSON.stringify({ name: n, email: e, source: 'QCV Agent Hub' })
+    body: JSON.stringify({ name: n, email: e, source: 'QCV Agent Hub - Gate' })
   });
   document.getElementById('gate').style.display = 'none';
   document.getElementById('main-content').style.display = 'block';
+}
+
+function joinWaitlist() {
+  var e = document.getElementById('wl-email').value.trim();
+  if (!e || e.indexOf('@') < 0) { alert('Please enter a valid email.'); return; }
+  fetch('https://formspree.io/f/mwvwekvj', {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify({ email: e, source: 'QCV Agent Hub - Pro Waitlist' })
+  });
+  document.getElementById('wl-email').style.display = 'none';
+  document.querySelector('.waitlist-form button').style.display = 'none';
+  document.getElementById('wl-confirm').style.display = 'block';
 }
 
 function switchTool(tool, btn) {
@@ -486,8 +517,8 @@ function drawDivider(ctx, t, y) {
 
 function getPhotoHeight() {
   var ratio = selectedW / selectedH;
-  if (ratio < 0.5) return Math.round(selectedH * 0.62);
-  if (ratio < 0.7) return Math.round(selectedH * 0.65);
+  if (ratio < 0.5) return Math.round(selectedH * 0.52);
+  if (ratio < 0.7) return Math.round(selectedH * 0.55);
   return Math.round(selectedH * 0.58);
 }
 
@@ -524,7 +555,6 @@ function generateFlyer() {
   var pad = Math.round(selectedW * 0.07);
   var borderPad = Math.round(selectedW * 0.04);
   var gap = 6;
-
   var loadCount = 0;
   var totalPhotos = photoCount;
   var imgs = [null, null, null];
@@ -601,8 +631,7 @@ function renderTextBlock(ctx, t, pad, photoH, headline, address, price, beds, sq
 
   ctx.fillStyle = t.text;
   ctx.font = 'bold ' + fs + 'px ' + selectedFont;
-  var maxHeadlineLines = Math.floor((maxY - y - lh * 4) / lh);
-  maxHeadlineLines = Math.max(1, Math.min(maxHeadlineLines, 3));
+  var maxHeadlineLines = Math.max(1, Math.min(3, Math.floor((maxY - y - lh * 4) / lh)));
   if (fits(y)) { var hl = wrapText(ctx, headline, pad, y, maxW, lh, maxHeadlineLines); y += hl * lh + Math.round(lh * 0.15); }
 
   if (price && fits(y)) {
@@ -677,6 +706,7 @@ function downloadFlyer() {
     }, 'image/png', 1.0);
   }
 }
+
 async function generateCopy() {
   var f = document.getElementById('f5').value;
   if (!f) { alert('Please enter key features.'); return; }

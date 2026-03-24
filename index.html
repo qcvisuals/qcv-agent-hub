@@ -64,7 +64,7 @@ textarea { resize: none; }
 .upload-area:hover { border-color: #1a1a1a; }
 .upload-area p { font-size: 14px; color: #888; margin-bottom: 4px; }
 .upload-area span { font-size: 12px; color: #bbb; }
-.preview-img { width: 100%; max-height: 180px; object-fit: cover; border-radius: 6px; margin-bottom: 12px; display: none; }
+.preview-img { width: 100%; max-height: 160px; object-fit: cover; border-radius: 6px; margin-bottom: 12px; display: none; }
 #flyer-output { display: none; margin-top: 20px; text-align: center; }
 #flyer-canvas { max-width: 400px; width: 100%; height: auto; border-radius: 8px; border: 1px solid #ddd; display: block; margin: 0 auto; }
 .download-btn { max-width: 400px; width: 100%; padding: 14px; background: #1a1a1a; color: #fff; border: none; border-radius: 6px; font-size: 14px; letter-spacing: 0.05em; cursor: pointer; font-family: Georgia, serif; margin: 12px auto 0; display: block; }
@@ -184,10 +184,10 @@ textarea { resize: none; }
         <h3 style="margin-bottom:6px;">Format</h3>
         <p>Choose your flyer size.</p>
         <div class="option-grid-4">
-          <button class="opt-btn active" onclick="setFormat(this)" data-w="1200" data-h="2700">4×9<br><span style="font-size:10px;opacity:0.7;">Door Hanger</span></button>
-          <button class="opt-btn" onclick="setFormat(this)" data-w="1080" data-h="1920">9×16<br><span style="font-size:10px;opacity:0.7;">Story</span></button>
-          <button class="opt-btn" onclick="setFormat(this)" data-w="1080" data-h="1080">1×1<br><span style="font-size:10px;opacity:0.7;">Square Post</span></button>
-          <button class="opt-btn" onclick="setFormat(this)" data-w="2550" data-h="3300">8.5×11<br><span style="font-size:10px;opacity:0.7;">Print</span></button>
+          <button class="opt-btn active" onclick="setFormat(this)" data-w="1200" data-h="2700" data-max="3">4×9<br><span style="font-size:10px;opacity:0.7;">Door Hanger</span></button>
+          <button class="opt-btn" onclick="setFormat(this)" data-w="1080" data-h="1920" data-max="2">9×16<br><span style="font-size:10px;opacity:0.7;">Story</span></button>
+          <button class="opt-btn" onclick="setFormat(this)" data-w="1080" data-h="1080" data-max="2">1×1<br><span style="font-size:10px;opacity:0.7;">Square Post</span></button>
+          <button class="opt-btn" onclick="setFormat(this)" data-w="2550" data-h="3300" data-max="3">8.5×11<br><span style="font-size:10px;opacity:0.7;">Print</span></button>
         </div>
 
         <h3 style="margin-bottom:6px;">Color Theme</h3>
@@ -214,7 +214,15 @@ textarea { resize: none; }
           <button class="opt-btn" onclick="setDivider(this)" data-divider="double">Double</button>
         </div>
 
-        <h3 style="margin-bottom:6px;">Photo Layout</h3>
+        <h3 style="margin-bottom:6px;">Number of Photos</h3>
+        <p>How many photos to use?</p>
+        <div class="option-grid-3">
+          <button class="opt-btn active" onclick="setLayout(this)" data-layout="single">One Photo</button>
+          <button class="opt-btn" onclick="setLayout(this)" data-layout="double">Two Photos</button>
+          <button class="opt-btn" id="triple-btn" onclick="setLayout(this)" data-layout="triple">Three Photos</button>
+        </div>
+
+        <h3 style="margin-bottom:6px;margin-top:4px;">Photo Layout</h3>
         <p>Choose how your photos are arranged.</p>
         <div id="single-layouts" class="option-grid-2">
           <button class="opt-btn active" onclick="setPhotoLayout(this)" data-pl="single-full">Full Bleed<br><span style="font-size:11px;opacity:0.6;">Image fills top</span></button>
@@ -222,19 +230,16 @@ textarea { resize: none; }
         </div>
         <div id="double-layouts" class="option-grid-2" style="display:none;">
           <button class="opt-btn active" onclick="setPhotoLayout(this)" data-pl="double-side">Side by Side<br><span style="font-size:11px;opacity:0.6;">Equal split</span></button>
-          <button class="opt-btn" onclick="setPhotoLayout(this)" data-pl="double-hero">Hero + Accent<br><span style="font-size:11px;opacity:0.6;">Large + small</span></button>
+          <button class="opt-btn" onclick="setPhotoLayout(this)" data-pl="double-hero">Hero + Accent<br><span style="font-size:11px;opacity:0.6;">Large + small below</span></button>
           <button class="opt-btn" onclick="setPhotoLayout(this)" data-pl="double-left">Left Focus<br><span style="font-size:11px;opacity:0.6;">Large left</span></button>
           <button class="opt-btn" onclick="setPhotoLayout(this)" data-pl="double-stack">Top + Bottom<br><span style="font-size:11px;opacity:0.6;">Stacked</span></button>
         </div>
-
-        <h3 style="margin-bottom:6px;margin-top:20px;">Number of Photos</h3>
-        <p>How many photos to use?</p>
-        <div class="option-grid-2">
-          <button class="opt-btn active" onclick="setLayout(this)" data-layout="single">Single Image</button>
-          <button class="opt-btn" onclick="setLayout(this)" data-layout="double">Two Images</button>
+        <div id="triple-layouts" class="option-grid-2" style="display:none;">
+          <button class="opt-btn active" onclick="setPhotoLayout(this)" data-pl="triple-hero">Hero + Two Below<br><span style="font-size:11px;opacity:0.6;">Large top, two bottom</span></button>
+          <button class="opt-btn" onclick="setPhotoLayout(this)" data-pl="triple-grid">Three Equal<br><span style="font-size:11px;opacity:0.6;">Equal grid</span></button>
         </div>
 
-        <h3 style="margin-bottom:6px;margin-top:4px;">Upload Photo(s)</h3>
+        <h3 style="margin-bottom:6px;margin-top:20px;">Upload Photo(s)</h3>
         <p style="margin-bottom:16px;">Use the highest resolution photos available for best results.</p>
         <div id="upload1-wrap">
           <div class="upload-area" onclick="document.getElementById('photo1').click()">
@@ -252,6 +257,14 @@ textarea { resize: none; }
           <input type="file" id="photo2" accept="image/*" onchange="handlePhoto(event,2)" style="display:none;" />
           <img id="preview2" class="preview-img" />
         </div>
+        <div id="upload3-wrap" style="display:none;">
+          <div class="upload-area" onclick="document.getElementById('photo3').click()">
+            <p>Click to upload photo 3</p>
+            <span>JPG or PNG — highest resolution available</span>
+          </div>
+          <input type="file" id="photo3" accept="image/*" onchange="handlePhoto(event,3)" style="display:none;" />
+          <img id="preview3" class="preview-img" />
+        </div>
 
         <div class="grid2" style="margin-top:20px;">
           <div class="full"><div class="field-label">Headline</div><input type="text" id="fl-headline" placeholder="Stunning 4BR Home in Buckhead" /></div>
@@ -261,7 +274,7 @@ textarea { resize: none; }
           <div><div class="field-label">Square Footage</div><input type="text" id="fl-sqft" placeholder="2,400 sq ft" /></div>
           <div><div class="field-label">Agent Name</div><input type="text" id="fl-agent" placeholder="Sarah Johnson" /></div>
           <div><div class="field-label">Phone</div><input type="text" id="fl-phone" placeholder="(404) 555-0100" /></div>
-          <div><div class="field-label">Brokerage Name</div><input type="text" id="fl-brokerage" placeholder="Keller Williams Realty" /></div>
+          <div><div class="field-label">Brokerage</div><input type="text" id="fl-brokerage" placeholder="Keller Williams Realty" /></div>
           <div class="full"><div class="field-label">Listing URL for QR Code (optional)</div><input type="text" id="fl-qr" placeholder="https://yourlistinglink.com" /></div>
         </div>
         <button class="btn" onclick="generateFlyer()">Generate Flyer</button>
@@ -294,6 +307,7 @@ textarea { resize: none; }
 var selectedOccasion = 'New Listing';
 var selectedW = 1200;
 var selectedH = 2700;
+var maxPhotos = 3;
 var selectedLayout = 'single';
 var selectedPhotoLayout = 'single-full';
 var selectedTheme = 'classic';
@@ -301,6 +315,7 @@ var selectedFont = 'Georgia';
 var selectedDivider = 'none';
 var uploadedPhoto1 = null;
 var uploadedPhoto2 = null;
+var uploadedPhoto3 = null;
 
 var themes = {
   classic: { bg: '#ffffff', text: '#1a1a1a', sub: '#666666', accent: '#1a1a1a', divider: '#cccccc' },
@@ -308,6 +323,16 @@ var themes = {
   warm:    { bg: '#f5f0e8', text: '#3d2b1f', sub: '#7a6055', accent: '#3d2b1f', divider: '#c8b89a' },
   bold:    { bg: '#0d2137', text: '#ffffff', sub: '#8aaabb', accent: '#ffffff', divider: '#1e4060' }
 };
+
+var textConfig = {
+  1200: { photoRatio: 0.52, fs: 46, occasion: 0.60, headline: 1.0, price: 1.05, detail: 0.68, agent: 0.72, brokerage: 0.62, phone: 0.60, powered: 0.019 },
+  1080: { photoRatio: 0.55, fs: 42, occasion: 0.60, headline: 1.0, price: 1.05, detail: 0.68, agent: 0.72, brokerage: 0.62, phone: 0.60, powered: 0.019 },
+  2550: { photoRatio: 0.50, fs: 90, occasion: 0.60, headline: 1.0, price: 1.05, detail: 0.68, agent: 0.72, brokerage: 0.62, phone: 0.60, powered: 0.016 }
+};
+
+function getConfig() {
+  return textConfig[selectedW] || textConfig[1080];
+}
 
 function syncField(from, to) {
   document.getElementById(to).value = document.getElementById(from).value;
@@ -353,6 +378,22 @@ function setFormat(btn) {
   btn.classList.add('active');
   selectedW = parseInt(btn.dataset.w);
   selectedH = parseInt(btn.dataset.h);
+  maxPhotos = parseInt(btn.dataset.max);
+  var tripleBtn = document.getElementById('triple-btn');
+  tripleBtn.style.opacity = maxPhotos >= 3 ? '1' : '0.35';
+  tripleBtn.style.pointerEvents = maxPhotos >= 3 ? 'auto' : 'none';
+  if (selectedLayout === 'triple' && maxPhotos < 3) {
+    setLayoutByName('single');
+  }
+}
+
+function setLayoutByName(name) {
+  document.querySelectorAll('.option-grid-3 .opt-btn').forEach(function(b) {
+    if (b.dataset.layout === name) { b.classList.add('active'); } else { b.classList.remove('active'); }
+  });
+  selectedLayout = name;
+  updateUploadVisibility();
+  updateLayoutPanels();
 }
 
 function setTheme(btn, theme) {
@@ -374,20 +415,31 @@ function setDivider(btn) {
 }
 
 function setPhotoLayout(btn) {
-  btn.closest('.option-grid-2').querySelectorAll('.opt-btn').forEach(function(b) { b.classList.remove('active'); });
+  btn.closest('[id$="-layouts"]').querySelectorAll('.opt-btn').forEach(function(b) { b.classList.remove('active'); });
   btn.classList.add('active');
   selectedPhotoLayout = btn.dataset.pl;
 }
 
+function updateUploadVisibility() {
+  document.getElementById('upload2-wrap').style.display = selectedLayout !== 'single' ? 'block' : 'none';
+  document.getElementById('upload3-wrap').style.display = selectedLayout === 'triple' ? 'block' : 'none';
+}
+
+function updateLayoutPanels() {
+  document.getElementById('single-layouts').style.display = selectedLayout === 'single' ? 'grid' : 'none';
+  document.getElementById('double-layouts').style.display = selectedLayout === 'double' ? 'grid' : 'none';
+  document.getElementById('triple-layouts').style.display = selectedLayout === 'triple' ? 'grid' : 'none';
+  if (selectedLayout === 'single') selectedPhotoLayout = 'single-full';
+  if (selectedLayout === 'double') selectedPhotoLayout = 'double-side';
+  if (selectedLayout === 'triple') selectedPhotoLayout = 'triple-hero';
+}
+
 function setLayout(btn) {
-  btn.closest('.option-grid-2').querySelectorAll('.opt-btn').forEach(function(b) { b.classList.remove('active'); });
+  btn.closest('.option-grid-3').querySelectorAll('.opt-btn').forEach(function(b) { b.classList.remove('active'); });
   btn.classList.add('active');
   selectedLayout = btn.dataset.layout;
-  var isSingle = selectedLayout === 'single';
-  document.getElementById('upload2-wrap').style.display = isSingle ? 'none' : 'block';
-  document.getElementById('single-layouts').style.display = isSingle ? 'grid' : 'none';
-  document.getElementById('double-layouts').style.display = isSingle ? 'none' : 'grid';
-  selectedPhotoLayout = isSingle ? 'single-full' : 'double-side';
+  updateUploadVisibility();
+  updateLayoutPanels();
 }
 
 function handlePhoto(e, num) {
@@ -395,10 +447,17 @@ function handlePhoto(e, num) {
   if (!file) return;
   var reader = new FileReader();
   reader.onload = function(ev) {
-    if (num === 1) { uploadedPhoto1 = ev.target.result; var img = document.getElementById('preview1'); img.src = uploadedPhoto1; img.style.display = 'block'; }
-    else { uploadedPhoto2 = ev.target.result; var img = document.getElementById('preview2'); img.src = uploadedPhoto2; img.style.display = 'block'; }
+    if (num === 1) { uploadedPhoto1 = ev.target.result; showPreview('preview1', uploadedPhoto1); }
+    else if (num === 2) { uploadedPhoto2 = ev.target.result; showPreview('preview2', uploadedPhoto2); }
+    else { uploadedPhoto3 = ev.target.result; showPreview('preview3', uploadedPhoto3); }
   };
   reader.readAsDataURL(file);
+}
+
+function showPreview(id, src) {
+  var img = document.getElementById(id);
+  img.src = src;
+  img.style.display = 'block';
 }
 
 function drawCover(ctx, img, x, y, w, h) {
@@ -431,13 +490,6 @@ function wrapText(ctx, text, x, y, maxW, lineH) {
   return count + 1;
 }
 
-function generateQR(url, size) {
-  var div = document.createElement('div');
-  new QRCode(div, { text: url, width: size, height: size, correctLevel: QRCode.CorrectLevel.M });
-  var qrCanvas = div.querySelector('canvas');
-  return qrCanvas;
-}
-
 function drawDivider(ctx, t, y) {
   if (selectedDivider === 'none') return;
   ctx.strokeStyle = t.divider;
@@ -454,6 +506,7 @@ function drawDivider(ctx, t, y) {
 function generateFlyer() {
   if (!uploadedPhoto1) { alert('Please upload at least one photo.'); return; }
   if (selectedLayout === 'double' && !uploadedPhoto2) { alert('Please upload a second photo.'); return; }
+  if (selectedLayout === 'triple' && (!uploadedPhoto2 || !uploadedPhoto3)) { alert('Please upload all three photos.'); return; }
 
   var headline = document.getElementById('fl-headline').value || selectedOccasion;
   var address = document.getElementById('fl-address').value;
@@ -465,6 +518,7 @@ function generateFlyer() {
   var brokerage = document.getElementById('fl-brokerage').value;
   var qrUrl = document.getElementById('fl-qr').value.trim();
   var t = themes[selectedTheme];
+  var cfg = getConfig();
 
   var canvas = document.getElementById('flyer-canvas');
   canvas.width = selectedW;
@@ -476,94 +530,122 @@ function generateFlyer() {
   ctx.imageSmoothingEnabled = true;
   ctx.imageSmoothingQuality = 'high';
 
+  var photoH = Math.round(selectedH * cfg.photoRatio);
   var pad = Math.round(selectedW * 0.07);
-  var borderPad = Math.round(selectedW * 0.04);
-  var photoH = Math.round(selectedH * 0.56);
-  var fs = Math.round(selectedW * 0.042);
-  var lh = Math.round(fs * 1.5);
+  var gap = 6;
 
   ctx.fillStyle = t.bg;
   ctx.fillRect(0, 0, selectedW, selectedH);
 
-  var img1 = new Image();
-  img1.onload = function() {
+  function doRender(images) {
+    var img1 = images[0];
+    var img2 = images[1];
+    var img3 = images[2];
+
     if (selectedLayout === 'single') {
       if (selectedPhotoLayout === 'single-full') {
         drawCover(ctx, img1, 0, 0, selectedW, photoH);
       } else {
-        drawCover(ctx, img1, borderPad, borderPad, selectedW - borderPad * 2, photoH - borderPad);
+        var bp = Math.round(selectedW * 0.04);
+        drawCover(ctx, img1, bp, bp, selectedW - bp * 2, photoH - bp);
       }
-      drawDivider(ctx, t, photoH);
-      renderText(ctx, t, pad, fs, lh, photoH, headline, address, price, beds, sqft, agent, phone, brokerage, qrUrl);
-    } else {
-      var img2 = new Image();
-      img2.onload = function() {
-        var gap = 6;
-        if (selectedPhotoLayout === 'double-side') {
-          drawCover(ctx, img1, 0, 0, (selectedW - gap) / 2, photoH);
-          drawCover(ctx, img2, (selectedW + gap) / 2, 0, (selectedW - gap) / 2, photoH);
-        } else if (selectedPhotoLayout === 'double-hero') {
-          var heroH = Math.round(photoH * 0.65);
-          var accentH = photoH - heroH - gap;
-          drawCover(ctx, img1, 0, 0, selectedW, heroH);
-          drawCover(ctx, img2, 0, heroH + gap, selectedW, accentH);
-        } else if (selectedPhotoLayout === 'double-left') {
-          var leftW = Math.round(selectedW * 0.62);
-          var rightW = selectedW - leftW - gap;
-          var halfH = Math.round(photoH / 2) - Math.round(gap / 2);
-          drawCover(ctx, img1, 0, 0, leftW, photoH);
-          drawCover(ctx, img2, leftW + gap, 0, rightW, photoH);
-        } else if (selectedPhotoLayout === 'double-stack') {
-          var halfH2 = Math.round(photoH / 2) - Math.round(gap / 2);
-          drawCover(ctx, img1, 0, 0, selectedW, halfH2);
-          drawCover(ctx, img2, 0, halfH2 + gap, selectedW, halfH2);
-        }
-        drawDivider(ctx, t, photoH);
-        renderText(ctx, t, pad, fs, lh, photoH, headline, address, price, beds, sqft, agent, phone, brokerage, qrUrl);
-      };
-      img2.src = uploadedPhoto2;
+    } else if (selectedLayout === 'double') {
+      if (selectedPhotoLayout === 'double-side') {
+        drawCover(ctx, img1, 0, 0, (selectedW - gap) / 2, photoH);
+        drawCover(ctx, img2, (selectedW + gap) / 2, 0, (selectedW - gap) / 2, photoH);
+      } else if (selectedPhotoLayout === 'double-hero') {
+        var heroH = Math.round(photoH * 0.65);
+        drawCover(ctx, img1, 0, 0, selectedW, heroH);
+        drawCover(ctx, img2, 0, heroH + gap, selectedW, photoH - heroH - gap);
+      } else if (selectedPhotoLayout === 'double-left') {
+        var lw = Math.round(selectedW * 0.62);
+        drawCover(ctx, img1, 0, 0, lw, photoH);
+        drawCover(ctx, img2, lw + gap, 0, selectedW - lw - gap, photoH);
+      } else if (selectedPhotoLayout === 'double-stack') {
+        var hh = Math.round(photoH / 2) - Math.round(gap / 2);
+        drawCover(ctx, img1, 0, 0, selectedW, hh);
+        drawCover(ctx, img2, 0, hh + gap, selectedW, hh);
+      }
+    } else if (selectedLayout === 'triple') {
+      if (selectedPhotoLayout === 'triple-hero') {
+        var heroH2 = Math.round(photoH * 0.60);
+        var bottomH = photoH - heroH2 - gap;
+        drawCover(ctx, img1, 0, 0, selectedW, heroH2);
+        drawCover(ctx, img2, 0, heroH2 + gap, (selectedW - gap) / 2, bottomH);
+        drawCover(ctx, img3, (selectedW + gap) / 2, heroH2 + gap, (selectedW - gap) / 2, bottomH);
+      } else {
+        var third = Math.round(selectedH * 0.33);
+        drawCover(ctx, img1, 0, 0, (selectedW - gap) / 2, third - gap / 2);
+        drawCover(ctx, img2, (selectedW + gap) / 2, 0, (selectedW - gap) / 2, third - gap / 2);
+        drawCover(ctx, img3, 0, third + gap / 2, selectedW, third - gap / 2);
+        photoH = third * 2;
+      }
     }
-  };
-  img1.src = uploadedPhoto1;
+
+    drawDivider(ctx, t, photoH);
+    renderText(ctx, t, cfg, pad, photoH, headline, address, price, beds, sqft, agent, phone, brokerage, qrUrl);
+  }
+
+  var loadedImages = [];
+  var sources = [uploadedPhoto1];
+  if (selectedLayout !== 'single') sources.push(uploadedPhoto2);
+  if (selectedLayout === 'triple') sources.push(uploadedPhoto3);
+
+  var loaded = 0;
+  sources.forEach(function(src, i) {
+    var img = new Image();
+    img.onload = function() {
+      loadedImages[i] = img;
+      loaded++;
+      if (loaded === sources.length) doRender(loadedImages);
+    };
+    img.src = src;
+  });
 }
 
-function renderText(ctx, t, pad, fs, lh, photoH, headline, address, price, beds, sqft, agent, phone, brokerage, qrUrl) {
+function renderText(ctx, t, cfg, pad, photoH, headline, address, price, beds, sqft, agent, phone, brokerage, qrUrl) {
+  var fs = cfg.fs;
+  var lh = Math.round(fs * 1.5);
   var y = photoH + pad;
-  var maxW = selectedW - pad * 2;
-  var qrSize = Math.round(selectedW * 0.18);
-
-  if (qrUrl) { maxW = selectedW - pad * 2 - qrSize - pad; }
+  var qrSize = Math.round(selectedW * 0.17);
+  var maxW = qrUrl ? selectedW - pad * 2 - qrSize - Math.round(pad * 0.6) : selectedW - pad * 2;
+  var bottomSafe = selectedH - Math.round(selectedW * 0.06);
 
   ctx.fillStyle = t.accent;
-  ctx.font = 'bold ' + Math.round(fs * 0.62) + 'px ' + selectedFont;
+  ctx.font = 'bold ' + Math.round(fs * cfg.occasion) + 'px ' + selectedFont;
   ctx.fillText(selectedOccasion.toUpperCase(), pad, y);
-  y += Math.round(lh * 0.85);
+  y += Math.round(lh * 0.82);
 
-  ctx.fillStyle = t.text;
-  ctx.font = 'bold ' + fs + 'px ' + selectedFont;
-  var lines = wrapText(ctx, headline, pad, y, maxW, lh);
-  y += lines * lh + Math.round(lh * 0.2);
-
-  if (price) {
+  if (y < bottomSafe) {
     ctx.fillStyle = t.text;
-    ctx.font = 'bold ' + Math.round(fs * 1.0) + 'px ' + selectedFont;
+    ctx.font = 'bold ' + Math.round(fs * cfg.headline) + 'px ' + selectedFont;
+    var lines = wrapText(ctx, headline, pad, y, maxW, lh);
+    y += lines * lh + Math.round(lh * 0.15);
+  }
+
+  if (price && y < bottomSafe) {
+    ctx.fillStyle = t.text;
+    ctx.font = 'bold ' + Math.round(fs * cfg.price) + 'px ' + selectedFont;
     ctx.fillText(price, pad, y);
-    y += lh * 1.1;
+    y += Math.round(lh * 1.05);
   }
 
   ctx.fillStyle = t.sub;
-  ctx.font = Math.round(fs * 0.7) + 'px ' + selectedFont;
-  if (address) { ctx.fillText(address, pad, y); y += lh * 0.9; }
+  ctx.font = Math.round(fs * cfg.detail) + 'px ' + selectedFont;
+  if (address && y < bottomSafe) { ctx.fillText(address, pad, y); y += Math.round(lh * 0.88); }
   var details = [beds, sqft].filter(Boolean).join('   ·   ');
-  if (details) { ctx.fillText(details, pad, y); y += lh * 1.1; }
+  if (details && y < bottomSafe) { ctx.fillText(details, pad, y); y += Math.round(lh * 1.05); }
 
-  ctx.fillStyle = t.text;
-  ctx.font = 'bold ' + Math.round(fs * 0.72) + 'px ' + selectedFont;
-  if (agent) { ctx.fillText(agent, pad, y); y += lh * 0.85; }
+  if (y < bottomSafe) {
+    ctx.fillStyle = t.text;
+    ctx.font = 'bold ' + Math.round(fs * cfg.agent) + 'px ' + selectedFont;
+    if (agent) { ctx.fillText(agent, pad, y); y += Math.round(lh * 0.82); }
+  }
   ctx.fillStyle = t.sub;
-  ctx.font = Math.round(fs * 0.62) + 'px ' + selectedFont;
-  if (brokerage) { ctx.fillText(brokerage, pad, y); y += lh * 0.8; }
-  if (phone) { ctx.fillText(phone, pad, y); }
+  ctx.font = Math.round(fs * cfg.brokerage) + 'px ' + selectedFont;
+  if (brokerage && y < bottomSafe) { ctx.fillText(brokerage, pad, y); y += Math.round(lh * 0.78); }
+  ctx.font = Math.round(fs * cfg.phone) + 'px ' + selectedFont;
+  if (phone && y < bottomSafe) { ctx.fillText(phone, pad, y); }
 
   if (qrUrl) {
     try {
@@ -571,22 +653,28 @@ function renderText(ctx, t, pad, fs, lh, photoH, headline, address, price, beds,
       var qrX = selectedW - pad - qrSize;
       var qrY = photoH + pad;
       ctx.fillStyle = '#ffffff';
-      ctx.fillRect(qrX - 8, qrY - 8, qrSize + 16, qrSize + 16);
+      ctx.fillRect(qrX - 6, qrY - 6, qrSize + 12, qrSize + 12);
       ctx.drawImage(qrCanvas, qrX, qrY, qrSize, qrSize);
       ctx.fillStyle = t.sub;
-      ctx.font = Math.round(selectedW * 0.018) + 'px ' + selectedFont;
+      ctx.font = Math.round(fs * 0.42) + 'px ' + selectedFont;
       ctx.textAlign = 'center';
-      ctx.fillText('Scan to view', qrX + qrSize / 2, qrY + qrSize + Math.round(selectedW * 0.025));
+      ctx.fillText('Scan to view listing', qrX + qrSize / 2, qrY + qrSize + Math.round(fs * 0.55));
       ctx.textAlign = 'left';
     } catch(e) {}
   }
 
   ctx.fillStyle = t.sub;
-  ctx.font = Math.round(selectedW * 0.019) + 'px ' + selectedFont;
-  ctx.fillText('Powered by Quality Capture Visuals', pad, selectedH - Math.round(selectedW * 0.022));
+  ctx.font = Math.round(selectedW * cfg.powered) + 'px ' + selectedFont;
+  ctx.fillText('Powered by Quality Capture Visuals', pad, selectedH - Math.round(selectedW * 0.018));
 
   document.getElementById('flyer-output').style.display = 'block';
   document.getElementById('flyer-output').scrollIntoView({ behavior: 'smooth' });
+}
+
+function generateQR(url, size) {
+  var div = document.createElement('div');
+  new QRCode(div, { text: url, width: size, height: size, correctLevel: QRCode.CorrectLevel.M });
+  return div.querySelector('canvas');
 }
 
 function downloadFlyer() {

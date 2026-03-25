@@ -107,173 +107,173 @@ textarea { resize: none; }
 </div>
 
 <div id="gate">
-  <style>
-    @import url('https://fonts.googleapis.com/css2?family=Bebas+Neue&display=swap');
-    .gate-hero{display:grid;grid-template-columns:1.2fr 0.8fr;min-height:500px;}
-    .gate-left{padding:52px 56px;display:flex;flex-direction:column;justify-content:center;position:relative;overflow:hidden;background:#fff;}
-    .gate-bg-accent{position:absolute;top:-60px;right:-80px;width:320px;height:320px;background:#FFF4ED;border-radius:50%;z-index:0;}
-    .gate-left-inner{position:relative;z-index:1;}
-    .gate-eyebrow{font-size:11px;letter-spacing:0.14em;text-transform:uppercase;color:#F47920;margin-bottom:14px;font-weight:600;}
-    .gate-headline{font-family:'Bebas Neue',sans-serif;font-size:78px;color:#111;line-height:0.92;margin-bottom:22px;letter-spacing:0.02em;}
-    .gate-headline span{color:#F47920;}
-    .gate-subtext{font-size:14px;color:#666;line-height:1.75;max-width:380px;margin-bottom:36px;}
-    .gate-subtext strong{color:#111;font-weight:600;}
-    .gate-features-list{display:flex;flex-direction:column;gap:10px;}
-    .gate-feature-item{display:flex;align-items:center;gap:12px;font-size:13px;color:#444;}
-    .gate-check{width:20px;height:20px;background:#F47920;border-radius:4px;display:flex;align-items:center;justify-content:center;flex-shrink:0;}
-    .gate-right{padding:52px 44px;display:flex;flex-direction:column;justify-content:center;background:#f9f9f9;border-left:1px solid #f0f0f0;}
-    .gate-trial-badge{display:inline-flex;align-items:center;background:#F47920;border-radius:6px;padding:8px 16px;margin-bottom:28px;width:fit-content;}
-    .gate-trial-badge-text{font-size:12px;color:#fff;font-weight:600;letter-spacing:0.05em;text-transform:uppercase;}
-    .gate-form-label{font-size:11px;letter-spacing:0.09em;text-transform:uppercase;color:#aaa;margin-bottom:7px;font-weight:600;}
-    .gate-form-input{width:100%;background:#fff;border:1.5px solid #e8e8e8;border-radius:8px;padding:14px 16px;font-size:14px;color:#111;font-family:Georgia,serif;margin-bottom:14px;outline:none;transition:border-color 0.2s;}
-    .gate-form-input::placeholder{color:#ccc;}
-    .gate-form-input:focus{border-color:#F47920;}
-    .gate-form-btn{width:100%;padding:16px;background:#111;color:#fff;border:none;border-radius:8px;font-size:13px;letter-spacing:0.1em;text-transform:uppercase;font-family:Georgia,serif;font-weight:600;cursor:pointer;margin-top:4px;transition:background 0.2s;}
-    .gate-form-btn:hover{background:#F47920;}
-    .gate-fine{text-align:center;font-size:11px;color:#bbb;margin-top:14px;line-height:1.65;}
-    .preview-section{background:#f9f9f9;border-top:1px solid #f0f0f0;padding:64px 48px;}
-    .preview-header{text-align:center;margin-bottom:48px;}
-    .preview-eyebrow{font-size:11px;letter-spacing:0.14em;text-transform:uppercase;color:#F47920;font-weight:600;margin-bottom:10px;}
-    .preview-title{font-family:'Bebas Neue',sans-serif;font-size:42px;color:#111;letter-spacing:0.02em;}
-    .preview-sub{font-size:14px;color:#888;margin-top:8px;}
-    .preview-screens{display:grid;grid-template-columns:1fr 1fr;gap:20px;}
-    .screen-card{background:#fff;border:1px solid #ebebeb;border-radius:12px;overflow:hidden;}
-    .screen-label{padding:12px 16px;border-bottom:1px solid #f0f0f0;display:flex;align-items:center;gap:8px;}
-    .screen-dot{width:8px;height:8px;border-radius:50%;background:#F47920;}
-    .screen-label-text{font-size:11px;font-weight:600;letter-spacing:0.08em;text-transform:uppercase;color:#888;}
-    .screen-body{padding:20px;}
-    .mock-field{margin-bottom:12px;}
-    .mock-field-label{font-size:10px;letter-spacing:0.08em;text-transform:uppercase;color:#bbb;margin-bottom:5px;font-weight:600;}
-    .mock-input{background:#f9f9f9;border:1px solid #eee;border-radius:6px;padding:9px 12px;font-size:12px;color:#999;width:100%;}
-    .mock-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-bottom:12px;}
-    .mock-btn{width:100%;padding:11px;background:#111;color:#fff;border:none;border-radius:6px;font-size:11px;letter-spacing:0.08em;text-transform:uppercase;font-family:Georgia,serif;font-weight:600;margin-top:4px;}
-    .mock-result{background:#f9f9f9;border:1px solid #eee;border-radius:8px;overflow:hidden;margin-top:12px;}
-    .mock-result-header{padding:8px 12px;background:#f0f0f0;border-bottom:1px solid #eee;display:flex;justify-content:space-between;align-items:center;}
-    .mock-result-label{font-size:10px;letter-spacing:0.07em;text-transform:uppercase;color:#aaa;font-weight:600;}
-    .mock-result-copy{font-size:10px;color:#ccc;border:1px solid #eee;border-radius:4px;padding:3px 8px;background:#fff;}
-    .mock-result-body{padding:12px;font-size:11px;color:#888;line-height:1.7;}
-    .mock-section-title{font-size:11px;font-weight:600;color:#555;margin-bottom:8px;}
-    .mock-options{display:flex;gap:6px;margin-bottom:14px;flex-wrap:wrap;}
-    .mock-opt{padding:6px 12px;border:1px solid #e0e0e0;border-radius:5px;font-size:10px;color:#888;background:#fff;}
-    .mock-opt.sel{background:#111;color:#fff;border-color:#111;}
-    .mock-themes{display:grid;grid-template-columns:repeat(4,1fr);gap:6px;margin-bottom:14px;}
-    .mock-theme{height:36px;border-radius:6px;border:2px solid transparent;}
-    .mock-theme.sel{border-color:#111;}
-    .mock-upload{border:2px dashed #e0e0e0;border-radius:8px;padding:16px;text-align:center;margin-bottom:12px;}
-    .mock-upload-text{font-size:11px;color:#bbb;}
-    .mock-flyer-preview{background:#1a1a1a;border-radius:8px;height:120px;display:flex;align-items:flex-end;padding:12px;position:relative;overflow:hidden;}
-    .mock-flyer-img{position:absolute;top:0;left:0;right:0;height:70px;background:#888;opacity:0.5;}
-    .mock-flyer-text{position:relative;z-index:1;}
-    .mock-flyer-address{font-size:10px;color:rgba(255,255,255,0.8);font-weight:600;}
-    .mock-flyer-price{font-size:14px;color:#fff;font-weight:700;}
-    .preview-cta{text-align:center;margin-top:48px;}
-    .preview-cta-btn{display:inline-block;padding:16px 40px;background:#F47920;color:#fff;border:none;border-radius:8px;font-size:13px;letter-spacing:0.1em;text-transform:uppercase;font-family:Georgia,serif;font-weight:600;cursor:pointer;}
-    .preview-cta-sub{font-size:12px;color:#bbb;margin-top:10px;}
-    @media(max-width:700px){.gate-hero{grid-template-columns:1fr;}.gate-right{border-left:none;border-top:1px solid #f0f0f0;}.preview-screens{grid-template-columns:1fr;}}
-  </style>
-  <div class="gate-hero">
-    <div class="gate-left">
-      <div class="gate-bg-accent"></div>
-      <div class="gate-left-inner">
-        <div class="gate-eyebrow">QCV Agent Hub</div>
-        <h1 class="gate-headline">MARKET<br>FASTER.<br><span>CLOSE</span><br>MORE.</h1>
-        <p class="gate-subtext">MLS copy, social captions, client emails, and branded flyers — <strong>generated in under 30 seconds.</strong> Efficiency. Creativity, at your hands.</p>
-        <div class="gate-features-list">
-          <div class="gate-feature-item"><div class="gate-check"><svg width="11" height="11" viewBox="0 0 12 12"><polyline points="2,6 5,9 10,3" stroke="white" stroke-width="1.5" fill="none"/></svg></div>AI-generated MLS copy ready to paste</div>
-          <div class="gate-feature-item"><div class="gate-check"><svg width="11" height="11" viewBox="0 0 12 12"><polyline points="2,6 5,9 10,3" stroke="white" stroke-width="1.5" fill="none"/></svg></div>Instagram & Facebook captions instantly</div>
-          <div class="gate-feature-item"><div class="gate-check"><svg width="11" height="11" viewBox="0 0 12 12"><polyline points="2,6 5,9 10,3" stroke="white" stroke-width="1.5" fill="none"/></svg></div>Professional flyers with your branding</div>
-          <div class="gate-feature-item"><div class="gate-check"><svg width="11" height="11" viewBox="0 0 12 12"><polyline points="2,6 5,9 10,3" stroke="white" stroke-width="1.5" fill="none"/></svg></div>QR codes tied to your listing</div>
-        </div>
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Bebas+Neue&display=swap');
+.gate-hero{display:grid;grid-template-columns:1.2fr 0.8fr;min-height:500px;}
+.gate-left{padding:52px 56px;display:flex;flex-direction:column;justify-content:center;position:relative;overflow:hidden;background:#fff;}
+.gate-bg-accent{position:absolute;top:-60px;right:-80px;width:320px;height:320px;background:#FFF4ED;border-radius:50%;z-index:0;}
+.gate-left-inner{position:relative;z-index:1;}
+.gate-eyebrow{font-size:11px;letter-spacing:0.14em;text-transform:uppercase;color:#F47920;margin-bottom:14px;font-weight:600;}
+.gate-headline{font-family:'Bebas Neue',sans-serif;font-size:78px;color:#111;line-height:0.92;margin-bottom:22px;letter-spacing:0.02em;}
+.gate-headline span{color:#F47920;}
+.gate-subtext{font-size:14px;color:#666;line-height:1.75;max-width:380px;margin-bottom:36px;}
+.gate-subtext strong{color:#111;font-weight:600;}
+.gate-features-list{display:flex;flex-direction:column;gap:10px;}
+.gate-feature-item{display:flex;align-items:center;gap:12px;font-size:13px;color:#444;}
+.gate-check{width:20px;height:20px;background:#F47920;border-radius:4px;display:flex;align-items:center;justify-content:center;flex-shrink:0;}
+.gate-right{padding:52px 44px;display:flex;flex-direction:column;justify-content:center;background:#f9f9f9;border-left:1px solid #f0f0f0;}
+.gate-trial-badge{display:inline-flex;align-items:center;background:#F47920;border-radius:6px;padding:8px 16px;margin-bottom:28px;width:fit-content;}
+.gate-trial-badge-text{font-size:12px;color:#fff;font-weight:600;letter-spacing:0.05em;text-transform:uppercase;}
+.gate-form-label{font-size:11px;letter-spacing:0.09em;text-transform:uppercase;color:#aaa;margin-bottom:7px;font-weight:600;}
+.gate-form-input{width:100%;background:#fff;border:1.5px solid #e8e8e8;border-radius:8px;padding:14px 16px;font-size:14px;color:#111;font-family:Georgia,serif;margin-bottom:14px;outline:none;transition:border-color 0.2s;}
+.gate-form-input::placeholder{color:#ccc;}
+.gate-form-input:focus{border-color:#F47920;}
+.gate-form-btn{width:100%;padding:16px;background:#111;color:#fff;border:none;border-radius:8px;font-size:13px;letter-spacing:0.1em;text-transform:uppercase;font-family:Georgia,serif;font-weight:600;cursor:pointer;margin-top:4px;transition:background 0.2s;}
+.gate-form-btn:hover{background:#F47920;}
+.gate-fine{text-align:center;font-size:11px;color:#bbb;margin-top:14px;line-height:1.65;}
+.preview-section{background:#f9f9f9;border-top:1px solid #f0f0f0;padding:64px 48px;}
+.preview-header{text-align:center;margin-bottom:48px;}
+.preview-eyebrow{font-size:11px;letter-spacing:0.14em;text-transform:uppercase;color:#F47920;font-weight:600;margin-bottom:10px;}
+.preview-title{font-family:'Bebas Neue',sans-serif;font-size:42px;color:#111;letter-spacing:0.02em;}
+.preview-sub{font-size:14px;color:#888;margin-top:8px;}
+.preview-screens{display:grid;grid-template-columns:1fr 1fr;gap:20px;}
+.screen-card{background:#fff;border:1px solid #ebebeb;border-radius:12px;overflow:hidden;}
+.screen-label{padding:12px 16px;border-bottom:1px solid #f0f0f0;display:flex;align-items:center;gap:8px;}
+.screen-dot{width:8px;height:8px;border-radius:50%;background:#F47920;}
+.screen-label-text{font-size:11px;font-weight:600;letter-spacing:0.08em;text-transform:uppercase;color:#888;}
+.screen-body{padding:20px;}
+.mock-field{margin-bottom:12px;}
+.mock-field-label{font-size:10px;letter-spacing:0.08em;text-transform:uppercase;color:#bbb;margin-bottom:5px;font-weight:600;}
+.mock-input{background:#f9f9f9;border:1px solid #eee;border-radius:6px;padding:9px 12px;font-size:12px;color:#999;width:100%;}
+.mock-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-bottom:12px;}
+.mock-btn{width:100%;padding:11px;background:#111;color:#fff;border:none;border-radius:6px;font-size:11px;letter-spacing:0.08em;text-transform:uppercase;font-family:Georgia,serif;font-weight:600;margin-top:4px;}
+.mock-result{background:#f9f9f9;border:1px solid #eee;border-radius:8px;overflow:hidden;margin-top:12px;}
+.mock-result-header{padding:8px 12px;background:#f0f0f0;border-bottom:1px solid #eee;display:flex;justify-content:space-between;align-items:center;}
+.mock-result-label{font-size:10px;letter-spacing:0.07em;text-transform:uppercase;color:#aaa;font-weight:600;}
+.mock-result-copy{font-size:10px;color:#ccc;border:1px solid #eee;border-radius:4px;padding:3px 8px;background:#fff;}
+.mock-result-body{padding:12px;font-size:11px;color:#888;line-height:1.7;}
+.mock-section-title{font-size:11px;font-weight:600;color:#555;margin-bottom:8px;}
+.mock-options{display:flex;gap:6px;margin-bottom:14px;flex-wrap:wrap;}
+.mock-opt{padding:6px 12px;border:1px solid #e0e0e0;border-radius:5px;font-size:10px;color:#888;background:#fff;}
+.mock-opt.sel{background:#111;color:#fff;border-color:#111;}
+.mock-themes{display:grid;grid-template-columns:repeat(4,1fr);gap:6px;margin-bottom:14px;}
+.mock-theme{height:36px;border-radius:6px;border:2px solid transparent;}
+.mock-theme.sel{border-color:#111;}
+.mock-upload{border:2px dashed #e0e0e0;border-radius:8px;padding:16px;text-align:center;margin-bottom:12px;}
+.mock-upload-text{font-size:11px;color:#bbb;}
+.mock-flyer-preview{background:#1a1a1a;border-radius:8px;height:120px;display:flex;align-items:flex-end;padding:12px;position:relative;overflow:hidden;}
+.mock-flyer-img{position:absolute;top:0;left:0;right:0;height:70px;background:#888;opacity:0.5;}
+.mock-flyer-text{position:relative;z-index:1;}
+.mock-flyer-address{font-size:10px;color:rgba(255,255,255,0.8);font-weight:600;}
+.mock-flyer-price{font-size:14px;color:#fff;font-weight:700;}
+.preview-cta{text-align:center;margin-top:48px;}
+.preview-cta-btn{display:inline-block;padding:16px 40px;background:#F47920;color:#fff;border:none;border-radius:8px;font-size:13px;letter-spacing:0.1em;text-transform:uppercase;font-family:Georgia,serif;font-weight:600;cursor:pointer;}
+.preview-cta-sub{font-size:12px;color:#bbb;margin-top:10px;}
+@media(max-width:700px){.gate-hero{grid-template-columns:1fr;}.gate-right{border-left:none;border-top:1px solid #f0f0f0;}.preview-screens{grid-template-columns:1fr;}}
+</style>
+<div class="gate-hero">
+  <div class="gate-left">
+    <div class="gate-bg-accent"></div>
+    <div class="gate-left-inner">
+      <div class="gate-eyebrow">QCV Agent Hub</div>
+      <h1 class="gate-headline">MARKET<br>FASTER.<br><span>CLOSE</span><br>MORE.</h1>
+      <p class="gate-subtext">MLS copy, social captions, client emails, and branded flyers — <strong>generated in under 30 seconds.</strong> Efficiency. Creativity, at your hands.</p>
+      <div class="gate-features-list">
+        <div class="gate-feature-item"><div class="gate-check"><svg width="11" height="11" viewBox="0 0 12 12"><polyline points="2,6 5,9 10,3" stroke="white" stroke-width="1.5" fill="none"/></svg></div>AI-generated MLS copy ready to paste</div>
+        <div class="gate-feature-item"><div class="gate-check"><svg width="11" height="11" viewBox="0 0 12 12"><polyline points="2,6 5,9 10,3" stroke="white" stroke-width="1.5" fill="none"/></svg></div>Instagram & Facebook captions instantly</div>
+        <div class="gate-feature-item"><div class="gate-check"><svg width="11" height="11" viewBox="0 0 12 12"><polyline points="2,6 5,9 10,3" stroke="white" stroke-width="1.5" fill="none"/></svg></div>Professional flyers with your branding</div>
+        <div class="gate-feature-item"><div class="gate-check"><svg width="11" height="11" viewBox="0 0 12 12"><polyline points="2,6 5,9 10,3" stroke="white" stroke-width="1.5" fill="none"/></svg></div>QR codes tied to your listing</div>
       </div>
-    </div>
-    <div class="gate-right">
-      <div class="gate-trial-badge"><span class="gate-trial-badge-text">30 Days Free</span></div>
-      <div class="gate-form-label">Full Name</div>
-      <input class="gate-form-input" type="text" id="gname" placeholder="Sarah Johnson" />
-      <div class="gate-form-label">Email Address</div>
-      <input class="gate-form-input" type="email" id="gemail" placeholder="sarah@atlrealty.com" />
-      <button class="gate-form-btn" onclick="unlock()">Start My Free Trial</button>
-      <p class="gate-fine">Unlimited access for 30 days.<br>Then $12/month. Cancel anytime.</p>
     </div>
   </div>
-  <div class="preview-section">
-    <div class="preview-header">
-      <div class="preview-eyebrow">See It In Action</div>
-      <div class="preview-title">EVERYTHING INSIDE THE HUB</div>
-      <div class="preview-sub">A look at the tools you get the moment you sign up.</div>
-    </div>
-    <div class="preview-screens">
-      <div class="screen-card">
-        <div class="screen-label"><div class="screen-dot"></div><span class="screen-label-text">Listing Copy Generator</span></div>
-        <div class="screen-body">
-          <div class="mock-grid">
-            <div class="mock-field"><div class="mock-field-label">Address</div><div class="mock-input">123 Peachtree St NE</div></div>
-            <div class="mock-field"><div class="mock-field-label">Price</div><div class="mock-input">$1,250,000</div></div>
-            <div class="mock-field"><div class="mock-field-label">Beds / Baths</div><div class="mock-input">5 bed / 4 bath</div></div>
-            <div class="mock-field"><div class="mock-field-label">Sq Footage</div><div class="mock-input">4,200 sq ft</div></div>
-          </div>
-          <div class="mock-field"><div class="mock-field-label">Property Vibe</div><div class="mock-input" style="color:#111;background:#fff;border-color:#ddd;">Luxury & upscale ✓</div></div>
-          <div class="mock-btn">Generate My Listing Copy</div>
-          <div class="mock-result">
-            <div class="mock-result-header"><span class="mock-result-label">MLS Description</span><span class="mock-result-copy">Copy</span></div>
-            <div class="mock-result-body">Nestled in the heart of Atlanta, this stunning 5-bedroom estate defines modern luxury living. Soaring ceilings, chef's kitchen with quartz waterfall island...</div>
-          </div>
-          <div class="mock-result" style="margin-top:8px;">
-            <div class="mock-result-header"><span class="mock-result-label">Instagram Caption</span><span class="mock-result-copy">Copy</span></div>
-            <div class="mock-result-body">Just listed ✨ 5BR luxury estate in ATL. 4,200 sqft of pure elegance. DM for a private showing. #AtlantaRealEstate #LuxuryHomes</div>
-          </div>
+  <div class="gate-right">
+    <div class="gate-trial-badge"><span class="gate-trial-badge-text">30 Days Free</span></div>
+    <div class="gate-form-label">Full Name</div>
+    <input class="gate-form-input" type="text" id="gname" placeholder="Sarah Johnson" />
+    <div class="gate-form-label">Email Address</div>
+    <input class="gate-form-input" type="email" id="gemail" placeholder="sarah@atlrealty.com" />
+    <button class="gate-form-btn" onclick="unlock()">Start My Free Trial</button>
+    <p class="gate-fine">Unlimited access for 30 days.<br>Then $12/month. Cancel anytime.</p>
+  </div>
+</div>
+<div class="preview-section">
+  <div class="preview-header">
+    <div class="preview-eyebrow">See It In Action</div>
+    <div class="preview-title">EVERYTHING INSIDE THE HUB</div>
+    <div class="preview-sub">A look at the tools you get the moment you sign up.</div>
+  </div>
+  <div class="preview-screens">
+    <div class="screen-card">
+      <div class="screen-label"><div class="screen-dot"></div><span class="screen-label-text">Listing Copy Generator</span></div>
+      <div class="screen-body">
+        <div class="mock-grid">
+          <div class="mock-field"><div class="mock-field-label">Address</div><div class="mock-input">123 Peachtree St NE</div></div>
+          <div class="mock-field"><div class="mock-field-label">Price</div><div class="mock-input">$1,250,000</div></div>
+          <div class="mock-field"><div class="mock-field-label">Beds / Baths</div><div class="mock-input">5 bed / 4 bath</div></div>
+          <div class="mock-field"><div class="mock-field-label">Sq Footage</div><div class="mock-input">4,200 sq ft</div></div>
         </div>
-      </div>
-      <div class="screen-card">
-        <div class="screen-label"><div class="screen-dot"></div><span class="screen-label-text">Flyer Builder</span></div>
-        <div class="screen-body">
-          <div class="mock-section-title">Format</div>
-          <div class="mock-options">
-            <div class="mock-opt sel">4×9 Door Hanger</div>
-            <div class="mock-opt">9×16 Story</div>
-            <div class="mock-opt">1×1 Square</div>
-            <div class="mock-opt">8.5×11 Print</div>
-          </div>
-          <div class="mock-section-title">Color Theme</div>
-          <div class="mock-themes">
-            <div class="mock-theme sel" style="background:#fff;border:2px solid #111;"></div>
-            <div class="mock-theme" style="background:#1a1a1a;"></div>
-            <div class="mock-theme" style="background:#f5f0e8;border:1px solid #ddd;"></div>
-            <div class="mock-theme" style="background:#0d2137;"></div>
-          </div>
-          <div class="mock-section-title">Occasion</div>
-          <div class="mock-options">
-            <div class="mock-opt sel">New Listing</div>
-            <div class="mock-opt">Just Sold</div>
-            <div class="mock-opt">Open House</div>
-            <div class="mock-opt">Price Drop</div>
-          </div>
-          <div class="mock-upload"><div class="mock-upload-text">Click to upload your listing photo</div></div>
-          <div class="mock-flyer-preview">
-            <div class="mock-flyer-img"></div>
-            <div class="mock-flyer-text">
-              <div class="mock-flyer-address">123 Peachtree St NE, Atlanta</div>
-              <div class="mock-flyer-price">$1,250,000</div>
-            </div>
-          </div>
+        <div class="mock-field"><div class="mock-field-label">Property Vibe</div><div class="mock-input" style="color:#111;background:#fff;border-color:#ddd;">Luxury & upscale ✓</div></div>
+        <div class="mock-btn">Generate My Listing Copy</div>
+        <div class="mock-result">
+          <div class="mock-result-header"><span class="mock-result-label">MLS Description</span><span class="mock-result-copy">Copy</span></div>
+          <div class="mock-result-body">Nestled in the heart of Atlanta, this stunning 5-bedroom estate defines modern luxury living. Soaring ceilings, chef's kitchen with quartz waterfall island...</div>
+        </div>
+        <div class="mock-result" style="margin-top:8px;">
+          <div class="mock-result-header"><span class="mock-result-label">Instagram Caption</span><span class="mock-result-copy">Copy</span></div>
+          <div class="mock-result-body">Just listed ✨ 5BR luxury estate in ATL. 4,200 sqft of pure elegance. DM for a private showing. #AtlantaRealEstate #LuxuryHomes</div>
         </div>
       </div>
     </div>
-    <div class="preview-cta">
-      <button class="preview-cta-btn" onclick="window.scrollTo({top:0,behavior:'smooth'});">Get Started Free — 30 Days On Us</button>
-      <div class="preview-cta-sub">Then $12/month. Cancel anytime.</div>
+    <div class="screen-card">
+      <div class="screen-label"><div class="screen-dot"></div><span class="screen-label-text">Flyer Builder</span></div>
+      <div class="screen-body">
+        <div class="mock-section-title">Format</div>
+        <div class="mock-options">
+          <div class="mock-opt sel">4×9 Door Hanger</div>
+          <div class="mock-opt">9×16 Story</div>
+          <div class="mock-opt">1×1 Square</div>
+          <div class="mock-opt">8.5×11 Print</div>
+        </div>
+        <div class="mock-section-title">Color Theme</div>
+        <div class="mock-themes">
+          <div class="mock-theme sel" style="background:#fff;border:2px solid #111;"></div>
+          <div class="mock-theme" style="background:#1a1a1a;"></div>
+          <div class="mock-theme" style="background:#f5f0e8;border:1px solid #ddd;"></div>
+          <div class="mock-theme" style="background:#0d2137;"></div>
+        </div>
+        <div class="mock-section-title">Occasion</div>
+        <div class="mock-options">
+          <div class="mock-opt sel">New Listing</div>
+          <div class="mock-opt">Just Sold</div>
+          <div class="mock-opt">Open House</div>
+          <div class="mock-opt">Price Drop</div>
+        </div>
+        <div class="mock-upload"><div class="mock-upload-text">Click to upload your listing photo</div></div>
+        <div class="mock-flyer-preview">
+          <div class="mock-flyer-img"></div>
+          <div class="mock-flyer-text">
+            <div class="mock-flyer-address">123 Peachtree St NE, Atlanta</div>
+            <div class="mock-flyer-price">$1,250,000</div>
+          </div>
+        </div>
+      </div>
     </div>
   </div>
+  <div class="preview-cta">
+    <button class="preview-cta-btn" onclick="window.scrollTo({top:0,behavior:'smooth'});">Get Started Free — 30 Days On Us</button>
+    <div class="preview-cta-sub">Then $12/month. Cancel anytime.</div>
+  </div>
+</div>
 </div>
 
 <div id="paywall">
   <div class="paywall-wrap">
     <div class="paywall-card">
-      <div class="paywall-badge">Trial Ended</div>
-      <h2>Your free trial has ended</h2>
-      <p>Subscribe to continue using QCV Agent Hub.</p>
+      <div class="paywall-badge">Start Your Free Trial</div>
+      <h2>30 days free. Then $12/month.</h2>
+      <p>Enter your payment info to get started. You won't be charged until your 30-day trial ends.</p>
       <div class="paywall-price">$12 <span>/ month</span></div>
-      <div class="paywall-trial-note">Enter your card — 30 days free, then $12/month.</div>
+      <div class="paywall-trial-note">Free for 30 days — cancel anytime before your trial ends.</div>
       <div class="paywall-features">
         <p>MLS descriptions generated in seconds</p>
         <p>Instagram & Facebook captions ready to post</p>
@@ -284,6 +284,7 @@ textarea { resize: none; }
       </div>
       <div id="paypal-button-container-P-8JH0204284127310MNHBVAPI"></div>
       <div class="paywall-divider">secure checkout powered by paypal</div>
+      <p style="font-size:12px;color:#bbb;">Questions? Email qualitycapturevisuals@gmail.com</p>
     </div>
   </div>
 </div>
@@ -457,11 +458,37 @@ function setTrialStart(){localStorage.setItem('qcv_trial',JSON.stringify({start:
 function trialDaysLeft(){var d=getTrialData();if(!d)return TRIAL_DAYS;var e=(Date.now()-d.start)/(1000*60*60*24);return Math.max(0,Math.floor(TRIAL_DAYS-e));}
 function trialExpired(){var d=getTrialData();if(!d)return false;return(Date.now()-d.start)/(1000*60*60*24)>=TRIAL_DAYS;}
 function isSubscribed(){return localStorage.getItem('qcv_subscribed')==='true';}
-function checkAccess(){if(!getTrialData()){show('gate');return;}if(isSubscribed()){showMain();return;}if(trialExpired()){showPaywall();return;}showMain();}
+function checkAccess(){if(!getTrialData()&&!isSubscribed()){show('gate');return;}if(isSubscribed()){showMain();return;}if(trialExpired()){showPaywall();return;}showMain();}
 function show(id){['gate','main-content','paywall'].forEach(function(i){document.getElementById(i).style.display=i===id?'block':'none';});}
 function showMain(){show('main-content');var days=trialDaysLeft();if(!isSubscribed()&&days>0){document.getElementById('trial-banner-wrap').innerHTML='<div class="trial-banner"><strong>'+days+' day'+(days===1?'':'s')+' left in your free trial.</strong> Subscribe now — $12/month.</div>';}}
-function showPaywall(){show('paywall');if(window.paypal){paypal.Buttons({style:{shape:'pill',color:'blue',layout:'vertical',label:'subscribe'},createSubscription:function(data,actions){return actions.subscription.create({plan_id:'P-8JH0204284127310MNHBVAPI'});},onApprove:function(data){localStorage.setItem('qcv_subscribed','true');localStorage.setItem('qcv_subscription_id',data.subscriptionID);showMain();}}).render('#paypal-button-container-P-8JH0204284127310MNHBVAPI');}}
-function unlock(){var n=document.getElementById('gname').value.trim(),e=document.getElementById('gemail').value.trim();if(!n||!e){alert('Please enter your name and email.');return;}if(e.indexOf('@')<0){alert('Please enter a valid email.');return;}setTrialStart();fetch('https://formspree.io/f/mwvwekvj',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({name:n,email:e,source:'QCV Agent Hub - Trial Start'})});showMain();}
+function showPaywall(){
+  show('paywall');
+  if(window.paypal){
+    var container=document.getElementById('paypal-button-container-P-8JH0204284127310MNHBVAPI');
+    if(container&&container.children.length===0){
+      paypal.Buttons({
+        style:{shape:'pill',color:'blue',layout:'vertical',label:'subscribe'},
+        createSubscription:function(data,actions){return actions.subscription.create({plan_id:'P-8JH0204284127310MNHBVAPI'});},
+        onApprove:function(data){
+          localStorage.setItem('qcv_subscribed','true');
+          localStorage.setItem('qcv_subscription_id',data.subscriptionID);
+          setTrialStart();
+          showMain();
+        }
+      }).render('#paypal-button-container-P-8JH0204284127310MNHBVAPI');
+    }
+  }
+}
+function unlock(){
+  var n=document.getElementById('gname').value.trim();
+  var e=document.getElementById('gemail').value.trim();
+  if(!n||!e){alert('Please enter your name and email.');return;}
+  if(e.indexOf('@')<0){alert('Please enter a valid email.');return;}
+  localStorage.setItem('qcv_pending_name',n);
+  localStorage.setItem('qcv_pending_email',e);
+  fetch('https://formspree.io/f/mwvwekvj',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({name:n,email:e,source:'QCV Agent Hub - Trial Start'})});
+  showPaywall();
+}
 window.addEventListener('load',checkAccess);
 var selectedOccasion='New Listing',selectedW=1200,selectedH=2700,maxPhotos=3,photoCount=1,selectedPhotoLayout='single-full',selectedTheme='classic',selectedFont='Georgia',selectedDivider='none',uploadedPhoto1=null,uploadedPhoto2=null,uploadedPhoto3=null;
 var themes={classic:{bg:'#ffffff',text:'#1a1a1a',sub:'#666666',accent:'#1a1a1a',divider:'#cccccc'},dark:{bg:'#1a1a1a',text:'#ffffff',sub:'#aaaaaa',accent:'#ffffff',divider:'#444444'},warm:{bg:'#f5f0e8',text:'#3d2b1f',sub:'#7a6055',accent:'#3d2b1f',divider:'#c8b89a'},bold:{bg:'#0d2137',text:'#ffffff',sub:'#8aaabb',accent:'#ffffff',divider:'#1e4060'}};

@@ -92,6 +92,9 @@ textarea { resize: none; }
 .book-cta p { color: #aaaaaa; font-size: 14px; margin-bottom: 24px; line-height: 1.6; }
 .book-cta a { display: inline-block; padding: 14px 36px; background: #F47920; color: #fff; text-decoration: none; border-radius: 6px; font-size: 14px; letter-spacing: 0.05em; transition: opacity 0.15s; }
 .book-cta a:hover { opacity: 0.85; }
+.subscriber-bar { background: #F47920; color: white; text-align: center; padding: 20px 40px; }
+.subscriber-bar p { font-size: 14px; font-weight: 600; margin-bottom: 4px; }
+.subscriber-bar span { font-size: 12px; opacity: 0.85; }
 .powered { text-align: center; padding: 24px; font-size: 11px; color: #bbb; letter-spacing: 0.04em; }
 </style>
 </head>
@@ -447,6 +450,10 @@ textarea { resize: none; }
   </div>
 </div>
 
+<div class="subscriber-bar">
+  <p>Already a subscriber? Get 5% off your next shoot.</p>
+  <span>Email qualitycapturevisuals@gmail.com with your subscription confirmation to claim your discount.</span>
+</div>
 <div class="powered">© 2026 Quality Capture Visuals · qualitycapturevisuals.com · All rights reserved.</div>
 
 <script src="https://www.paypal.com/sdk/js?client-id=AYl6LFRknGsNeJaIUOQYgZ-QUIfaQ8p5ABFit39YllonJNujySTlLgCZAkiWjj3MP_3gHhfqXHQ8Ply-&vault=true&intent=subscription" data-sdk-integration-source="button-factory"></script>
@@ -461,34 +468,8 @@ function isSubscribed(){return localStorage.getItem('qcv_subscribed')==='true';}
 function checkAccess(){if(!getTrialData()&&!isSubscribed()){show('gate');return;}if(isSubscribed()){showMain();return;}if(trialExpired()){showPaywall();return;}showMain();}
 function show(id){['gate','main-content','paywall'].forEach(function(i){document.getElementById(i).style.display=i===id?'block':'none';});}
 function showMain(){show('main-content');var days=trialDaysLeft();if(!isSubscribed()&&days>0){document.getElementById('trial-banner-wrap').innerHTML='<div class="trial-banner"><strong>'+days+' day'+(days===1?'':'s')+' left in your free trial.</strong> Subscribe now — $12/month.</div>';}}
-function showPaywall(){
-  show('paywall');
-  if(window.paypal){
-    var container=document.getElementById('paypal-button-container-P-8JH0204284127310MNHBVAPI');
-    if(container&&container.children.length===0){
-      paypal.Buttons({
-        style:{shape:'pill',color:'blue',layout:'vertical',label:'subscribe'},
-        createSubscription:function(data,actions){return actions.subscription.create({plan_id:'P-8JH0204284127310MNHBVAPI'});},
-        onApprove:function(data){
-          localStorage.setItem('qcv_subscribed','true');
-          localStorage.setItem('qcv_subscription_id',data.subscriptionID);
-          setTrialStart();
-          showMain();
-        }
-      }).render('#paypal-button-container-P-8JH0204284127310MNHBVAPI');
-    }
-  }
-}
-function unlock(){
-  var n=document.getElementById('gname').value.trim();
-  var e=document.getElementById('gemail').value.trim();
-  if(!n||!e){alert('Please enter your name and email.');return;}
-  if(e.indexOf('@')<0){alert('Please enter a valid email.');return;}
-  localStorage.setItem('qcv_pending_name',n);
-  localStorage.setItem('qcv_pending_email',e);
-  fetch('https://formspree.io/f/mwvwekvj',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({name:n,email:e,source:'QCV Agent Hub - Trial Start'})});
-  showPaywall();
-}
+function showPaywall(){show('paywall');if(window.paypal){var c=document.getElementById('paypal-button-container-P-8JH0204284127310MNHBVAPI');if(c&&c.children.length===0){paypal.Buttons({style:{shape:'pill',color:'blue',layout:'vertical',label:'subscribe'},createSubscription:function(data,actions){return actions.subscription.create({plan_id:'P-8JH0204284127310MNHBVAPI'});},onApprove:function(data){localStorage.setItem('qcv_subscribed','true');localStorage.setItem('qcv_subscription_id',data.subscriptionID);setTrialStart();showMain();}}).render('#paypal-button-container-P-8JH0204284127310MNHBVAPI');}}}
+function unlock(){var n=document.getElementById('gname').value.trim(),e=document.getElementById('gemail').value.trim();if(!n||!e){alert('Please enter your name and email.');return;}if(e.indexOf('@')<0){alert('Please enter a valid email.');return;}localStorage.setItem('qcv_pending_name',n);localStorage.setItem('qcv_pending_email',e);fetch('https://formspree.io/f/mwvwekvj',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({name:n,email:e,source:'QCV Agent Hub - Trial Start'})});showPaywall();}
 window.addEventListener('load',checkAccess);
 var selectedOccasion='New Listing',selectedW=1200,selectedH=2700,maxPhotos=3,photoCount=1,selectedPhotoLayout='single-full',selectedTheme='classic',selectedFont='Georgia',selectedDivider='none',uploadedPhoto1=null,uploadedPhoto2=null,uploadedPhoto3=null;
 var themes={classic:{bg:'#ffffff',text:'#1a1a1a',sub:'#666666',accent:'#1a1a1a',divider:'#cccccc'},dark:{bg:'#1a1a1a',text:'#ffffff',sub:'#aaaaaa',accent:'#ffffff',divider:'#444444'},warm:{bg:'#f5f0e8',text:'#3d2b1f',sub:'#7a6055',accent:'#3d2b1f',divider:'#c8b89a'},bold:{bg:'#0d2137',text:'#ffffff',sub:'#8aaabb',accent:'#ffffff',divider:'#1e4060'}};

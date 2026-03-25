@@ -9,8 +9,8 @@
 body { font-family: Georgia, serif; background: #f5f5f3; color: #1a1a1a; }
 .header { background: #1a1a1a; padding: 20px 40px; display: flex; align-items: center; justify-content: space-between; }
 .header-left { display: flex; align-items: center; gap: 16px; }
-.header-logo { width: 44px; height: 44px; background: #F47920; border-radius: 8px; display: flex; align-items: center; justify-content: center; }
-.header-logo svg { width: 26px; height: 26px; fill: white; }
+.header-logo { width: 44px; height: 44px; display: flex; align-items: center; justify-content: center; }
+.header-logo img { width: 44px; height: 44px; object-fit: contain; }
 .header h1 { color: white; font-size: 18px; font-weight: 400; letter-spacing: 0.04em; }
 .header span { color: #F47920; }
 .header-link { color: #aaaaaa; font-size: 13px; text-decoration: none; border-bottom: 1px solid #444; padding-bottom: 2px; white-space: nowrap; }
@@ -55,10 +55,17 @@ textarea { resize: none; }
 .opt-btn { padding: 12px 8px; border: 1px solid #ddd; border-radius: 6px; background: #fff; cursor: pointer; font-size: 13px; font-family: Georgia, serif; color: #666; text-align: center; transition: all 0.15s; line-height: 1.4; }
 .opt-btn.active { background: #1a1a1a; color: #fff; border-color: #1a1a1a; }
 .opt-btn:hover:not(.active) { border-color: #1a1a1a; color: #1a1a1a; }
-.num-selector { display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 6px; }
-.num-btn { width: 40px; height: 40px; border: 1px solid #ddd; border-radius: 6px; background: #fff; cursor: pointer; font-size: 14px; font-family: Georgia, serif; color: #666; display: flex; align-items: center; justify-content: center; transition: all 0.15s; }
-.num-btn.active { background: #1a1a1a; color: #fff; border-color: #1a1a1a; }
-.num-btn:hover:not(.active) { border-color: #1a1a1a; color: #1a1a1a; }
+.dd-wrap { position: relative; width: 100%; }
+.dd-btn { width: 100%; padding: 10px 14px; border: 1px solid #ddd; border-radius: 6px; background: #fff; font-size: 14px; font-family: Georgia, serif; color: #1a1a1a; cursor: pointer; text-align: left; display: flex; justify-content: space-between; align-items: center; transition: border-color 0.15s; }
+.dd-btn:hover { border-color: #1a1a1a; }
+.dd-btn.open { border-color: #F47920; border-bottom-left-radius: 0; border-bottom-right-radius: 0; }
+.dd-arrow { font-size: 10px; color: #999; transition: transform 0.15s; display: inline-block; }
+.dd-btn.open .dd-arrow { transform: rotate(180deg); }
+.dd-list { display: none; position: absolute; top: 100%; left: 0; right: 0; background: #fff; border: 1px solid #F47920; border-top: none; border-bottom-left-radius: 6px; border-bottom-right-radius: 6px; z-index: 100; }
+.dd-list.open { display: block; }
+.dd-item { padding: 10px 14px; font-size: 14px; font-family: Georgia, serif; color: #444; cursor: pointer; transition: background 0.1s; }
+.dd-item:hover { background: #f5f5f3; }
+.dd-item.active { background: #1a1a1a; color: #fff; }
 .theme-btn { padding: 16px 12px; border: 2px solid #ddd; border-radius: 8px; cursor: pointer; font-size: 13px; font-family: Georgia, serif; text-align: center; transition: all 0.15s; line-height: 1.4; }
 .theme-btn.active { border-color: #1a1a1a; box-shadow: 0 0 0 2px #1a1a1a; }
 .theme-classic { background: #ffffff; color: #1a1a1a; }
@@ -108,7 +115,7 @@ textarea { resize: none; }
 <div class="header">
   <div class="header-left">
     <div class="header-logo">
-      <svg viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 14.5v-9l6 4.5-6 4.5z"/></svg>
+      <img src="https://qualitycapturevisuals.com/cdn/shop/files/Untitled_design_3.png" alt="QCV" onerror="this.parentElement.innerHTML='<svg viewBox=\'0 0 24 24\' width=\'26\' height=\'26\' fill=\'#F47920\'><path d=\'M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 14.5v-9l6 4.5-6 4.5z\'/></svg>'" />
     </div>
     <h1>QCV <span>Agent Hub</span></h1>
   </div>
@@ -217,18 +224,14 @@ textarea { resize: none; }
         <div class="mock-grid">
           <div class="mock-field"><div class="mock-field-label">Address</div><div class="mock-input">123 Peachtree St NE</div></div>
           <div class="mock-field"><div class="mock-field-label">Price</div><div class="mock-input">$1,250,000</div></div>
-          <div class="mock-field"><div class="mock-field-label">Beds</div><div class="mock-input">5</div></div>
-          <div class="mock-field"><div class="mock-field-label">Baths</div><div class="mock-input">4</div></div>
+          <div class="mock-field"><div class="mock-field-label">Beds</div><div class="mock-input">5 Beds ▼</div></div>
+          <div class="mock-field"><div class="mock-field-label">Baths</div><div class="mock-input">4 Baths ▼</div></div>
         </div>
         <div class="mock-field"><div class="mock-field-label">Occasion</div><div class="mock-input" style="color:#111;background:#fff;border-color:#ddd;">New Listing ✓</div></div>
         <div class="mock-btn">Generate My Listing Copy</div>
         <div class="mock-result">
           <div class="mock-result-header"><span class="mock-result-label">MLS Description</span><span class="mock-result-copy">Copy</span></div>
-          <div class="mock-result-body">Nestled in the heart of Atlanta, this stunning 5-bedroom estate defines modern luxury living. Soaring ceilings, chef's kitchen with quartz waterfall island...</div>
-        </div>
-        <div class="mock-result" style="margin-top:8px;">
-          <div class="mock-result-header"><span class="mock-result-label">Instagram Caption</span><span class="mock-result-copy">Copy</span></div>
-          <div class="mock-result-body">Just listed ✨ 5BR luxury estate in ATL. 4,200 sqft of pure elegance. #AtlantaRealEstate #LuxuryHomes</div>
+          <div class="mock-result-body">Nestled in the heart of Atlanta, this stunning 5-bedroom estate defines modern luxury living...</div>
         </div>
       </div>
     </div>
@@ -321,32 +324,16 @@ textarea { resize: none; }
           <div><div class="field-label">Square Footage</div><input type="text" id="f2" placeholder="2,400 sq ft" oninput="syncField('f2','fl-sqft')" /></div>
           <div>
             <div class="field-label">Bedrooms</div>
-            <div class="num-selector" id="bed-selector">
-              <button class="num-btn" onclick="selectNum('bed',1,this)">1</button>
-              <button class="num-btn" onclick="selectNum('bed',2,this)">2</button>
-              <button class="num-btn" onclick="selectNum('bed',3,this)">3</button>
-              <button class="num-btn active" onclick="selectNum('bed',4,this)">4</button>
-              <button class="num-btn" onclick="selectNum('bed',5,this)">5</button>
-              <button class="num-btn" onclick="selectNum('bed',6,this)">6</button>
-              <button class="num-btn" onclick="selectNum('bed',7,this)">7</button>
-              <button class="num-btn" onclick="selectNum('bed',8,this)">8</button>
-              <button class="num-btn" onclick="selectNum('bed',9,this)">9</button>
-              <button class="num-btn" onclick="selectNum('bed',10,this)">10</button>
+            <div class="dd-wrap">
+              <button class="dd-btn" id="bed-btn" onclick="toggleDD('bed')"><span id="bed-label">4 Beds</span><span class="dd-arrow">▼</span></button>
+              <div class="dd-list" id="bed-list"></div>
             </div>
           </div>
           <div>
             <div class="field-label">Bathrooms</div>
-            <div class="num-selector" id="bath-selector">
-              <button class="num-btn" onclick="selectNum('bath',1,this)">1</button>
-              <button class="num-btn" onclick="selectNum('bath',2,this)">2</button>
-              <button class="num-btn active" onclick="selectNum('bath',3,this)">3</button>
-              <button class="num-btn" onclick="selectNum('bath',4,this)">4</button>
-              <button class="num-btn" onclick="selectNum('bath',5,this)">5</button>
-              <button class="num-btn" onclick="selectNum('bath',6,this)">6</button>
-              <button class="num-btn" onclick="selectNum('bath',7,this)">7</button>
-              <button class="num-btn" onclick="selectNum('bath',8,this)">8</button>
-              <button class="num-btn" onclick="selectNum('bath',9,this)">9</button>
-              <button class="num-btn" onclick="selectNum('bath',10,this)">10</button>
+            <div class="dd-wrap">
+              <button class="dd-btn" id="bath-btn" onclick="toggleDD('bath')"><span id="bath-label">3 Baths</span><span class="dd-arrow">▼</span></button>
+              <div class="dd-list" id="bath-list"></div>
             </div>
           </div>
           <div><div class="field-label">List Price</div><input type="text" id="f4" placeholder="$750,000" oninput="syncField('f4','fl-price')" /></div>
@@ -461,7 +448,7 @@ textarea { resize: none; }
           <img id="preview3" class="preview-img" />
         </div>
         <h3 style="margin-bottom:6px;margin-top:20px;">Agent Logo (optional)</h3>
-        <p style="margin-bottom:16px;">Upload your brokerage or personal logo. It will be scaled automatically.</p>
+        <p style="margin-bottom:16px;">Upload your brokerage or personal logo. Scaled automatically.</p>
         <div class="upload-area" onclick="document.getElementById('logo-upload').click()"><p>Click to upload logo</p><span>PNG with transparent background works best</span></div>
         <input type="file" id="logo-upload" accept="image/*" onchange="handleLogo(event)" style="display:none;" />
         <img id="logo-preview" class="logo-preview-img" />
@@ -469,7 +456,20 @@ textarea { resize: none; }
           <div class="full"><div class="field-label">Headline</div><input type="text" id="fl-headline" placeholder="Stunning 4BR Home in Buckhead" /></div>
           <div><div class="field-label">Address</div><input type="text" id="fl-address" placeholder="123 Peachtree St" /></div>
           <div><div class="field-label">Price</div><input type="text" id="fl-price" placeholder="$750,000" /></div>
-          <div><div class="field-label">Beds / Baths</div><input type="text" id="fl-beds" placeholder="4 bed / 3 bath" /></div>
+          <div>
+            <div class="field-label">Bedrooms</div>
+            <div class="dd-wrap">
+              <button class="dd-btn" id="fl-bed-btn" onclick="toggleDD('fl-bed')"><span id="fl-bed-label">4 Beds</span><span class="dd-arrow">▼</span></button>
+              <div class="dd-list" id="fl-bed-list"></div>
+            </div>
+          </div>
+          <div>
+            <div class="field-label">Bathrooms</div>
+            <div class="dd-wrap">
+              <button class="dd-btn" id="fl-bath-btn" onclick="toggleDD('fl-bath')"><span id="fl-bath-label">3 Baths</span><span class="dd-arrow">▼</span></button>
+              <div class="dd-list" id="fl-bath-list"></div>
+            </div>
+          </div>
           <div><div class="field-label">Square Footage</div><input type="text" id="fl-sqft" placeholder="2,400 sq ft" /></div>
           <div><div class="field-label">Agent Name</div><input type="text" id="fl-agent" placeholder="Sarah Johnson" /></div>
           <div><div class="field-label">Phone</div><input type="text" id="fl-phone" placeholder="(404) 555-0100" /></div>
@@ -516,12 +516,60 @@ function showMain(){show('main-content');var days=trialDaysLeft();if(!isSubscrib
 function showPaywall(){show('paywall');if(window.paypal){var c=document.getElementById('paypal-button-container-P-8JH0204284127310MNHBVAPI');if(c&&c.children.length===0){paypal.Buttons({style:{shape:'pill',color:'blue',layout:'vertical',label:'subscribe'},createSubscription:function(data,actions){return actions.subscription.create({plan_id:'P-8JH0204284127310MNHBVAPI'});},onApprove:function(data){localStorage.setItem('qcv_subscribed','true');localStorage.setItem('qcv_subscription_id',data.subscriptionID);showMain();}}).render('#paypal-button-container-P-8JH0204284127310MNHBVAPI');}}}
 function unlock(){var n=document.getElementById('gname').value.trim(),e=document.getElementById('gemail').value.trim();if(!n||!e){alert('Please enter your name and email.');return;}if(e.indexOf('@')<0){alert('Please enter a valid email.');return;}setTrialStart();fetch('https://formspree.io/f/mwvwekvj',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({name:n,email:e,source:'QCV Agent Hub - Trial Start'})});showMain();}
 window.addEventListener('load',checkAccess);
-var selectedBeds=4,selectedBaths=3,selectedCopyOccasion='New Listing';
-function selectNum(type,val,btn){var sel=type==='bed'?'bed-selector':'bath-selector';document.getElementById(sel).querySelectorAll('.num-btn').forEach(function(b){b.classList.remove('active');});btn.classList.add('active');if(type==='bed'){selectedBeds=val;document.getElementById('fl-beds').value=selectedBeds+' bed / '+selectedBaths+' bath';}else{selectedBaths=val;document.getElementById('fl-beds').value=selectedBeds+' bed / '+selectedBaths+' bath';}}
+
+var selectedBeds=4,selectedBaths=3,selectedFlBeds=4,selectedFlBaths=3,selectedCopyOccasion='New Listing';
+
+function buildDD(id,type,defaultVal){
+  var list=document.getElementById(id+'-list');
+  var labels=['1','2','3','4','5','6','7','8','9','10'];
+  list.innerHTML='';
+  labels.forEach(function(n,i){
+    var div=document.createElement('div');
+    div.className='dd-item'+(parseInt(n)===defaultVal?' active':'');
+    div.textContent=n+' '+(type==='bed'?'Bed':'Bath')+(parseInt(n)===1?'':'s');
+    div.onclick=function(){selectDD(id,type,parseInt(n));};
+    list.appendChild(div);
+  });
+}
+
+function toggleDD(id){
+  var btn=document.getElementById(id+'-btn');
+  var list=document.getElementById(id+'-list');
+  var isOpen=list.classList.contains('open');
+  document.querySelectorAll('.dd-list.open').forEach(function(l){l.classList.remove('open');});
+  document.querySelectorAll('.dd-btn.open').forEach(function(b){b.classList.remove('open');});
+  if(!isOpen){list.classList.add('open');btn.classList.add('open');}
+}
+
+function selectDD(id,type,val){
+  var suffix=type==='bed'?'Bed':'Bath';
+  var label=val+' '+suffix+(val===1?'':'s');
+  document.getElementById(id+'-label').textContent=label;
+  document.getElementById(id+'-list').querySelectorAll('.dd-item').forEach(function(i){i.classList.remove('active');if(parseInt(i.textContent)===val)i.classList.add('active');});
+  document.getElementById(id+'-list').classList.remove('open');
+  document.getElementById(id+'-btn').classList.remove('open');
+  if(id==='bed'){selectedBeds=val;}
+  else if(id==='bath'){selectedBaths=val;}
+  else if(id==='fl-bed'){selectedFlBeds=val;updateFlyerBeds();}
+  else if(id==='fl-bath'){selectedFlBaths=val;updateFlyerBeds();}
+}
+
+function updateFlyerBeds(){document.getElementById('fl-beds')||0;var bedsVal=selectedFlBeds+' bed / '+selectedFlBaths+' bath';if(document.getElementById('fl-beds'))document.getElementById('fl-beds').value=bedsVal;}
+
+document.addEventListener('click',function(e){if(!e.target.closest('.dd-wrap')){document.querySelectorAll('.dd-list.open').forEach(function(l){l.classList.remove('open');});document.querySelectorAll('.dd-btn.open').forEach(function(b){b.classList.remove('open');});}});
+
+window.addEventListener('load',function(){
+  buildDD('bed','bed',4);
+  buildDD('bath','bath',3);
+  buildDD('fl-bed','bed',4);
+  buildDD('fl-bath','bath',3);
+  checkAccess();
+});
+
 function setCopyOccasion(btn){btn.closest('.option-grid-3').querySelectorAll('.opt-btn').forEach(function(b){b.classList.remove('active');});btn.classList.add('active');selectedCopyOccasion=btn.textContent.trim();}
 var selectedOccasion='New Listing',selectedW=1200,selectedH=2700,maxPhotos=3,photoCount=1,selectedPhotoLayout='single-full',selectedTheme='classic',selectedFont='Georgia',selectedDivider='none',uploadedPhoto1=null,uploadedPhoto2=null,uploadedPhoto3=null,uploadedLogo=null;
 var themes={classic:{bg:'#ffffff',text:'#1a1a1a',sub:'#666666',accent:'#1a1a1a',divider:'#cccccc'},dark:{bg:'#1a1a1a',text:'#ffffff',sub:'#aaaaaa',accent:'#ffffff',divider:'#444444'},warm:{bg:'#f5f0e8',text:'#3d2b1f',sub:'#7a6055',accent:'#3d2b1f',divider:'#c8b89a'},bold:{bg:'#0d2137',text:'#ffffff',sub:'#8aaabb',accent:'#F47920',divider:'#1e4060'}};
-function syncField(f,t){document.getElementById(t).value=document.getElementById(f).value;}
+function syncField(f,t){if(document.getElementById(t))document.getElementById(t).value=document.getElementById(f).value;}
 function goToFlyer(){document.querySelectorAll('.tool-tab').forEach(function(t){t.classList.remove('active');});document.querySelectorAll('.tool-panel').forEach(function(p){p.classList.remove('active');});document.querySelectorAll('.tool-tab')[1].classList.add('active');document.getElementById('tool-flyer').classList.add('active');window.scrollTo({top:0,behavior:'smooth'});}
 function switchTool(tool,btn){document.querySelectorAll('.tool-tab').forEach(function(t){t.classList.remove('active');});document.querySelectorAll('.tool-panel').forEach(function(p){p.classList.remove('active');});btn.classList.add('active');document.getElementById('tool-'+tool).classList.add('active');}
 function setOccasion(btn){btn.closest('.option-grid-3').querySelectorAll('.opt-btn').forEach(function(b){b.classList.remove('active');});btn.classList.add('active');selectedOccasion=btn.textContent.trim();}
@@ -539,9 +587,9 @@ function drawCover(ctx,img,x,y,w,h){if(!img)return;var ia=img.width/img.height,c
 function wrapText(ctx,text,x,y,maxW,lineH,maxLines){var words=text.split(' '),line='',count=0;for(var i=0;i<words.length;i++){if(maxLines&&count>=maxLines)break;var test=line+words[i]+' ';if(ctx.measureText(test).width>maxW&&i>0){ctx.fillText(line.trim(),x,y+count*lineH);line=words[i]+' ';count++;}else{line=test;}}if(!maxLines||count<maxLines){ctx.fillText(line.trim(),x,y+count*lineH);count++;}return count;}
 function drawDivider(ctx,t,y){if(selectedDivider==='none')return;ctx.strokeStyle=t.divider;ctx.lineWidth=Math.round(selectedW*0.002);if(selectedDivider==='solid'||selectedDivider==='double'){ctx.beginPath();ctx.moveTo(0,y);ctx.lineTo(selectedW,y);ctx.stroke();}if(selectedDivider==='double'){var gap=Math.round(selectedW*0.008);ctx.beginPath();ctx.moveTo(0,y+gap);ctx.lineTo(selectedW,y+gap);ctx.stroke();}}
 function getPhotoHeight(){var r=selectedW/selectedH;if(r<0.5)return Math.round(selectedH*0.52);if(r<0.7)return Math.round(selectedH*0.55);return Math.round(selectedH*0.58);}
-function generateFlyer(){if(!uploadedPhoto1){alert('Please upload at least one photo.');return;}if(photoCount>=2&&!uploadedPhoto2){alert('Please upload photo 2.');return;}if(photoCount>=3&&!uploadedPhoto3){alert('Please upload photo 3.');return;}var headline=document.getElementById('fl-headline').value||selectedOccasion,address=document.getElementById('fl-address').value,price=document.getElementById('fl-price').value,beds=document.getElementById('fl-beds').value,sqft=document.getElementById('fl-sqft').value,agent=document.getElementById('fl-agent').value,phone=document.getElementById('fl-phone').value,brokerage=document.getElementById('fl-brokerage').value,qrUrl=document.getElementById('fl-qr').value.trim(),t=themes[selectedTheme];var canvas=document.getElementById('flyer-canvas');canvas.width=selectedW;canvas.height=selectedH;canvas.style.maxWidth='400px';canvas.style.height='auto';var ctx=canvas.getContext('2d');ctx.imageSmoothingEnabled=true;ctx.imageSmoothingQuality='high';ctx.fillStyle=t.bg;ctx.fillRect(0,0,selectedW,selectedH);var photoH=getPhotoHeight(),pad=Math.round(selectedW*0.07),borderPad=Math.round(selectedW*0.04),gap=6,loadCount=0,totalPhotos=photoCount,imgs=[null,null,null];function onImgLoad(idx,src){var img=new Image();img.onload=function(){imgs[idx]=img;loadCount++;if(loadCount===totalPhotos)renderFlyer();};img.src=src;}onImgLoad(0,uploadedPhoto1);if(photoCount>=2)onImgLoad(1,uploadedPhoto2);if(photoCount>=3)onImgLoad(2,uploadedPhoto3);function renderFlyer(){if(photoCount===1){if(selectedPhotoLayout==='single-full'){drawCover(ctx,imgs[0],0,0,selectedW,photoH);}else{drawCover(ctx,imgs[0],borderPad,borderPad,selectedW-borderPad*2,photoH-borderPad*2);}}else if(photoCount===2){if(selectedPhotoLayout==='double-side'){drawCover(ctx,imgs[0],0,0,(selectedW-gap)/2,photoH);drawCover(ctx,imgs[1],(selectedW+gap)/2,0,(selectedW-gap)/2,photoH);}else if(selectedPhotoLayout==='double-hero'){var hH=Math.round(photoH*0.65),aH=photoH-hH-gap;drawCover(ctx,imgs[0],0,0,selectedW,hH);drawCover(ctx,imgs[1],0,hH+gap,selectedW,aH);}else if(selectedPhotoLayout==='double-left'){var lW=Math.round(selectedW*0.62);drawCover(ctx,imgs[0],0,0,lW-gap,photoH);drawCover(ctx,imgs[1],lW,0,selectedW-lW,photoH);}else{var hfH=Math.round(photoH/2)-Math.round(gap/2);drawCover(ctx,imgs[0],0,0,selectedW,hfH);drawCover(ctx,imgs[1],0,hfH+gap,selectedW,hfH);}}else if(photoCount===3){var tH=Math.round(photoH*0.6),bH=photoH-tH-gap,hW=Math.round((selectedW-gap)/2);drawCover(ctx,imgs[0],0,0,selectedW,tH);drawCover(ctx,imgs[1],0,tH+gap,hW,bH);drawCover(ctx,imgs[2],hW+gap,tH+gap,selectedW-hW-gap,bH);}drawDivider(ctx,t,photoH);renderTextBlock(ctx,t,pad,photoH,headline,address,price,beds,sqft,agent,phone,brokerage,qrUrl);}}
+function generateFlyer(){if(!uploadedPhoto1){alert('Please upload at least one photo.');return;}if(photoCount>=2&&!uploadedPhoto2){alert('Please upload photo 2.');return;}if(photoCount>=3&&!uploadedPhoto3){alert('Please upload photo 3.');return;}var headline=document.getElementById('fl-headline').value||selectedOccasion,address=document.getElementById('fl-address').value,price=document.getElementById('fl-price').value,beds=selectedFlBeds+' bed / '+selectedFlBaths+' bath',sqft=document.getElementById('fl-sqft').value,agent=document.getElementById('fl-agent').value,phone=document.getElementById('fl-phone').value,brokerage=document.getElementById('fl-brokerage').value,qrUrl=document.getElementById('fl-qr').value.trim(),t=themes[selectedTheme];var canvas=document.getElementById('flyer-canvas');canvas.width=selectedW;canvas.height=selectedH;canvas.style.maxWidth='400px';canvas.style.height='auto';var ctx=canvas.getContext('2d');ctx.imageSmoothingEnabled=true;ctx.imageSmoothingQuality='high';ctx.fillStyle=t.bg;ctx.fillRect(0,0,selectedW,selectedH);var photoH=getPhotoHeight(),pad=Math.round(selectedW*0.07),borderPad=Math.round(selectedW*0.04),gap=6,loadCount=0,totalPhotos=photoCount,imgs=[null,null,null];function onImgLoad(idx,src){var img=new Image();img.onload=function(){imgs[idx]=img;loadCount++;if(loadCount===totalPhotos)renderFlyer();};img.src=src;}onImgLoad(0,uploadedPhoto1);if(photoCount>=2)onImgLoad(1,uploadedPhoto2);if(photoCount>=3)onImgLoad(2,uploadedPhoto3);function renderFlyer(){if(photoCount===1){if(selectedPhotoLayout==='single-full'){drawCover(ctx,imgs[0],0,0,selectedW,photoH);}else{drawCover(ctx,imgs[0],borderPad,borderPad,selectedW-borderPad*2,photoH-borderPad*2);}}else if(photoCount===2){if(selectedPhotoLayout==='double-side'){drawCover(ctx,imgs[0],0,0,(selectedW-gap)/2,photoH);drawCover(ctx,imgs[1],(selectedW+gap)/2,0,(selectedW-gap)/2,photoH);}else if(selectedPhotoLayout==='double-hero'){var hH=Math.round(photoH*0.65),aH=photoH-hH-gap;drawCover(ctx,imgs[0],0,0,selectedW,hH);drawCover(ctx,imgs[1],0,hH+gap,selectedW,aH);}else if(selectedPhotoLayout==='double-left'){var lW=Math.round(selectedW*0.62);drawCover(ctx,imgs[0],0,0,lW-gap,photoH);drawCover(ctx,imgs[1],lW,0,selectedW-lW,photoH);}else{var hfH=Math.round(photoH/2)-Math.round(gap/2);drawCover(ctx,imgs[0],0,0,selectedW,hfH);drawCover(ctx,imgs[1],0,hfH+gap,selectedW,hfH);}}else if(photoCount===3){var tH=Math.round(photoH*0.6),bH=photoH-tH-gap,hW=Math.round((selectedW-gap)/2);drawCover(ctx,imgs[0],0,0,selectedW,tH);drawCover(ctx,imgs[1],0,tH+gap,hW,bH);drawCover(ctx,imgs[2],hW+gap,tH+gap,selectedW-hW-gap,bH);}drawDivider(ctx,t,photoH);renderTextBlock(ctx,t,pad,photoH,headline,address,price,beds,sqft,agent,phone,brokerage,qrUrl);}}
 function renderTextBlock(ctx,t,pad,photoH,headline,address,price,beds,sqft,agent,phone,brokerage,qrUrl){var textAreaH=selectedH-photoH,fs=Math.min(Math.round(selectedW*0.042),Math.round(textAreaH*0.08)),lh=Math.round(fs*1.45),y=photoH+pad,bottomReserve=Math.round(selectedH*0.10),maxY=selectedH-bottomReserve,qrSize=Math.round(selectedW*0.16),maxW=selectedW-pad*2;if(qrUrl)maxW=selectedW-pad*2-qrSize-pad;function fits(ny){return ny<maxY;}ctx.fillStyle=t.accent;ctx.font='bold '+Math.round(fs*0.6)+'px '+selectedFont;if(fits(y)){ctx.fillText(selectedOccasion.toUpperCase(),pad,y);y+=Math.round(lh*0.8);}ctx.fillStyle=t.text;ctx.font='bold '+fs+'px '+selectedFont;var mhl=Math.max(1,Math.min(3,Math.floor((maxY-y-lh*4)/lh)));if(fits(y)){var hl=wrapText(ctx,headline,pad,y,maxW,lh,mhl);y+=hl*lh+Math.round(lh*0.15);}if(price&&fits(y)){ctx.fillStyle=t.text;ctx.font='bold '+Math.round(fs*0.98)+'px '+selectedFont;ctx.fillText(price,pad,y);y+=Math.round(lh*1.05);}ctx.fillStyle=t.sub;ctx.font=Math.round(fs*0.68)+'px '+selectedFont;if(address&&fits(y)){ctx.fillText(address,pad,y);y+=Math.round(lh*0.88);}var details=[beds,sqft].filter(Boolean).join('   ·   ');if(details&&fits(y)){ctx.fillText(details,pad,y);y+=Math.round(lh*1.0);}ctx.fillStyle=t.text;ctx.font='bold '+Math.round(fs*0.7)+'px '+selectedFont;if(agent&&fits(y)){ctx.fillText(agent,pad,y);y+=Math.round(lh*0.82);}ctx.fillStyle=t.sub;ctx.font=Math.round(fs*0.6)+'px '+selectedFont;if(brokerage&&fits(y)){ctx.fillText(brokerage,pad,y);y+=Math.round(lh*0.75);}if(phone&&fits(y)){ctx.fillText(phone,pad,y);}if(qrUrl){try{var qrCanvas=generateQR(qrUrl,qrSize),qrX=selectedW-pad-qrSize,qrY=photoH+pad;ctx.fillStyle='#ffffff';ctx.fillRect(qrX-6,qrY-6,qrSize+12,qrSize+12);ctx.drawImage(qrCanvas,qrX,qrY,qrSize,qrSize);ctx.fillStyle=t.sub;ctx.font=Math.round(selectedW*0.017)+'px '+selectedFont;ctx.textAlign='center';ctx.fillText('Scan to view',qrX+qrSize/2,qrY+qrSize+Math.round(selectedW*0.022));ctx.textAlign='left';}catch(e){}}
-if(uploadedLogo){var logoImg=new Image();logoImg.onload=function(){var maxLogoW=Math.round(selectedW*0.28),maxLogoH=Math.round(selectedH*0.06),logoAspect=logoImg.width/logoImg.height,logoW,logoH;if(logoAspect>maxLogoW/maxLogoH){logoW=maxLogoW;logoH=Math.round(maxLogoW/logoAspect);}else{logoH=maxLogoH;logoW=Math.round(maxLogoH*logoAspect);}var logoX=pad,logoY=selectedH-Math.round(selectedH*0.04)-logoH;ctx.drawImage(logoImg,logoX,logoY,logoW,logoH);};logoImg.src=uploadedLogo;}else{ctx.fillStyle=t.sub;ctx.font=Math.round(selectedW*0.018)+'px '+selectedFont;ctx.fillText('Powered by Quality Capture Visuals',pad,selectedH-Math.round(selectedW*0.02));}
+if(uploadedLogo){var logoImg=new Image();logoImg.onload=function(){var maxLogoW=Math.round(selectedW*0.28),maxLogoH=Math.round(selectedH*0.06),logoAspect=logoImg.width/logoImg.height,logoW,logoH;if(logoAspect>maxLogoW/maxLogoH){logoW=maxLogoW;logoH=Math.round(maxLogoW/logoAspect);}else{logoH=maxLogoH;logoW=Math.round(maxLogoH*logoAspect);}ctx.drawImage(logoImg,pad,selectedH-Math.round(selectedH*0.04)-logoH,logoW,logoH);};logoImg.src=uploadedLogo;}else{ctx.fillStyle=t.sub;ctx.font=Math.round(selectedW*0.018)+'px '+selectedFont;ctx.fillText('Powered by Quality Capture Visuals',pad,selectedH-Math.round(selectedW*0.02));}
 document.getElementById('flyer-output').style.display='block';document.getElementById('flyer-output').scrollIntoView({behavior:'smooth'});}
 function generateQR(url,size){var div=document.createElement('div');new QRCode(div,{text:url,width:size,height:size,correctLevel:QRCode.CorrectLevel.M});return div.querySelector('canvas');}
 function downloadFlyer(){var canvas=document.getElementById('flyer-canvas'),occasion=selectedOccasion.toLowerCase().replace(/ /g,'-'),isMobile=/iPhone|iPad|iPod|Android/i.test(navigator.userAgent);if(isMobile){var dataUrl=canvas.toDataURL('image/png',1.0),win=window.open();win.document.write('<img src="'+dataUrl+'" style="max-width:100%;display:block;margin:0 auto;" /><p style="text-align:center;font-family:sans-serif;color:#666;padding:16px;">Press and hold the image to save it to your device.</p>');}else{canvas.toBlob(function(blob){var url=URL.createObjectURL(blob),link=document.createElement('a');link.download='qcv-flyer-'+occasion+'.png';link.href=url;document.body.appendChild(link);link.click();document.body.removeChild(link);URL.revokeObjectURL(url);},'image/png',1.0);}}

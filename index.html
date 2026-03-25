@@ -7,36 +7,36 @@
 <style>
 * { box-sizing: border-box; margin: 0; padding: 0; }
 body { font-family: Georgia, serif; background: #f5f5f3; color: #1a1a1a; }
-.header { background: #1a1a1a; padding: 20px 40px; display: flex; align-items: center; justify-content: space-between; }
+.header { background: #0d2137; padding: 20px 40px; display: flex; align-items: center; justify-content: space-between; }
 .header-left { display: flex; align-items: center; gap: 16px; }
-.header-logo { width: 44px; height: 44px; background: #F47920; border-radius: 8px; display: flex; align-items: center; justify-content: center; }
-.header-logo svg { width: 26px; height: 26px; fill: white; }
+.header-logo { width: 44px; height: 44px; background: #c9a96e; border-radius: 8px; display: flex; align-items: center; justify-content: center; }
+.header-logo svg { width: 26px; height: 26px; fill: #0d2137; }
 .header h1 { color: white; font-size: 18px; font-weight: 400; letter-spacing: 0.04em; }
-.header span { color: #F47920; }
-.header-link { color: #aaaaaa; font-size: 13px; text-decoration: none; border-bottom: 1px solid #444; padding-bottom: 2px; white-space: nowrap; }
-.header-link:hover { color: #ffffff; border-color: #ffffff; }
-.trial-banner { background: #F47920; color: white; text-align: center; padding: 10px 20px; font-size: 13px; letter-spacing: 0.03em; }
+.header span { color: #c9a96e; }
+.header-link { color: rgba(255,255,255,0.5); font-size: 13px; text-decoration: none; border-bottom: 1px solid rgba(255,255,255,0.2); padding-bottom: 2px; white-space: nowrap; }
+.header-link:hover { color: #c9a96e; border-color: #c9a96e; }
+.trial-banner { background: #c9a96e; color: #0d2137; text-align: center; padding: 10px 20px; font-size: 13px; letter-spacing: 0.03em; font-weight: 600; }
 .hero { text-align: center; padding: 60px 40px 40px; }
-.hero h2 { font-size: 32px; font-weight: 400; margin-bottom: 12px; }
+.hero h2 { font-size: 32px; font-weight: 400; margin-bottom: 12px; color: #0d2137; }
 .hero p { font-size: 16px; color: #666; max-width: 520px; margin: 0 auto; line-height: 1.6; }
 .tools-nav { display: flex; justify-content: center; gap: 12px; padding: 0 40px 40px; flex-wrap: wrap; }
 .tool-tab { padding: 12px 28px; border: 1px solid #ddd; border-radius: 6px; background: #fff; cursor: pointer; font-size: 14px; font-family: Georgia, serif; color: #666; transition: all 0.15s; }
-.tool-tab.active { background: #1a1a1a; color: #fff; border-color: #1a1a1a; }
-.tool-tab:hover:not(.active) { border-color: #1a1a1a; color: #1a1a1a; }
+.tool-tab.active { background: #0d2137; color: #fff; border-color: #0d2137; }
+.tool-tab:hover:not(.active) { border-color: #0d2137; color: #0d2137; }
 .container { max-width: 800px; margin: 0 auto; padding: 0 40px 80px; }
 .tool-panel { display: none; }
 .tool-panel.active { display: block; }
 .card { background: #fff; border: 1px solid #ddd; border-radius: 8px; padding: 36px; margin-bottom: 20px; }
-.card h3 { font-size: 18px; font-weight: 400; margin-bottom: 6px; }
+.card h3 { font-size: 18px; font-weight: 400; margin-bottom: 6px; color: #0d2137; }
 .card p { font-size: 13px; color: #888; margin-bottom: 24px; line-height: 1.5; }
 .grid2 { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
 .full { grid-column: 1/-1; }
 .field-label { font-size: 11px; letter-spacing: 0.07em; text-transform: uppercase; color: #888; margin-bottom: 6px; }
 input[type=text], input[type=email], textarea, select { width: 100%; padding: 10px 14px; border: 1px solid #ddd; border-radius: 6px; font-size: 14px; font-family: Georgia, serif; background: #fff; }
-input:focus, textarea:focus, select:focus { outline: none; border-color: #1a1a1a; }
+input:focus, textarea:focus, select:focus { outline: none; border-color: #0d2137; }
 textarea { resize: none; }
-.btn { width: 100%; padding: 14px; background: #1a1a1a; color: #fff; border: none; border-radius: 6px; font-size: 14px; letter-spacing: 0.05em; cursor: pointer; font-family: Georgia, serif; margin-top: 20px; transition: opacity 0.15s; }
-.btn:hover { opacity: 0.8; }
+.btn { width: 100%; padding: 14px; background: #0d2137; color: #fff; border: none; border-radius: 6px; font-size: 14px; letter-spacing: 0.05em; cursor: pointer; font-family: Georgia, serif; margin-top: 20px; transition: opacity 0.15s; }
+.btn:hover { opacity: 0.85; }
 .btn:disabled { opacity: 0.4; cursor: default; }
 .loading { display: none; text-align: center; padding: 40px; color: #888; font-size: 14px; }
 .results { display: none; flex-direction: column; gap: 16px; }
@@ -44,61 +44,67 @@ textarea { resize: none; }
 .result-header { display: flex; justify-content: space-between; align-items: center; padding: 12px 20px; background: #f9f9f9; border-bottom: 1px solid #ddd; }
 .result-label { font-size: 11px; letter-spacing: 0.07em; text-transform: uppercase; color: #888; }
 .copy-btn { font-size: 12px; padding: 4px 12px; border: 1px solid #ddd; border-radius: 4px; background: #fff; cursor: pointer; color: #666; font-family: Georgia, serif; }
-.copy-btn:hover { border-color: #1a1a1a; color: #1a1a1a; }
+.copy-btn:hover { border-color: #0d2137; color: #0d2137; }
 .result-body { padding: 20px; font-size: 14px; line-height: 1.8; white-space: pre-wrap; }
 .cta-bar { padding: 24px; background: #f9f9f9; border: 1px solid #ddd; border-radius: 8px; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 12px; margin-top: 8px; }
 .cta-bar p { font-size: 13px; color: #666; }
-.cta-bar a { font-size: 13px; color: #1a1a1a; text-decoration: none; border-bottom: 1px solid #1a1a1a; padding-bottom: 2px; }
+.cta-bar a { font-size: 13px; color: #0d2137; text-decoration: none; border-bottom: 1px solid #0d2137; padding-bottom: 2px; }
 .option-grid-3 { display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px; margin-bottom: 20px; }
 .option-grid-4 { display: grid; grid-template-columns: repeat(4, 1fr); gap: 10px; margin-bottom: 20px; }
 .option-grid-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin-bottom: 20px; }
 .opt-btn { padding: 12px 8px; border: 1px solid #ddd; border-radius: 6px; background: #fff; cursor: pointer; font-size: 13px; font-family: Georgia, serif; color: #666; text-align: center; transition: all 0.15s; line-height: 1.4; }
-.opt-btn.active { background: #1a1a1a; color: #fff; border-color: #1a1a1a; }
-.opt-btn:hover:not(.active) { border-color: #1a1a1a; color: #1a1a1a; }
+.opt-btn.active { background: #0d2137; color: #fff; border-color: #0d2137; }
+.opt-btn:hover:not(.active) { border-color: #0d2137; color: #0d2137; }
+.num-selector { display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 6px; }
+.num-btn { width: 40px; height: 40px; border: 1px solid #ddd; border-radius: 6px; background: #fff; cursor: pointer; font-size: 14px; font-family: Georgia, serif; color: #666; display: flex; align-items: center; justify-content: center; transition: all 0.15s; }
+.num-btn.active { background: #0d2137; color: #fff; border-color: #0d2137; }
+.num-btn:hover:not(.active) { border-color: #0d2137; color: #0d2137; }
 .theme-btn { padding: 16px 12px; border: 2px solid #ddd; border-radius: 8px; cursor: pointer; font-size: 13px; font-family: Georgia, serif; text-align: center; transition: all 0.15s; line-height: 1.4; }
-.theme-btn.active { border-color: #1a1a1a; box-shadow: 0 0 0 2px #1a1a1a; }
+.theme-btn.active { border-color: #0d2137; box-shadow: 0 0 0 2px #0d2137; }
 .theme-classic { background: #ffffff; color: #1a1a1a; }
 .theme-dark { background: #1a1a1a; color: #ffffff; }
 .theme-warm { background: #f5f0e8; color: #3d2b1f; }
 .theme-bold { background: #0d2137; color: #ffffff; }
 .upload-area { border: 2px dashed #ddd; border-radius: 8px; padding: 30px; text-align: center; cursor: pointer; transition: all 0.15s; margin-bottom: 12px; }
-.upload-area:hover { border-color: #1a1a1a; }
+.upload-area:hover { border-color: #0d2137; }
 .upload-area p { font-size: 14px; color: #888; margin-bottom: 4px; }
 .upload-area span { font-size: 12px; color: #bbb; }
 .preview-img { width: 100%; max-height: 160px; object-fit: cover; border-radius: 6px; margin-bottom: 12px; display: none; }
+.logo-preview-img { max-height: 80px; max-width: 200px; object-fit: contain; border-radius: 4px; margin-bottom: 12px; display: none; }
 #flyer-output { display: none; margin-top: 20px; text-align: center; }
 #flyer-canvas { max-width: 400px; width: 100%; height: auto; border-radius: 8px; border: 1px solid #ddd; display: block; margin: 0 auto; }
-.download-btn { max-width: 400px; width: 100%; padding: 14px; background: #1a1a1a; color: #fff; border: none; border-radius: 6px; font-size: 14px; letter-spacing: 0.05em; cursor: pointer; font-family: Georgia, serif; margin: 12px auto 0; display: block; }
+.download-btn { max-width: 400px; width: 100%; padding: 14px; background: #0d2137; color: #fff; border: none; border-radius: 6px; font-size: 14px; letter-spacing: 0.05em; cursor: pointer; font-family: Georgia, serif; margin: 12px auto 0; display: block; }
 #gate { display: block; }
 #main-content { display: none; }
 #paywall { display: none; }
 .paywall-wrap { max-width: 480px; margin: 60px auto; padding: 0 20px 80px; text-align: center; }
 .paywall-card { background: #fff; border: 1px solid #ddd; border-radius: 12px; padding: 48px 40px; }
-.paywall-badge { display: inline-block; background: #F47920; color: white; font-size: 11px; letter-spacing: 0.07em; text-transform: uppercase; padding: 5px 14px; border-radius: 20px; margin-bottom: 20px; }
-.paywall-card h2 { font-size: 26px; font-weight: 400; margin-bottom: 12px; }
+.paywall-badge { display: inline-block; background: #0d2137; color: #c9a96e; font-size: 11px; letter-spacing: 0.07em; text-transform: uppercase; padding: 5px 14px; border-radius: 20px; margin-bottom: 20px; }
+.paywall-card h2 { font-size: 26px; font-weight: 400; margin-bottom: 12px; color: #0d2137; }
 .paywall-card > p { font-size: 14px; color: #666; line-height: 1.7; margin-bottom: 24px; }
-.paywall-price { font-size: 48px; font-weight: 400; color: #1a1a1a; margin: 0 0 4px; }
+.paywall-price { font-size: 48px; font-weight: 400; color: #0d2137; margin: 0 0 4px; }
 .paywall-price span { font-size: 16px; color: #888; font-weight: 400; }
-.paywall-trial-note { font-size: 13px; color: #F47920; margin-bottom: 28px; font-style: italic; }
+.paywall-trial-note { font-size: 13px; color: #c9a96e; margin-bottom: 28px; font-style: italic; }
 .paywall-features { text-align: left; margin: 0 0 32px; padding: 20px 24px; background: #f9f9f9; border-radius: 8px; }
 .paywall-features p { font-size: 13px; color: #555; margin-bottom: 8px; padding-left: 22px; position: relative; line-height: 1.5; }
 .paywall-features p:last-child { margin-bottom: 0; }
-.paywall-features p::before { content: '✓'; position: absolute; left: 0; color: #F47920; font-weight: bold; }
+.paywall-features p::before { content: '✓'; position: absolute; left: 0; color: #c9a96e; font-weight: bold; }
 .paywall-divider { font-size: 11px; color: #bbb; margin: 20px 0; letter-spacing: 0.05em; text-transform: uppercase; }
-.transfer-btn { width: 100%; padding: 12px; background: #f5f5f3; color: #1a1a1a; border: 1px solid #ddd; border-radius: 6px; font-size: 13px; cursor: pointer; font-family: Georgia, serif; margin-top: 16px; transition: all 0.15s; }
-.transfer-btn:hover { background: #1a1a1a; color: #fff; border-color: #1a1a1a; }
-.book-cta { background: #1a1a1a; padding: 48px 40px; text-align: center; }
+.transfer-btn { width: 100%; padding: 12px; background: #f5f5f3; color: #0d2137; border: 1px solid #ddd; border-radius: 6px; font-size: 13px; cursor: pointer; font-family: Georgia, serif; margin-top: 16px; transition: all 0.15s; }
+.transfer-btn:hover { background: #0d2137; color: #fff; border-color: #0d2137; }
+.book-cta { background: #0d2137; padding: 48px 40px; text-align: center; }
 .book-cta h3 { color: #ffffff; font-size: 22px; font-weight: 400; margin-bottom: 10px; }
-.book-cta p { color: #aaaaaa; font-size: 14px; margin-bottom: 24px; line-height: 1.6; }
-.book-cta a { display: inline-block; padding: 14px 36px; background: #F47920; color: #fff; text-decoration: none; border-radius: 6px; font-size: 14px; letter-spacing: 0.05em; transition: opacity 0.15s; }
+.book-cta p { color: rgba(255,255,255,0.6); font-size: 14px; margin-bottom: 24px; line-height: 1.6; }
+.book-cta a { display: inline-block; padding: 14px 36px; background: #c9a96e; color: #0d2137; text-decoration: none; border-radius: 6px; font-size: 14px; letter-spacing: 0.05em; font-weight: 600; transition: opacity 0.15s; }
 .book-cta a:hover { opacity: 0.85; }
-.subscriber-bar { background: #F47920; color: white; text-align: center; padding: 20px 40px; }
-.subscriber-bar p { font-size: 14px; font-weight: 600; margin-bottom: 4px; }
-.subscriber-bar span { font-size: 12px; opacity: 0.85; }
+.subscriber-bar { background: #c9a96e; padding: 20px 40px; text-align: center; }
+.subscriber-bar p { font-size: 14px; font-weight: 600; color: #0d2137; margin-bottom: 4px; }
+.subscriber-bar span { font-size: 12px; color: rgba(13,33,55,0.7); }
 .powered { text-align: center; padding: 24px; font-size: 11px; color: #bbb; letter-spacing: 0.04em; }
 </style>
 </head>
 <body>
+
 <div class="header">
   <div class="header-left">
     <div class="header-logo">
@@ -114,42 +120,41 @@ textarea { resize: none; }
 @import url('https://fonts.googleapis.com/css2?family=Bebas+Neue&display=swap');
 .gate-hero{display:grid;grid-template-columns:1.2fr 0.8fr;min-height:500px;}
 .gate-left{padding:52px 56px;display:flex;flex-direction:column;justify-content:center;position:relative;overflow:hidden;background:#fff;}
-.gate-bg-accent{position:absolute;top:-60px;right:-80px;width:320px;height:320px;background:#FFF4ED;border-radius:50%;z-index:0;}
 .gate-left-inner{position:relative;z-index:1;}
-.gate-eyebrow{font-size:11px;letter-spacing:0.14em;text-transform:uppercase;color:#F47920;margin-bottom:14px;font-weight:600;}
-.gate-headline{font-family:'Bebas Neue',sans-serif;font-size:78px;color:#111;line-height:0.92;margin-bottom:22px;letter-spacing:0.02em;}
-.gate-headline span{color:#F47920;}
-.gate-subtext{font-size:14px;color:#666;line-height:1.75;max-width:380px;margin-bottom:36px;}
-.gate-subtext strong{color:#111;font-weight:600;}
-.gate-features-list{display:flex;flex-direction:column;gap:10px;}
+.gate-vert{position:absolute;left:0;top:0;bottom:0;width:5px;background:#c9a96e;}
+.gate-qcv{font-family:'Bebas Neue',sans-serif;font-size:22px;color:#c9a96e;letter-spacing:0.12em;padding-left:16px;}
+.gate-headline{font-family:'Bebas Neue',sans-serif;font-size:86px;color:#0d2137;line-height:0.88;margin-bottom:22px;letter-spacing:0.02em;padding-left:16px;}
+.gate-subtext{font-size:14px;color:#666;line-height:1.75;max-width:380px;margin-bottom:36px;padding-left:16px;}
+.gate-subtext strong{color:#0d2137;font-weight:600;}
+.gate-features-list{display:flex;flex-direction:column;gap:10px;padding-left:16px;}
 .gate-feature-item{display:flex;align-items:center;gap:12px;font-size:13px;color:#444;}
-.gate-check{width:20px;height:20px;background:#F47920;border-radius:4px;display:flex;align-items:center;justify-content:center;flex-shrink:0;}
-.gate-right{padding:52px 44px;display:flex;flex-direction:column;justify-content:center;background:#f9f9f9;border-left:1px solid #f0f0f0;}
-.gate-trial-badge{display:inline-flex;align-items:center;background:#F47920;border-radius:6px;padding:8px 16px;margin-bottom:28px;width:fit-content;}
-.gate-trial-badge-text{font-size:12px;color:#fff;font-weight:600;letter-spacing:0.05em;text-transform:uppercase;}
-.gate-form-label{font-size:11px;letter-spacing:0.09em;text-transform:uppercase;color:#aaa;margin-bottom:7px;font-weight:600;}
-.gate-form-input{width:100%;background:#fff;border:1.5px solid #e8e8e8;border-radius:8px;padding:14px 16px;font-size:14px;color:#111;font-family:Georgia,serif;margin-bottom:14px;outline:none;transition:border-color 0.2s;}
-.gate-form-input::placeholder{color:#ccc;}
-.gate-form-input:focus{border-color:#F47920;}
-.gate-form-btn{width:100%;padding:16px;background:#111;color:#fff;border:none;border-radius:8px;font-size:13px;letter-spacing:0.1em;text-transform:uppercase;font-family:Georgia,serif;font-weight:600;cursor:pointer;margin-top:4px;transition:background 0.2s;}
-.gate-form-btn:hover{background:#F47920;}
-.gate-fine{text-align:center;font-size:11px;color:#bbb;margin-top:14px;line-height:1.65;}
+.gate-check{width:20px;height:20px;background:#c9a96e;border-radius:4px;display:flex;align-items:center;justify-content:center;flex-shrink:0;}
+.gate-right{padding:52px 44px;display:flex;flex-direction:column;justify-content:center;background:#0d2137;}
+.gate-trial-badge{display:inline-flex;align-items:center;background:#c9a96e;border-radius:6px;padding:8px 16px;margin-bottom:28px;width:fit-content;}
+.gate-trial-badge-text{font-size:12px;color:#0d2137;font-weight:700;letter-spacing:0.05em;text-transform:uppercase;}
+.gate-form-label{font-size:11px;letter-spacing:0.09em;text-transform:uppercase;color:rgba(255,255,255,0.4);margin-bottom:7px;font-weight:600;}
+.gate-form-input{width:100%;background:rgba(255,255,255,0.08);border:1.5px solid rgba(255,255,255,0.15);border-radius:8px;padding:14px 16px;font-size:14px;color:#fff;font-family:Georgia,serif;margin-bottom:14px;outline:none;transition:border-color 0.2s;}
+.gate-form-input::placeholder{color:rgba(255,255,255,0.25);}
+.gate-form-input:focus{border-color:#c9a96e;}
+.gate-form-btn{width:100%;padding:16px;background:#c9a96e;color:#0d2137;border:none;border-radius:8px;font-size:13px;letter-spacing:0.1em;text-transform:uppercase;font-family:Georgia,serif;font-weight:700;cursor:pointer;margin-top:4px;transition:opacity 0.2s;}
+.gate-form-btn:hover{opacity:0.85;}
+.gate-fine{text-align:center;font-size:11px;color:rgba(255,255,255,0.3);margin-top:14px;line-height:1.65;}
 .preview-section{background:#f9f9f9;border-top:1px solid #f0f0f0;padding:64px 48px;}
 .preview-header{text-align:center;margin-bottom:48px;}
-.preview-eyebrow{font-size:11px;letter-spacing:0.14em;text-transform:uppercase;color:#F47920;font-weight:600;margin-bottom:10px;}
-.preview-title{font-family:'Bebas Neue',sans-serif;font-size:42px;color:#111;letter-spacing:0.02em;}
+.preview-eyebrow{font-size:11px;letter-spacing:0.14em;text-transform:uppercase;color:#c9a96e;font-weight:600;margin-bottom:10px;}
+.preview-title{font-family:'Bebas Neue',sans-serif;font-size:42px;color:#0d2137;letter-spacing:0.02em;}
 .preview-sub{font-size:14px;color:#888;margin-top:8px;}
 .preview-screens{display:grid;grid-template-columns:1fr 1fr;gap:20px;}
 .screen-card{background:#fff;border:1px solid #ebebeb;border-radius:12px;overflow:hidden;}
 .screen-label{padding:12px 16px;border-bottom:1px solid #f0f0f0;display:flex;align-items:center;gap:8px;}
-.screen-dot{width:8px;height:8px;border-radius:50%;background:#F47920;}
+.screen-dot{width:8px;height:8px;border-radius:50%;background:#c9a96e;}
 .screen-label-text{font-size:11px;font-weight:600;letter-spacing:0.08em;text-transform:uppercase;color:#888;}
 .screen-body{padding:20px;}
 .mock-field{margin-bottom:12px;}
 .mock-field-label{font-size:10px;letter-spacing:0.08em;text-transform:uppercase;color:#bbb;margin-bottom:5px;font-weight:600;}
 .mock-input{background:#f9f9f9;border:1px solid #eee;border-radius:6px;padding:9px 12px;font-size:12px;color:#999;width:100%;}
 .mock-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-bottom:12px;}
-.mock-btn{width:100%;padding:11px;background:#111;color:#fff;border:none;border-radius:6px;font-size:11px;letter-spacing:0.08em;text-transform:uppercase;font-family:Georgia,serif;font-weight:600;margin-top:4px;}
+.mock-btn{width:100%;padding:11px;background:#0d2137;color:#fff;border:none;border-radius:6px;font-size:11px;letter-spacing:0.08em;text-transform:uppercase;font-family:Georgia,serif;font-weight:600;margin-top:4px;}
 .mock-result{background:#f9f9f9;border:1px solid #eee;border-radius:8px;overflow:hidden;margin-top:12px;}
 .mock-result-header{padding:8px 12px;background:#f0f0f0;border-bottom:1px solid #eee;display:flex;justify-content:space-between;align-items:center;}
 .mock-result-label{font-size:10px;letter-spacing:0.07em;text-transform:uppercase;color:#aaa;font-weight:600;}
@@ -158,34 +163,34 @@ textarea { resize: none; }
 .mock-section-title{font-size:11px;font-weight:600;color:#555;margin-bottom:8px;}
 .mock-options{display:flex;gap:6px;margin-bottom:14px;flex-wrap:wrap;}
 .mock-opt{padding:6px 12px;border:1px solid #e0e0e0;border-radius:5px;font-size:10px;color:#888;background:#fff;}
-.mock-opt.sel{background:#111;color:#fff;border-color:#111;}
+.mock-opt.sel{background:#0d2137;color:#fff;border-color:#0d2137;}
 .mock-themes{display:grid;grid-template-columns:repeat(4,1fr);gap:6px;margin-bottom:14px;}
 .mock-theme{height:36px;border-radius:6px;border:2px solid transparent;}
-.mock-theme.sel{border-color:#111;}
+.mock-theme.sel{border-color:#0d2137;}
 .mock-upload{border:2px dashed #e0e0e0;border-radius:8px;padding:16px;text-align:center;margin-bottom:12px;}
 .mock-upload-text{font-size:11px;color:#bbb;}
-.mock-flyer-preview{background:#1a1a1a;border-radius:8px;height:120px;display:flex;align-items:flex-end;padding:12px;position:relative;overflow:hidden;}
+.mock-flyer-preview{background:#0d2137;border-radius:8px;height:120px;display:flex;align-items:flex-end;padding:12px;position:relative;overflow:hidden;}
 .mock-flyer-img{position:absolute;top:0;left:0;right:0;height:70px;background:#888;opacity:0.5;}
 .mock-flyer-text{position:relative;z-index:1;}
 .mock-flyer-address{font-size:10px;color:rgba(255,255,255,0.8);font-weight:600;}
-.mock-flyer-price{font-size:14px;color:#fff;font-weight:700;}
+.mock-flyer-price{font-size:14px;color:#c9a96e;font-weight:700;}
 .preview-cta{text-align:center;margin-top:48px;}
-.preview-cta-btn{display:inline-block;padding:16px 40px;background:#F47920;color:#fff;border:none;border-radius:8px;font-size:13px;letter-spacing:0.1em;text-transform:uppercase;font-family:Georgia,serif;font-weight:600;cursor:pointer;}
+.preview-cta-btn{display:inline-block;padding:16px 40px;background:#0d2137;color:#fff;border:none;border-radius:8px;font-size:13px;letter-spacing:0.1em;text-transform:uppercase;font-family:Georgia,serif;font-weight:600;cursor:pointer;}
 .preview-cta-sub{font-size:12px;color:#bbb;margin-top:10px;}
 @media(max-width:700px){.gate-hero{grid-template-columns:1fr;}.gate-right{border-left:none;border-top:1px solid #f0f0f0;}.preview-screens{grid-template-columns:1fr;}}
 </style>
 <div class="gate-hero">
   <div class="gate-left">
-    <div class="gate-bg-accent"></div>
+    <div class="gate-vert"></div>
     <div class="gate-left-inner">
-      <div class="gate-eyebrow">QCV Agent Hub</div>
-      <h1 class="gate-headline">MARKET<br>FASTER.<br><span>CLOSE</span><br>MORE.</h1>
-      <p class="gate-subtext">MLS copy, social captions, client emails, and branded flyers — <strong>generated in under 30 seconds.</strong> Efficiency. Creativity, at your hands.</p>
+      <div class="gate-qcv">QCV</div>
+      <h1 class="gate-headline">AGENT<br>HUB</h1>
+      <p class="gate-subtext">MLS copy, social captions, client emails, and branded flyers — <strong>generated in under 30 seconds.</strong> Efficient marketing, at your hands.</p>
       <div class="gate-features-list">
-        <div class="gate-feature-item"><div class="gate-check"><svg width="11" height="11" viewBox="0 0 12 12"><polyline points="2,6 5,9 10,3" stroke="white" stroke-width="1.5" fill="none"/></svg></div>AI-generated MLS copy ready to paste</div>
-        <div class="gate-feature-item"><div class="gate-check"><svg width="11" height="11" viewBox="0 0 12 12"><polyline points="2,6 5,9 10,3" stroke="white" stroke-width="1.5" fill="none"/></svg></div>Instagram & Facebook captions instantly</div>
-        <div class="gate-feature-item"><div class="gate-check"><svg width="11" height="11" viewBox="0 0 12 12"><polyline points="2,6 5,9 10,3" stroke="white" stroke-width="1.5" fill="none"/></svg></div>Professional flyers with your branding</div>
-        <div class="gate-feature-item"><div class="gate-check"><svg width="11" height="11" viewBox="0 0 12 12"><polyline points="2,6 5,9 10,3" stroke="white" stroke-width="1.5" fill="none"/></svg></div>QR codes tied to your listing</div>
+        <div class="gate-feature-item"><div class="gate-check"><svg width="11" height="11" viewBox="0 0 12 12"><polyline points="2,6 5,9 10,3" stroke="#0d2137" stroke-width="1.5" fill="none"/></svg></div>AI-generated MLS copy ready to paste</div>
+        <div class="gate-feature-item"><div class="gate-check"><svg width="11" height="11" viewBox="0 0 12 12"><polyline points="2,6 5,9 10,3" stroke="#0d2137" stroke-width="1.5" fill="none"/></svg></div>Instagram & Facebook captions instantly</div>
+        <div class="gate-feature-item"><div class="gate-check"><svg width="11" height="11" viewBox="0 0 12 12"><polyline points="2,6 5,9 10,3" stroke="#0d2137" stroke-width="1.5" fill="none"/></svg></div>Professional flyers with your branding</div>
+        <div class="gate-feature-item"><div class="gate-check"><svg width="11" height="11" viewBox="0 0 12 12"><polyline points="2,6 5,9 10,3" stroke="#0d2137" stroke-width="1.5" fill="none"/></svg></div>QR codes tied to your listing</div>
       </div>
     </div>
   </div>
@@ -212,10 +217,10 @@ textarea { resize: none; }
         <div class="mock-grid">
           <div class="mock-field"><div class="mock-field-label">Address</div><div class="mock-input">123 Peachtree St NE</div></div>
           <div class="mock-field"><div class="mock-field-label">Price</div><div class="mock-input">$1,250,000</div></div>
-          <div class="mock-field"><div class="mock-field-label">Beds / Baths</div><div class="mock-input">5 bed / 4 bath</div></div>
-          <div class="mock-field"><div class="mock-field-label">Sq Footage</div><div class="mock-input">4,200 sq ft</div></div>
+          <div class="mock-field"><div class="mock-field-label">Beds</div><div class="mock-input">5</div></div>
+          <div class="mock-field"><div class="mock-field-label">Baths</div><div class="mock-input">4</div></div>
         </div>
-        <div class="mock-field"><div class="mock-field-label">Property Vibe</div><div class="mock-input" style="color:#111;background:#fff;border-color:#ddd;">Luxury & upscale ✓</div></div>
+        <div class="mock-field"><div class="mock-field-label">Occasion</div><div class="mock-input" style="color:#0d2137;background:#fff;border-color:#ddd;">New Listing ✓</div></div>
         <div class="mock-btn">Generate My Listing Copy</div>
         <div class="mock-result">
           <div class="mock-result-header"><span class="mock-result-label">MLS Description</span><span class="mock-result-copy">Copy</span></div>
@@ -223,7 +228,7 @@ textarea { resize: none; }
         </div>
         <div class="mock-result" style="margin-top:8px;">
           <div class="mock-result-header"><span class="mock-result-label">Instagram Caption</span><span class="mock-result-copy">Copy</span></div>
-          <div class="mock-result-body">Just listed ✨ 5BR luxury estate in ATL. 4,200 sqft of pure elegance. DM for a private showing. #AtlantaRealEstate #LuxuryHomes</div>
+          <div class="mock-result-body">Just listed ✨ 5BR luxury estate in ATL. 4,200 sqft of pure elegance. #AtlantaRealEstate #LuxuryHomes</div>
         </div>
       </div>
     </div>
@@ -239,19 +244,14 @@ textarea { resize: none; }
         </div>
         <div class="mock-section-title">Color Theme</div>
         <div class="mock-themes">
-          <div class="mock-theme sel" style="background:#fff;border:2px solid #111;"></div>
+          <div class="mock-theme sel" style="background:#fff;border:2px solid #0d2137;"></div>
           <div class="mock-theme" style="background:#1a1a1a;"></div>
           <div class="mock-theme" style="background:#f5f0e8;border:1px solid #ddd;"></div>
           <div class="mock-theme" style="background:#0d2137;"></div>
         </div>
-        <div class="mock-section-title">Occasion</div>
-        <div class="mock-options">
-          <div class="mock-opt sel">New Listing</div>
-          <div class="mock-opt">Just Sold</div>
-          <div class="mock-opt">Open House</div>
-          <div class="mock-opt">Price Drop</div>
-        </div>
-        <div class="mock-upload"><div class="mock-upload-text">Click to upload your listing photo</div></div>
+        <div class="mock-section-title">Upload Photo + Logo</div>
+        <div class="mock-upload"><div class="mock-upload-text">Click to upload listing photo</div></div>
+        <div class="mock-upload" style="padding:10px;"><div class="mock-upload-text">Click to upload agent logo</div></div>
         <div class="mock-flyer-preview">
           <div class="mock-flyer-img"></div>
           <div class="mock-flyer-text">
@@ -272,16 +272,17 @@ textarea { resize: none; }
 <div id="paywall">
   <div class="paywall-wrap">
     <div class="paywall-card">
-      <div class="paywall-badge">Start Your Free Trial</div>
-      <h2>30 days free. Then $12/month.</h2>
-      <p>Enter your payment info to get started. You won't be charged until your 30-day trial ends.</p>
+      <div class="paywall-badge">Trial Ended</div>
+      <h2>Your free trial has ended</h2>
+      <p>Subscribe to continue using QCV Agent Hub — your all-in-one listing marketing toolkit.</p>
       <div class="paywall-price">$12 <span>/ month</span></div>
-      <div class="paywall-trial-note">Free for 30 days — cancel anytime before your trial ends.</div>
+      <div class="paywall-trial-note">Cancel anytime. No contracts.</div>
       <div class="paywall-features">
         <p>MLS descriptions generated in seconds</p>
         <p>Instagram & Facebook captions ready to post</p>
         <p>Client email copy, done</p>
         <p>Professional flyer builder — 4 formats, 4 themes</p>
+        <p>Logo upload on every flyer</p>
         <p>QR codes tied to your listing</p>
         <p>Cancel anytime</p>
       </div>
@@ -305,10 +306,49 @@ textarea { resize: none; }
   <div class="container">
     <div id="tool-copy" class="tool-panel active">
       <div class="card">
+        <h3 style="margin-bottom:6px;">Occasion</h3>
+        <p>What type of listing is this?</p>
+        <div class="option-grid-3" style="margin-bottom:24px;">
+          <button class="opt-btn active" onclick="setCopyOccasion(this)">New Listing</button>
+          <button class="opt-btn" onclick="setCopyOccasion(this)">Just Sold</button>
+          <button class="opt-btn" onclick="setCopyOccasion(this)">Under Contract</button>
+          <button class="opt-btn" onclick="setCopyOccasion(this)">Price Drop</button>
+          <button class="opt-btn" onclick="setCopyOccasion(this)">Open House</button>
+          <button class="opt-btn" onclick="setCopyOccasion(this)">Custom</button>
+        </div>
         <div class="grid2">
           <div><div class="field-label">Property Address</div><input type="text" id="f1" placeholder="123 Peachtree St, Atlanta" oninput="syncField('f1','fl-address')" /></div>
           <div><div class="field-label">Square Footage</div><input type="text" id="f2" placeholder="2,400 sq ft" oninput="syncField('f2','fl-sqft')" /></div>
-          <div><div class="field-label">Beds / Baths</div><input type="text" id="f3" placeholder="4 bed / 3 bath" oninput="syncField('f3','fl-beds')" /></div>
+          <div>
+            <div class="field-label">Bedrooms</div>
+            <div class="num-selector" id="bed-selector">
+              <button class="num-btn" onclick="selectNum('bed',1,this)">1</button>
+              <button class="num-btn" onclick="selectNum('bed',2,this)">2</button>
+              <button class="num-btn" onclick="selectNum('bed',3,this)">3</button>
+              <button class="num-btn active" onclick="selectNum('bed',4,this)">4</button>
+              <button class="num-btn" onclick="selectNum('bed',5,this)">5</button>
+              <button class="num-btn" onclick="selectNum('bed',6,this)">6</button>
+              <button class="num-btn" onclick="selectNum('bed',7,this)">7</button>
+              <button class="num-btn" onclick="selectNum('bed',8,this)">8</button>
+              <button class="num-btn" onclick="selectNum('bed',9,this)">9</button>
+              <button class="num-btn" onclick="selectNum('bed',10,this)">10</button>
+            </div>
+          </div>
+          <div>
+            <div class="field-label">Bathrooms</div>
+            <div class="num-selector" id="bath-selector">
+              <button class="num-btn" onclick="selectNum('bath',1,this)">1</button>
+              <button class="num-btn" onclick="selectNum('bath',2,this)">2</button>
+              <button class="num-btn active" onclick="selectNum('bath',3,this)">3</button>
+              <button class="num-btn" onclick="selectNum('bath',4,this)">4</button>
+              <button class="num-btn" onclick="selectNum('bath',5,this)">5</button>
+              <button class="num-btn" onclick="selectNum('bath',6,this)">6</button>
+              <button class="num-btn" onclick="selectNum('bath',7,this)">7</button>
+              <button class="num-btn" onclick="selectNum('bath',8,this)">8</button>
+              <button class="num-btn" onclick="selectNum('bath',9,this)">9</button>
+              <button class="num-btn" onclick="selectNum('bath',10,this)">10</button>
+            </div>
+          </div>
           <div><div class="field-label">List Price</div><input type="text" id="f4" placeholder="$750,000" oninput="syncField('f4','fl-price')" /></div>
           <div class="full"><div class="field-label">Key Features</div><textarea id="f5" rows="3" placeholder="Open concept kitchen, quartz counters, primary suite with spa bath..."></textarea></div>
           <div><div class="field-label">Property Vibe</div>
@@ -420,6 +460,11 @@ textarea { resize: none; }
           <input type="file" id="photo3" accept="image/*" onchange="handlePhoto(event,3)" style="display:none;" />
           <img id="preview3" class="preview-img" />
         </div>
+        <h3 style="margin-bottom:6px;margin-top:20px;">Agent Logo (optional)</h3>
+        <p style="margin-bottom:16px;">Upload your brokerage or personal logo. It will be scaled automatically.</p>
+        <div class="upload-area" onclick="document.getElementById('logo-upload').click()"><p>Click to upload logo</p><span>PNG with transparent background works best</span></div>
+        <input type="file" id="logo-upload" accept="image/*" onchange="handleLogo(event)" style="display:none;" />
+        <img id="logo-preview" class="logo-preview-img" />
         <div class="grid2" style="margin-top:20px;">
           <div class="full"><div class="field-label">Headline</div><input type="text" id="fl-headline" placeholder="Stunning 4BR Home in Buckhead" /></div>
           <div><div class="field-label">Address</div><input type="text" id="fl-address" placeholder="123 Peachtree St" /></div>
@@ -451,7 +496,7 @@ textarea { resize: none; }
 </div>
 
 <div class="subscriber-bar">
-  <p>Active subscribers receive 5% off all listing shoots.</p>
+  <p>Already a subscriber? Get 5% off your next shoot.</p>
   <span>Email qualitycapturevisuals@gmail.com with your subscription confirmation to claim your discount.</span>
 </div>
 <div class="powered">© 2026 Quality Capture Visuals · qualitycapturevisuals.com · All rights reserved.</div>
@@ -467,12 +512,15 @@ function trialExpired(){var d=getTrialData();if(!d)return false;return(Date.now(
 function isSubscribed(){return localStorage.getItem('qcv_subscribed')==='true';}
 function checkAccess(){if(!getTrialData()&&!isSubscribed()){show('gate');return;}if(isSubscribed()){showMain();return;}if(trialExpired()){showPaywall();return;}showMain();}
 function show(id){['gate','main-content','paywall'].forEach(function(i){document.getElementById(i).style.display=i===id?'block':'none';});}
-function showMain(){show('main-content');var days=trialDaysLeft();if(!isSubscribed()&&days>0){document.getElementById('trial-banner-wrap').innerHTML='<div class="trial-banner"><strong>'+days+' day'+(days===1?'':'s')+' left in your free trial.</strong> Subscribe now — $12/month.</div>';}}
-function showPaywall(){show('paywall');if(window.paypal){var c=document.getElementById('paypal-button-container-P-8JH0204284127310MNHBVAPI');if(c&&c.children.length===0){paypal.Buttons({style:{shape:'pill',color:'blue',layout:'vertical',label:'subscribe'},createSubscription:function(data,actions){return actions.subscription.create({plan_id:'P-8JH0204284127310MNHBVAPI'});},onApprove:function(data){localStorage.setItem('qcv_subscribed','true');localStorage.setItem('qcv_subscription_id',data.subscriptionID);setTrialStart();showMain();}}).render('#paypal-button-container-P-8JH0204284127310MNHBVAPI');}}}
-function unlock(){var n=document.getElementById('gname').value.trim(),e=document.getElementById('gemail').value.trim();if(!n||!e){alert('Please enter your name and email.');return;}if(e.indexOf('@')<0){alert('Please enter a valid email.');return;}localStorage.setItem('qcv_pending_name',n);localStorage.setItem('qcv_pending_email',e);fetch('https://formspree.io/f/mwvwekvj',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({name:n,email:e,source:'QCV Agent Hub - Trial Start'})});showPaywall();}
+function showMain(){show('main-content');var days=trialDaysLeft();if(!isSubscribed()&&days>0){document.getElementById('trial-banner-wrap').innerHTML='<div class="trial-banner"><strong>'+days+' day'+(days===1?'':'s')+' left in your free trial.</strong> Subscribe now to keep access — $12/month.</div>';}}
+function showPaywall(){show('paywall');if(window.paypal){var c=document.getElementById('paypal-button-container-P-8JH0204284127310MNHBVAPI');if(c&&c.children.length===0){paypal.Buttons({style:{shape:'pill',color:'blue',layout:'vertical',label:'subscribe'},createSubscription:function(data,actions){return actions.subscription.create({plan_id:'P-8JH0204284127310MNHBVAPI'});},onApprove:function(data){localStorage.setItem('qcv_subscribed','true');localStorage.setItem('qcv_subscription_id',data.subscriptionID);showMain();}}).render('#paypal-button-container-P-8JH0204284127310MNHBVAPI');}}}
+function unlock(){var n=document.getElementById('gname').value.trim(),e=document.getElementById('gemail').value.trim();if(!n||!e){alert('Please enter your name and email.');return;}if(e.indexOf('@')<0){alert('Please enter a valid email.');return;}setTrialStart();fetch('https://formspree.io/f/mwvwekvj',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({name:n,email:e,source:'QCV Agent Hub - Trial Start'})});showMain();}
 window.addEventListener('load',checkAccess);
-var selectedOccasion='New Listing',selectedW=1200,selectedH=2700,maxPhotos=3,photoCount=1,selectedPhotoLayout='single-full',selectedTheme='classic',selectedFont='Georgia',selectedDivider='none',uploadedPhoto1=null,uploadedPhoto2=null,uploadedPhoto3=null;
-var themes={classic:{bg:'#ffffff',text:'#1a1a1a',sub:'#666666',accent:'#1a1a1a',divider:'#cccccc'},dark:{bg:'#1a1a1a',text:'#ffffff',sub:'#aaaaaa',accent:'#ffffff',divider:'#444444'},warm:{bg:'#f5f0e8',text:'#3d2b1f',sub:'#7a6055',accent:'#3d2b1f',divider:'#c8b89a'},bold:{bg:'#0d2137',text:'#ffffff',sub:'#8aaabb',accent:'#ffffff',divider:'#1e4060'}};
+var selectedBeds=4,selectedBaths=3,selectedCopyOccasion='New Listing';
+function selectNum(type,val,btn){var sel=type==='bed'?'bed-selector':'bath-selector';document.getElementById(sel).querySelectorAll('.num-btn').forEach(function(b){b.classList.remove('active');});btn.classList.add('active');if(type==='bed'){selectedBeds=val;document.getElementById('fl-beds').value=selectedBeds+' bed / '+selectedBaths+' bath';}else{selectedBaths=val;document.getElementById('fl-beds').value=selectedBeds+' bed / '+selectedBaths+' bath';}}
+function setCopyOccasion(btn){btn.closest('.option-grid-3').querySelectorAll('.opt-btn').forEach(function(b){b.classList.remove('active');});btn.classList.add('active');selectedCopyOccasion=btn.textContent.trim();}
+var selectedOccasion='New Listing',selectedW=1200,selectedH=2700,maxPhotos=3,photoCount=1,selectedPhotoLayout='single-full',selectedTheme='classic',selectedFont='Georgia',selectedDivider='none',uploadedPhoto1=null,uploadedPhoto2=null,uploadedPhoto3=null,uploadedLogo=null;
+var themes={classic:{bg:'#ffffff',text:'#1a1a1a',sub:'#666666',accent:'#1a1a1a',divider:'#cccccc'},dark:{bg:'#1a1a1a',text:'#ffffff',sub:'#aaaaaa',accent:'#ffffff',divider:'#444444'},warm:{bg:'#f5f0e8',text:'#3d2b1f',sub:'#7a6055',accent:'#3d2b1f',divider:'#c8b89a'},bold:{bg:'#0d2137',text:'#ffffff',sub:'#8aaabb',accent:'#c9a96e',divider:'#1e4060'}};
 function syncField(f,t){document.getElementById(t).value=document.getElementById(f).value;}
 function goToFlyer(){document.querySelectorAll('.tool-tab').forEach(function(t){t.classList.remove('active');});document.querySelectorAll('.tool-panel').forEach(function(p){p.classList.remove('active');});document.querySelectorAll('.tool-tab')[1].classList.add('active');document.getElementById('tool-flyer').classList.add('active');window.scrollTo({top:0,behavior:'smooth'});}
 function switchTool(tool,btn){document.querySelectorAll('.tool-tab').forEach(function(t){t.classList.remove('active');});document.querySelectorAll('.tool-panel').forEach(function(p){p.classList.remove('active');});btn.classList.add('active');document.getElementById('tool-'+tool).classList.add('active');}
@@ -485,16 +533,19 @@ function setPhotoLayout(btn){btn.closest('.option-grid-2').querySelectorAll('.op
 function setPhotoCount(btn){btn.closest('.option-grid-3').querySelectorAll('.opt-btn').forEach(function(b){b.classList.remove('active');});btn.classList.add('active');photoCount=parseInt(btn.dataset.count);updatePhotoUI();}
 function updatePhotoUI(){document.getElementById('upload2-wrap').style.display=photoCount>=2?'block':'none';document.getElementById('upload3-wrap').style.display=photoCount>=3?'block':'none';document.getElementById('layout-single').style.display=photoCount===1?'grid':'none';document.getElementById('layout-double').style.display=photoCount===2?'grid':'none';document.getElementById('layout-triple').style.display=photoCount===3?'block':'none';if(photoCount===1)selectedPhotoLayout='single-full';if(photoCount===2)selectedPhotoLayout='double-side';if(photoCount===3)selectedPhotoLayout='triple';}
 function handlePhoto(e,num){var file=e.target.files[0];if(!file)return;var r=new FileReader();r.onload=function(ev){if(num===1){uploadedPhoto1=ev.target.result;showPreview('preview1',uploadedPhoto1);}else if(num===2){uploadedPhoto2=ev.target.result;showPreview('preview2',uploadedPhoto2);}else{uploadedPhoto3=ev.target.result;showPreview('preview3',uploadedPhoto3);}};r.readAsDataURL(file);}
+function handleLogo(e){var file=e.target.files[0];if(!file)return;var r=new FileReader();r.onload=function(ev){uploadedLogo=ev.target.result;var img=document.getElementById('logo-preview');img.src=uploadedLogo;img.style.display='block';};r.readAsDataURL(file);}
 function showPreview(id,src){var img=document.getElementById(id);img.src=src;img.style.display='block';}
 function drawCover(ctx,img,x,y,w,h){if(!img)return;var ia=img.width/img.height,ca=w/h,dw,dh,dx,dy;if(ia>ca){dh=h;dw=dh*ia;dx=x+(w-dw)/2;dy=y;}else{dw=w;dh=dw/ia;dx=x;dy=y+(h-dh)/2;}ctx.save();ctx.beginPath();ctx.rect(x,y,w,h);ctx.clip();ctx.drawImage(img,dx,dy,dw,dh);ctx.restore();}
 function wrapText(ctx,text,x,y,maxW,lineH,maxLines){var words=text.split(' '),line='',count=0;for(var i=0;i<words.length;i++){if(maxLines&&count>=maxLines)break;var test=line+words[i]+' ';if(ctx.measureText(test).width>maxW&&i>0){ctx.fillText(line.trim(),x,y+count*lineH);line=words[i]+' ';count++;}else{line=test;}}if(!maxLines||count<maxLines){ctx.fillText(line.trim(),x,y+count*lineH);count++;}return count;}
 function drawDivider(ctx,t,y){if(selectedDivider==='none')return;ctx.strokeStyle=t.divider;ctx.lineWidth=Math.round(selectedW*0.002);if(selectedDivider==='solid'||selectedDivider==='double'){ctx.beginPath();ctx.moveTo(0,y);ctx.lineTo(selectedW,y);ctx.stroke();}if(selectedDivider==='double'){var gap=Math.round(selectedW*0.008);ctx.beginPath();ctx.moveTo(0,y+gap);ctx.lineTo(selectedW,y+gap);ctx.stroke();}}
 function getPhotoHeight(){var r=selectedW/selectedH;if(r<0.5)return Math.round(selectedH*0.52);if(r<0.7)return Math.round(selectedH*0.55);return Math.round(selectedH*0.58);}
 function generateFlyer(){if(!uploadedPhoto1){alert('Please upload at least one photo.');return;}if(photoCount>=2&&!uploadedPhoto2){alert('Please upload photo 2.');return;}if(photoCount>=3&&!uploadedPhoto3){alert('Please upload photo 3.');return;}var headline=document.getElementById('fl-headline').value||selectedOccasion,address=document.getElementById('fl-address').value,price=document.getElementById('fl-price').value,beds=document.getElementById('fl-beds').value,sqft=document.getElementById('fl-sqft').value,agent=document.getElementById('fl-agent').value,phone=document.getElementById('fl-phone').value,brokerage=document.getElementById('fl-brokerage').value,qrUrl=document.getElementById('fl-qr').value.trim(),t=themes[selectedTheme];var canvas=document.getElementById('flyer-canvas');canvas.width=selectedW;canvas.height=selectedH;canvas.style.maxWidth='400px';canvas.style.height='auto';var ctx=canvas.getContext('2d');ctx.imageSmoothingEnabled=true;ctx.imageSmoothingQuality='high';ctx.fillStyle=t.bg;ctx.fillRect(0,0,selectedW,selectedH);var photoH=getPhotoHeight(),pad=Math.round(selectedW*0.07),borderPad=Math.round(selectedW*0.04),gap=6,loadCount=0,totalPhotos=photoCount,imgs=[null,null,null];function onImgLoad(idx,src){var img=new Image();img.onload=function(){imgs[idx]=img;loadCount++;if(loadCount===totalPhotos)renderFlyer();};img.src=src;}onImgLoad(0,uploadedPhoto1);if(photoCount>=2)onImgLoad(1,uploadedPhoto2);if(photoCount>=3)onImgLoad(2,uploadedPhoto3);function renderFlyer(){if(photoCount===1){if(selectedPhotoLayout==='single-full'){drawCover(ctx,imgs[0],0,0,selectedW,photoH);}else{drawCover(ctx,imgs[0],borderPad,borderPad,selectedW-borderPad*2,photoH-borderPad*2);}}else if(photoCount===2){if(selectedPhotoLayout==='double-side'){drawCover(ctx,imgs[0],0,0,(selectedW-gap)/2,photoH);drawCover(ctx,imgs[1],(selectedW+gap)/2,0,(selectedW-gap)/2,photoH);}else if(selectedPhotoLayout==='double-hero'){var hH=Math.round(photoH*0.65),aH=photoH-hH-gap;drawCover(ctx,imgs[0],0,0,selectedW,hH);drawCover(ctx,imgs[1],0,hH+gap,selectedW,aH);}else if(selectedPhotoLayout==='double-left'){var lW=Math.round(selectedW*0.62);drawCover(ctx,imgs[0],0,0,lW-gap,photoH);drawCover(ctx,imgs[1],lW,0,selectedW-lW,photoH);}else{var hfH=Math.round(photoH/2)-Math.round(gap/2);drawCover(ctx,imgs[0],0,0,selectedW,hfH);drawCover(ctx,imgs[1],0,hfH+gap,selectedW,hfH);}}else if(photoCount===3){var tH=Math.round(photoH*0.6),bH=photoH-tH-gap,hW=Math.round((selectedW-gap)/2);drawCover(ctx,imgs[0],0,0,selectedW,tH);drawCover(ctx,imgs[1],0,tH+gap,hW,bH);drawCover(ctx,imgs[2],hW+gap,tH+gap,selectedW-hW-gap,bH);}drawDivider(ctx,t,photoH);renderTextBlock(ctx,t,pad,photoH,headline,address,price,beds,sqft,agent,phone,brokerage,qrUrl);}}
-function renderTextBlock(ctx,t,pad,photoH,headline,address,price,beds,sqft,agent,phone,brokerage,qrUrl){var textAreaH=selectedH-photoH,fs=Math.min(Math.round(selectedW*0.042),Math.round(textAreaH*0.08)),lh=Math.round(fs*1.45),y=photoH+pad,bottomReserve=Math.round(selectedH*0.06),maxY=selectedH-bottomReserve,qrSize=Math.round(selectedW*0.16),maxW=selectedW-pad*2;if(qrUrl)maxW=selectedW-pad*2-qrSize-pad;function fits(ny){return ny<maxY;}ctx.fillStyle=t.accent;ctx.font='bold '+Math.round(fs*0.6)+'px '+selectedFont;if(fits(y)){ctx.fillText(selectedOccasion.toUpperCase(),pad,y);y+=Math.round(lh*0.8);}ctx.fillStyle=t.text;ctx.font='bold '+fs+'px '+selectedFont;var mhl=Math.max(1,Math.min(3,Math.floor((maxY-y-lh*4)/lh)));if(fits(y)){var hl=wrapText(ctx,headline,pad,y,maxW,lh,mhl);y+=hl*lh+Math.round(lh*0.15);}if(price&&fits(y)){ctx.fillStyle=t.text;ctx.font='bold '+Math.round(fs*0.98)+'px '+selectedFont;ctx.fillText(price,pad,y);y+=Math.round(lh*1.05);}ctx.fillStyle=t.sub;ctx.font=Math.round(fs*0.68)+'px '+selectedFont;if(address&&fits(y)){ctx.fillText(address,pad,y);y+=Math.round(lh*0.88);}var details=[beds,sqft].filter(Boolean).join('   ·   ');if(details&&fits(y)){ctx.fillText(details,pad,y);y+=Math.round(lh*1.0);}ctx.fillStyle=t.text;ctx.font='bold '+Math.round(fs*0.7)+'px '+selectedFont;if(agent&&fits(y)){ctx.fillText(agent,pad,y);y+=Math.round(lh*0.82);}ctx.fillStyle=t.sub;ctx.font=Math.round(fs*0.6)+'px '+selectedFont;if(brokerage&&fits(y)){ctx.fillText(brokerage,pad,y);y+=Math.round(lh*0.75);}if(phone&&fits(y)){ctx.fillText(phone,pad,y);}if(qrUrl){try{var qrCanvas=generateQR(qrUrl,qrSize),qrX=selectedW-pad-qrSize,qrY=photoH+pad;ctx.fillStyle='#ffffff';ctx.fillRect(qrX-6,qrY-6,qrSize+12,qrSize+12);ctx.drawImage(qrCanvas,qrX,qrY,qrSize,qrSize);ctx.fillStyle=t.sub;ctx.font=Math.round(selectedW*0.017)+'px '+selectedFont;ctx.textAlign='center';ctx.fillText('Scan to view',qrX+qrSize/2,qrY+qrSize+Math.round(selectedW*0.022));ctx.textAlign='left';}catch(e){}}ctx.fillStyle=t.sub;ctx.font=Math.round(selectedW*0.018)+'px '+selectedFont;ctx.fillText('Powered by Quality Capture Visuals',pad,selectedH-Math.round(selectedW*0.02));document.getElementById('flyer-output').style.display='block';document.getElementById('flyer-output').scrollIntoView({behavior:'smooth'});}
+function renderTextBlock(ctx,t,pad,photoH,headline,address,price,beds,sqft,agent,phone,brokerage,qrUrl){var textAreaH=selectedH-photoH,fs=Math.min(Math.round(selectedW*0.042),Math.round(textAreaH*0.08)),lh=Math.round(fs*1.45),y=photoH+pad,bottomReserve=Math.round(selectedH*0.10),maxY=selectedH-bottomReserve,qrSize=Math.round(selectedW*0.16),maxW=selectedW-pad*2;if(qrUrl)maxW=selectedW-pad*2-qrSize-pad;function fits(ny){return ny<maxY;}ctx.fillStyle=t.accent;ctx.font='bold '+Math.round(fs*0.6)+'px '+selectedFont;if(fits(y)){ctx.fillText(selectedOccasion.toUpperCase(),pad,y);y+=Math.round(lh*0.8);}ctx.fillStyle=t.text;ctx.font='bold '+fs+'px '+selectedFont;var mhl=Math.max(1,Math.min(3,Math.floor((maxY-y-lh*4)/lh)));if(fits(y)){var hl=wrapText(ctx,headline,pad,y,maxW,lh,mhl);y+=hl*lh+Math.round(lh*0.15);}if(price&&fits(y)){ctx.fillStyle=t.text;ctx.font='bold '+Math.round(fs*0.98)+'px '+selectedFont;ctx.fillText(price,pad,y);y+=Math.round(lh*1.05);}ctx.fillStyle=t.sub;ctx.font=Math.round(fs*0.68)+'px '+selectedFont;if(address&&fits(y)){ctx.fillText(address,pad,y);y+=Math.round(lh*0.88);}var details=[beds,sqft].filter(Boolean).join('   ·   ');if(details&&fits(y)){ctx.fillText(details,pad,y);y+=Math.round(lh*1.0);}ctx.fillStyle=t.text;ctx.font='bold '+Math.round(fs*0.7)+'px '+selectedFont;if(agent&&fits(y)){ctx.fillText(agent,pad,y);y+=Math.round(lh*0.82);}ctx.fillStyle=t.sub;ctx.font=Math.round(fs*0.6)+'px '+selectedFont;if(brokerage&&fits(y)){ctx.fillText(brokerage,pad,y);y+=Math.round(lh*0.75);}if(phone&&fits(y)){ctx.fillText(phone,pad,y);}if(qrUrl){try{var qrCanvas=generateQR(qrUrl,qrSize),qrX=selectedW-pad-qrSize,qrY=photoH+pad;ctx.fillStyle='#ffffff';ctx.fillRect(qrX-6,qrY-6,qrSize+12,qrSize+12);ctx.drawImage(qrCanvas,qrX,qrY,qrSize,qrSize);ctx.fillStyle=t.sub;ctx.font=Math.round(selectedW*0.017)+'px '+selectedFont;ctx.textAlign='center';ctx.fillText('Scan to view',qrX+qrSize/2,qrY+qrSize+Math.round(selectedW*0.022));ctx.textAlign='left';}catch(e){}}
+if(uploadedLogo){var logoImg=new Image();logoImg.onload=function(){var maxLogoW=Math.round(selectedW*0.28),maxLogoH=Math.round(selectedH*0.06),logoAspect=logoImg.width/logoImg.height,logoW,logoH;if(logoAspect>maxLogoW/maxLogoH){logoW=maxLogoW;logoH=Math.round(maxLogoW/logoAspect);}else{logoH=maxLogoH;logoW=Math.round(maxLogoH*logoAspect);}var logoX=pad,logoY=selectedH-Math.round(selectedH*0.04)-logoH;ctx.drawImage(logoImg,logoX,logoY,logoW,logoH);};logoImg.src=uploadedLogo;}else{ctx.fillStyle=t.sub;ctx.font=Math.round(selectedW*0.018)+'px '+selectedFont;ctx.fillText('Powered by Quality Capture Visuals',pad,selectedH-Math.round(selectedW*0.02));}
+document.getElementById('flyer-output').style.display='block';document.getElementById('flyer-output').scrollIntoView({behavior:'smooth'});}
 function generateQR(url,size){var div=document.createElement('div');new QRCode(div,{text:url,width:size,height:size,correctLevel:QRCode.CorrectLevel.M});return div.querySelector('canvas');}
 function downloadFlyer(){var canvas=document.getElementById('flyer-canvas'),occasion=selectedOccasion.toLowerCase().replace(/ /g,'-'),isMobile=/iPhone|iPad|iPod|Android/i.test(navigator.userAgent);if(isMobile){var dataUrl=canvas.toDataURL('image/png',1.0),win=window.open();win.document.write('<img src="'+dataUrl+'" style="max-width:100%;display:block;margin:0 auto;" /><p style="text-align:center;font-family:sans-serif;color:#666;padding:16px;">Press and hold the image to save it to your device.</p>');}else{canvas.toBlob(function(blob){var url=URL.createObjectURL(blob),link=document.createElement('a');link.download='qcv-flyer-'+occasion+'.png';link.href=url;document.body.appendChild(link);link.click();document.body.removeChild(link);URL.revokeObjectURL(url);},'image/png',1.0);}}
-async function generateCopy(){var f=document.getElementById('f5').value;if(!f){alert('Please enter key features.');return;}document.getElementById('copy-btn').disabled=true;document.getElementById('copy-loading').style.display='block';document.getElementById('copy-results').style.display='none';var prompt='You are a real estate copywriter. Property: Address:'+document.getElementById('f1').value+' Sqft:'+document.getElementById('f2').value+' Beds/Baths:'+document.getElementById('f3').value+' Price:'+document.getElementById('f4').value+' Features:'+f+' Vibe:'+document.getElementById('f6').value+' Buyer:'+document.getElementById('f7').value+'. Return ONLY valid JSON with keys mls, social, email. No markdown. No extra text. mls=100-150 word MLS description. social=punchy Instagram caption under 150 words with 5-8 hashtags. email=80-100 word just-listed client email blurb.';try{var res=await fetch('/.netlify/functions/generate',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({prompt:prompt})});var data=await res.json();var txt=data.content.map(function(i){return i.text||'';}).join('');var clean=txt.replace(/```json|```/g,'').trim();var p=JSON.parse(clean);document.getElementById('r1').textContent=p.mls;document.getElementById('r2').textContent=p.social;document.getElementById('r3').textContent=p.email;document.getElementById('copy-loading').style.display='none';document.getElementById('copy-results').style.display='flex';}catch(e){document.getElementById('copy-loading').style.display='none';alert('Something went wrong. Please try again.');}document.getElementById('copy-btn').disabled=false;}
+async function generateCopy(){var f=document.getElementById('f5').value;if(!f){alert('Please enter key features.');return;}document.getElementById('copy-btn').disabled=true;document.getElementById('copy-loading').style.display='block';document.getElementById('copy-results').style.display='none';var prompt='You are a real estate copywriter. Occasion:'+selectedCopyOccasion+' Property: Address:'+document.getElementById('f1').value+' Sqft:'+document.getElementById('f2').value+' Beds:'+selectedBeds+' Baths:'+selectedBaths+' Price:'+document.getElementById('f4').value+' Features:'+f+' Vibe:'+document.getElementById('f6').value+' Buyer:'+document.getElementById('f7').value+'. Return ONLY valid JSON with keys mls, social, email. No markdown. No extra text. mls=100-150 word MLS description appropriate for the occasion. social=punchy Instagram caption under 150 words with 5-8 hashtags. email=80-100 word client email blurb appropriate for the occasion.';try{var res=await fetch('/.netlify/functions/generate',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({prompt:prompt})});var data=await res.json();var txt=data.content.map(function(i){return i.text||'';}).join('');var clean=txt.replace(/```json|```/g,'').trim();var p=JSON.parse(clean);document.getElementById('r1').textContent=p.mls;document.getElementById('r2').textContent=p.social;document.getElementById('r3').textContent=p.email;document.getElementById('copy-loading').style.display='none';document.getElementById('copy-results').style.display='flex';}catch(e){document.getElementById('copy-loading').style.display='none';alert('Something went wrong. Please try again.');}document.getElementById('copy-btn').disabled=false;}
 function cp(id,btn){navigator.clipboard.writeText(document.getElementById(id).textContent).then(function(){btn.textContent='Copied!';setTimeout(function(){btn.textContent='Copy';},2000);});}
 </script>
 </body>

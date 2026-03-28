@@ -305,7 +305,7 @@ textarea { resize: none; }
   <div class="tools-nav">
     <button class="tool-tab active" onclick="switchTool('copy', this)">Listing Copy Generator</button>
     <button class="tool-tab" onclick="switchTool('flyer', this)">Flyer Builder</button>
-    <a href="https://qcv-video-creator-production.up.railway.app" target="_blank" class="tool-tab" style="text-decoration:none;">Video Creator ▶</a>
+    <a href="#" onclick="openVideoCreator()" class="tool-tab" style="text-decoration:none;">Video Creator ▶</a>
   </div>
   <div class="container">
     <div id="tool-copy" class="tool-panel active">
@@ -516,6 +516,13 @@ function show(id){['gate','main-content','paywall'].forEach(function(i){document
 function showMain(){show('main-content');var days=trialDaysLeft();if(!isSubscribed()&&days>0){document.getElementById('trial-banner-wrap').innerHTML='<div class="trial-banner"><strong>'+days+' day'+(days===1?'':'s')+' left in your free trial.</strong> Subscribe now to keep access — $12/month.</div>';}}
 function showPaywall(){show('paywall');if(window.paypal){var c=document.getElementById('paypal-button-container-P-8JH0204284127310MNHBVAPI');if(c&&c.children.length===0){paypal.Buttons({style:{shape:'pill',color:'blue',layout:'vertical',label:'subscribe'},createSubscription:function(data,actions){return actions.subscription.create({plan_id:'P-8JH0204284127310MNHBVAPI'});},onApprove:function(data){localStorage.setItem('qcv_subscribed','true');localStorage.setItem('qcv_subscription_id',data.subscriptionID);showMain();}}).render('#paypal-button-container-P-8JH0204284127310MNHBVAPI');}}}
 function unlock(){var n=document.getElementById('gname').value.trim(),e=document.getElementById('gemail').value.trim();if(!n||!e){alert('Please enter your name and email.');return;}if(e.indexOf('@')<0){alert('Please enter a valid email.');return;}setTrialStart();fetch('https://formspree.io/f/mwvwekvj',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({name:n,email:e,source:'QCV Agent Hub - Trial Start'})});showMain();}
+function openVideoCreator(){
+  var n=localStorage.getItem('qcv_pending_name')||'';
+  var e=localStorage.getItem('qcv_pending_email')||'';
+  var url='https://qcv-video-creator-production.up.railway.app';
+  if(n&&e){url+='?name='+encodeURIComponent(n)+'&email='+encodeURIComponent(e);}
+  window.open(url,'_blank');
+}
 window.addEventListener('load',checkAccess);
 
 var selectedBeds=4,selectedBaths=3,selectedFlBeds=4,selectedFlBaths=3,selectedCopyOccasion='New Listing';

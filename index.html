@@ -518,14 +518,7 @@ function showMain(){show('main-content');var days=trialDaysLeft();if(!isSubscrib
 function showPaywall(){show('paywall');if(window.paypal){var c=document.getElementById('paypal-button-container-P-8JH0204284127310MNHBVAPI');if(c&&c.children.length===0){paypal.Buttons({style:{shape:'pill',color:'blue',layout:'vertical',label:'subscribe'},createSubscription:function(data,actions){return actions.subscription.create({plan_id:'P-8JH0204284127310MNHBVAPI'});},onApprove:function(data){localStorage.setItem('qcv_subscribed','true');localStorage.setItem('qcv_subscription_id',data.subscriptionID);showMain();}}).render('#paypal-button-container-P-8JH0204284127310MNHBVAPI');}}}
 function unlock(){var n=document.getElementById('gname').value.trim(),e=document.getElementById('gemail').value.trim();if(!n||!e){alert('Please enter your name and email.');return;}if(e.indexOf('@')<0){alert('Please enter a valid email.');return;}setTrialStart();fetch('https://formspree.io/f/mwvwekvj',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({name:n,email:e,source:'QCV Agent Hub - Trial Start'})});showMain();}
 function openVideoCreator(){openMarketAnalytics();}
-function openMarketAnalytics(){
-  var o=document.getElementById('ma-overlay');
-  if(!o)return;
-  var f=document.getElementById('ma-frame');
-  if(f.src==='')f.src='/market-analytics.html';
-  o.style.display='block';
-  document.body.style.overflow='hidden';
-}
+function openMarketAnalytics(){window.location.href='/market-analytics.html';}
 function buildDD(id,type,defaultVal){
   var list=document.getElementById(id+'-list');
   var labels=['1','2','3','4','5','6','7','8','9','10'];

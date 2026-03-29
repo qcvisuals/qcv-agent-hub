@@ -112,8 +112,8 @@ body{background:var(--dark);color:var(--text);font-family:'Segoe UI',system-ui,-
   </div>
 </div>
 <script>
-var RENTCAST_KEY='YOUR_RENTCAST_API_KEY';
-var USE_DEMO=(RENTCAST_KEY==='YOUR_RENTCAST_API_KEY');
+var RC_KEY='YOUR_KEY';
+var USE_DEMO=(RC_KEY==='YOUR_KEY');
 var charts={};
 function destroyCharts(){Object.values(charts).forEach(function(c){if(c)c.destroy();});charts={};}
 Chart.defaults.color='#888';
@@ -130,7 +130,7 @@ function runSearch(){
   var data=USE_DEMO?getDemoData(zip,addr):null;
   if(data){renderDashboard(data,zip,addr);setLoading(false);}
   else{
-    fetch('https://api.rentcast.io/v1/markets?zipCode='+zip+'&dataType=Sale&historyRange=12',{headers:{'X-Api-Key':RENTCAST_KEY,'Accept':'application/json'}})
+    fetch('https://api.rentcast.io/v1/markets?zipCode='+zip+'&dataType=Sale&historyRange=12',{headers:{'X-Api-Key':RC_KEY,'Accept':'application/json'}})
     .then(function(r){if(!r.ok)throw new Error('API error '+r.status);return r.json();})
     .then(function(d){renderDashboard(d,zip,addr);setLoading(false);})
     .catch(function(e){showError('Could not load market data. Try a different ZIP code.');setLoading(false);console.error(e);});

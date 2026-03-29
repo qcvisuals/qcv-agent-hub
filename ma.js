@@ -5,6 +5,17 @@ var currentData=null;
 var currentZip="";
 var currentAddr="";
 function destroyCharts(){Object.values(charts).forEach(function(c){if(c)c.destroy();});charts={};}
+function lookupZip(zip,callback){
+  fetch("https://api.zippopotam.us/us/"+zip)
+  .then(function(r){return r.ok?r.json():null;})
+  .then(function(d){
+    if(d&&d.places&&d.places.length>0){
+      var place=d.places[0];
+      callback(place["place name"]+", "+place["state abbreviation"]);
+    } else { callback(null); }
+  })
+  .catch(function(){callback(null);});
+}
 function fmtPrice(v){return v>=1000000?"$"+(v/1000000).toFixed(2)+"M":"$"+Math.round(v).toLocaleString();}
 function fmtPct(v){return(v>=0?"+":"")+v.toFixed(1)+"%";}
 function showError(msg){var el=document.getElementById("errorBox");el.textContent=msg;el.style.display="block";}
@@ -61,7 +72,7 @@ function renderDashboard(data,zip,addr){
   var sale=data.saleData;
   if(!sale){showError("No data for ZIP "+zip);return;}
   currentData=data;currentZip=zip;currentAddr=addr;
-  var title=addr?addr+", "+zip:"ZIP "+zip;
+  var title=addr?addr+", "+zip:zip;
   document.getElementById("zipDisplay").textContent=title;
   var upd=new Date(sale.lastUpdatedDate);
   document.getElementById("lastUpdated").textContent="Updated "+upd.toLocaleDateString("en-US",{month:"short",day:"numeric",year:"numeric"});
@@ -129,7 +140,14 @@ function runSearch(){
   var addr=document.getElementById("addrInput").value.trim();
   if(!/^[0-9]{5}$/.test(zip)){showError("Please enter a valid 5-digit ZIP code.");return;}
   hideError();hideDashboard();hideProgress();
-  setProgress(10,"Connecting to market database...");
+  setProgress(10,"Looking up ZIP code...");
+lookupZip(zip,function(cityName){
+  var locationLabel=cityName?cityName+" ("+zip+")":zip;
+  document.getElementById("zipDisplay").textContent=addr?addr+", "+locationLabel:locationLabel;
+  var cityEl=document.getElementById("cityNameBadge");
+  if(cityEl&&cityName){cityEl.textContent=cityName;cityEl.style.display="inline-block";}
+});
+setProgress(20,"Connecting to market database...");
   setTimeout(function(){setProgress(30,"Pulling listing data for ZIP "+zip+"...");},400);
   setTimeout(function(){setProgress(55,"Calculating median prices and trends...");},900);
   setTimeout(function(){setProgress(75,"Analyzing absorption rate and market heat...");},1400);

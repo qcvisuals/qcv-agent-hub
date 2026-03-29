@@ -1,99 +1,94 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width,initial-scale=1.0"/>
 <title>QCV Market Analytics</title>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.1/chart.umd.min.js"></script>
 <style>
-  :root {
-    --orange: #e07940;
-    --orange-light: #f0914f;
-    --dark: #0d0d0d;
-    --card: #161616;
-    --card2: #1e1e1e;
-    --border: #2a2a2a;
-    --text: #ffffff;
-    --muted: #888888;
-    --green: #4ade80;
-    --red: #f87171;
-  }
-  * { box-sizing: border-box; margin: 0; padding: 0; }
-  body { background: var(--dark); color: var(--text); font-family: 'Segoe UI', system-ui, -apple-system, sans-serif; min-height: 100vh; }
-  .search-section { padding: 36px 24px 28px; max-width: 860px; margin: 0 auto; }
-  .search-label { font-size: 13px; font-weight: 600; letter-spacing: 0.08em; text-transform: uppercase; color: var(--orange); margin-bottom: 10px; }
-  .search-row { display: flex; gap: 10px; }
-  .search-input { flex: 1; background: var(--card); border: 1px solid var(--border); border-radius: 10px; padding: 14px 18px; font-size: 15px; color: var(--text); outline: none; transition: border-color 0.2s; }
-  .search-input:focus { border-color: var(--orange); }
-  .search-input::placeholder { color: var(--muted); }
-  .search-btn { background: var(--orange); color: #fff; border: none; border-radius: 10px; padding: 14px 28px; font-size: 15px; font-weight: 700; cursor: pointer; transition: background 0.2s; white-space: nowrap; }
-  .search-btn:hover { background: var(--orange-light); }
-  .search-btn:disabled { opacity: 0.5; cursor: not-allowed; }
-  .loading { display: none; text-align: center; padding: 60px 24px; color: var(--muted); }
-  .spinner { width: 36px; height: 36px; border: 3px solid var(--border); border-top-color: var(--orange); border-radius: 50%; animation: spin 0.8s linear infinite; margin: 0 auto 16px; }
-  @keyframes spin { to { transform: rotate(360deg); } }
-  .dashboard { display: none; max-width: 1100px; margin: 0 auto; padding: 0 24px 48px; }
-  .dashboard-header { display: flex; align-items: center; justify-content: space-between; margin-bottom: 28px; flex-wrap: wrap; gap: 12px; }
-  .dashboard-title { font-size: 22px; font-weight: 700; }
-  .dashboard-title span { color: var(--orange); }
-  .badge { background: var(--card2); border: 1px solid var(--border); border-radius: 20px; padding: 5px 14px; font-size: 12px; color: var(--muted); }
-  .kpi-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); gap: 14px; margin-bottom: 20px; }
-  .kpi-card { background: var(--card); border: 1px solid var(--border); border-radius: 14px; padding: 20px 22px; position: relative; overflow: hidden; }
-  .kpi-card::before { content: ''; position: absolute; top: 0; left: 0; right: 0; height: 3px; background: var(--orange); border-radius: 14px 14px 0 0; }
-  .kpi-label { font-size: 11px; font-weight: 600; text-transform: uppercase; letter-spacing: 0.07em; color: var(--muted); margin-bottom: 10px; }
-  .kpi-value { font-size: 28px; font-weight: 800; line-height: 1; margin-bottom: 6px; }
-  .kpi-sub { font-size: 12px; color: var(--muted); }
-  .kpi-delta { font-size: 12px; font-weight: 600; margin-top: 4px; }
-  .kpi-delta.up { color: var(--green); }
-  .kpi-delta.down { color: var(--red); }
-  .chart-grid { display: grid; grid-template-columns: 2fr 1fr; gap: 16px; margin-bottom: 16px; }
-  @media (max-width: 768px) { .chart-grid { grid-template-columns: 1fr; } }
-  .chart-card { background: var(--card); border: 1px solid var(--border); border-radius: 14px; padding: 22px; }
-  .chart-title { font-size: 13px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.06em; color: var(--muted); margin-bottom: 18px; }
-  .chart-title span { color: var(--orange); margin-right: 6px; }
-  .chart-wrap { position: relative; height: 220px; }
-  .chart-wrap.tall { height: 260px; }
-  .heat-bar-wrap { margin-top: 8px; }
-  .heat-labels { display: flex; justify-content: space-between; font-size: 11px; color: var(--muted); margin-bottom: 6px; }
-  .heat-bar { height: 12px; border-radius: 6px; background: linear-gradient(to right, #4ade80, #facc15, #f87171); position: relative; margin-bottom: 12px; }
-  .heat-indicator { position: absolute; top: -4px; width: 20px; height: 20px; background: #fff; border: 3px solid var(--orange); border-radius: 50%; transform: translateX(-50%); transition: left 0.8s ease; }
-  .heat-status { text-align: center; font-size: 20px; font-weight: 800; margin-top: 16px; }
-  .heat-desc { text-align: center; font-size: 12px; color: var(--muted); margin-top: 4px; }
-  .comp-table { width: 100%; border-collapse: collapse; font-size: 13px; }
-  .comp-table th { text-align: left; padding: 8px 10px; color: var(--muted); font-weight: 600; font-size: 11px; text-transform: uppercase; letter-spacing: 0.05em; border-bottom: 1px solid var(--border); }
-  .comp-table td { padding: 10px 10px; border-bottom: 1px solid var(--border); color: var(--text); }
-  .comp-table tr:last-child td { border-bottom: none; }
-  .pill { display: inline-block; padding: 2px 10px; border-radius: 20px; font-size: 11px; font-weight: 700; }
-  .pill.hot { background: rgba(74,222,128,0.15); color: var(--green); }
-  .pill.warm { background: rgba(250,204,21,0.15); color: #facc15; }
-  .pill.cool { background: rgba(248,113,113,0.15); color: var(--red); }
-  .empty { text-align: center; padding: 80px 24px; color: var(--muted); max-width: 860px; margin: 0 auto; }
-  .empty-icon { font-size: 48px; margin-bottom: 16px; }
-  .empty-title { font-size: 18px; font-weight: 700; color: var(--text); margin-bottom: 8px; }
-  .empty-sub { font-size: 14px; line-height: 1.6; }
-  .error-box { display: none; background: rgba(248,113,113,0.1); border: 1px solid rgba(248,113,113,0.3); border-radius: 10px; padding: 14px 18px; font-size: 14px; color: var(--red); max-width: 860px; margin: 0 auto 20px; }
+:root{--orange:#e07940;--orange-light:#f0914f;--dark:#0d0d0d;--card:#161616;--card2:#1e1e1e;--border:#2a2a2a;--text:#ffffff;--muted:#888888;--green:#4ade80;--red:#f87171;}
+*{box-sizing:border-box;margin:0;padding:0;}
+body{background:var(--dark);color:var(--text);font-family:'Segoe UI',system-ui,-apple-system,sans-serif;min-height:100vh;}
+.search-section{padding:32px 24px 24px;max-width:900px;margin:0 auto;}
+.search-label{font-size:13px;font-weight:600;letter-spacing:.08em;text-transform:uppercase;color:var(--orange);margin-bottom:10px;}
+.search-row{display:flex;gap:10px;flex-wrap:wrap;}
+.search-input{flex:1;min-width:160px;background:var(--card);border:1px solid var(--border);border-radius:10px;padding:12px 16px;font-size:14px;color:var(--text);outline:none;transition:border-color .2s;}
+.search-input:focus{border-color:var(--orange);}
+.search-input::placeholder{color:var(--muted);}
+.search-btn{background:var(--orange);color:#fff;border:none;border-radius:10px;padding:12px 24px;font-size:14px;font-weight:700;cursor:pointer;transition:background .2s;white-space:nowrap;}
+.search-btn:hover{background:var(--orange-light);}
+.search-btn:disabled{opacity:.5;cursor:not-allowed;}
+.loading{display:none;text-align:center;padding:60px 24px;color:var(--muted);}
+.spinner{width:36px;height:36px;border:3px solid var(--border);border-top-color:var(--orange);border-radius:50%;animation:spin .8s linear infinite;margin:0 auto 16px;}
+@keyframes spin{to{transform:rotate(360deg);}}
+.dashboard{display:none;max-width:1100px;margin:0 auto;padding:0 24px 48px;}
+.dashboard-header{display:flex;align-items:center;justify-content:space-between;margin-bottom:24px;flex-wrap:wrap;gap:12px;}
+.dashboard-title{font-size:20px;font-weight:700;}
+.dashboard-title span{color:var(--orange);}
+.badge{background:var(--card2);border:1px solid var(--border);border-radius:20px;padding:5px 14px;font-size:12px;color:var(--muted);}
+.kpi-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(160px,1fr));gap:14px;margin-bottom:20px;}
+.kpi-card{background:var(--card);border:1px solid var(--border);border-radius:14px;padding:18px 20px;position:relative;overflow:hidden;}
+.kpi-card::before{content:'';position:absolute;top:0;left:0;right:0;height:3px;background:var(--orange);border-radius:14px 14px 0 0;}
+.kpi-label{font-size:11px;font-weight:600;text-transform:uppercase;letter-spacing:.07em;color:var(--muted);margin-bottom:8px;}
+.kpi-value{font-size:26px;font-weight:800;line-height:1;margin-bottom:5px;}
+.kpi-sub{font-size:12px;color:var(--muted);}
+.kpi-delta{font-size:12px;font-weight:600;margin-top:4px;}
+.kpi-delta.up{color:var(--green);}.kpi-delta.down{color:var(--red);}
+.chart-grid{display:grid;grid-template-columns:2fr 1fr;gap:16px;margin-bottom:16px;}
+@media(max-width:768px){.chart-grid{grid-template-columns:1fr;}}
+.chart-card{background:var(--card);border:1px solid var(--border);border-radius:14px;padding:20px;}
+.chart-title{font-size:12px;font-weight:700;text-transform:uppercase;letter-spacing:.06em;color:var(--muted);margin-bottom:16px;}
+.chart-title span{color:var(--orange);margin-right:6px;}
+.chart-wrap{position:relative;height:220px;}
+.chart-wrap.tall{height:250px;}
+.heat-labels{display:flex;justify-content:space-between;font-size:11px;color:var(--muted);margin-bottom:6px;}
+.heat-bar{height:12px;border-radius:6px;background:linear-gradient(to right,#4ade80,#facc15,#f87171);position:relative;margin-bottom:12px;}
+.heat-indicator{position:absolute;top:-4px;width:20px;height:20px;background:#fff;border:3px solid var(--orange);border-radius:50%;transform:translateX(-50%);transition:left .8s ease;}
+.heat-status{text-align:center;font-size:18px;font-weight:800;margin-top:12px;}
+.heat-desc{text-align:center;font-size:12px;color:var(--muted);margin-top:4px;}
+.comp-table{width:100%;border-collapse:collapse;font-size:13px;}
+.comp-table th{text-align:left;padding:8px 10px;color:var(--muted);font-weight:600;font-size:11px;text-transform:uppercase;letter-spacing:.05em;border-bottom:1px solid var(--border);}
+.comp-table td{padding:10px;border-bottom:1px solid var(--border);color:var(--text);}
+.comp-table tr:last-child td{border-bottom:none;}
+.pill{display:inline-block;padding:2px 10px;border-radius:20px;font-size:11px;font-weight:700;}
+.pill.hot{background:rgba(74,222,128,.15);color:var(--green);}
+.pill.warm{background:rgba(250,204,21,.15);color:#facc15;}
+.pill.cool{background:rgba(248,113,113,.15);color:var(--red);}
+.empty{text-align:center;padding:60px 24px;color:var(--muted);max-width:860px;margin:0 auto;}
+.empty-icon{font-size:48px;margin-bottom:16px;}
+.empty-title{font-size:18px;font-weight:700;color:var(--text);margin-bottom:8px;}
+.empty-sub{font-size:14px;line-height:1.6;}
+.error-box{display:none;background:rgba(248,113,113,.1);border:1px solid rgba(248,113,113,.3);border-radius:10px;padding:14px 18px;font-size:14px;color:var(--red);max-width:900px;margin:0 auto 20px;}
+.addr-note{font-size:12px;color:var(--muted);margin-top:8px;}
+.addr-note span{color:var(--orange);}
 </style>
 </head>
 <body>
 <div class="search-section">
-  <div class="search-label">📍 Market Analytics</div>
+  <div class="search-label">📍 QCV Market Analytics</div>
   <div class="search-row">
-    <input class="search-input" id="zipInput" type="text" placeholder="Enter ZIP code — e.g. 30309" maxlength="5" />
+    <input class="search-input" id="addrInput" type="text" placeholder="123 Peachtree St NW (optional)" style="flex:2;min-width:200px"/>
+    <input class="search-input" id="zipInput" type="text" placeholder="ZIP Code — e.g. 30309" maxlength="5" style="flex:1;min-width:130px"/>
     <button class="search-btn" id="searchBtn" onclick="runSearch()">Analyze Market</button>
   </div>
+  <div class="addr-note">Enter a <span>ZIP code</span> to see market trends. Add a street address for a more specific neighborhood analysis.</div>
 </div>
 <div class="error-box" id="errorBox"></div>
-<div class="loading" id="loading"><div class="spinner"></div><div>Pulling market data…</div></div>
-<div class="empty" id="emptyState"><div class="empty-icon">📊</div><div class="empty-title">Enter a ZIP code to get started</div><div class="empty-sub">Instantly see median prices, days on market, price trends,<br/>comparable breakdowns, and market heat — all in one view.</div></div>
+<div class="loading" id="loading"><div class="spinner"></div><div>Pulling market data...</div></div>
+<div class="empty" id="emptyState">
+  <div class="empty-icon">📊</div>
+  <div class="empty-title">Enter a ZIP code to get started</div>
+  <div class="empty-sub">See median prices, days on market, price trends,<br/>bedroom breakdowns, and market heat — all in one view.</div>
+</div>
 <div class="dashboard" id="dashboard">
   <div class="dashboard-header">
-    <div class="dashboard-title">Market Report — ZIP <span id="zipDisplay"></span></div>
+    <div class="dashboard-title">Market Report — <span id="zipDisplay"></span></div>
     <div class="badge" id="lastUpdated"></div>
   </div>
   <div class="kpi-grid">
     <div class="kpi-card"><div class="kpi-label">Median Sale Price</div><div class="kpi-value" id="kpiMedianPrice">—</div><div class="kpi-sub" id="kpiAvgPrice">Avg: —</div><div class="kpi-delta" id="kpiPriceDelta"></div></div>
     <div class="kpi-card"><div class="kpi-label">Price / Sq Ft</div><div class="kpi-value" id="kpiPricePerSqft">—</div><div class="kpi-sub">Median</div></div>
-    <div class="kpi-card"><div class="kpi-label">Median Days on Market</div><div class="kpi-value" id="kpiDOM">—</div><div class="kpi-sub" id="kpiDOMSub">days</div></div>
+    <div class="kpi-card"><div class="kpi-label">Median Days on Market</div><div class="kpi-value" id="kpiDOM">—</div><div class="kpi-sub">days avg</div></div>
     <div class="kpi-card"><div class="kpi-label">Active Listings</div><div class="kpi-value" id="kpiTotal">—</div><div class="kpi-sub" id="kpiNew">— new this month</div></div>
     <div class="kpi-card"><div class="kpi-label">Price Range</div><div class="kpi-value" id="kpiMin" style="font-size:18px">—</div><div class="kpi-sub" id="kpiMax">Max: —</div></div>
   </div>
@@ -101,92 +96,104 @@
     <div class="chart-card"><div class="chart-title"><span>📈</span>12-Month Median Price Trend</div><div class="chart-wrap tall"><canvas id="trendChart"></canvas></div></div>
     <div class="chart-card">
       <div class="chart-title"><span>🌡️</span>Market Heat</div>
-      <div class="heat-bar-wrap" style="margin-top:30px"><div class="heat-labels"><span>Buyer's Market</span><span>Seller's Market</span></div><div class="heat-bar"><div class="heat-indicator" id="heatIndicator"></div></div></div>
+      <div style="margin-top:20px"><div class="heat-labels"><span>Buyer's</span><span>Seller's</span></div><div class="heat-bar"><div class="heat-indicator" id="heatIndicator"></div></div></div>
       <div class="heat-status" id="heatStatus">—</div><div class="heat-desc" id="heatDesc">—</div>
-      <div style="margin-top:28px"><div class="chart-title"><span>⏱️</span>Days on Market Trend</div><div class="chart-wrap" style="height:130px"><canvas id="domChart"></canvas></div></div>
+      <div style="margin-top:24px"><div class="chart-title"><span>⏱️</span>DOM Trend</div><div class="chart-wrap" style="height:120px"><canvas id="domChart"></canvas></div></div>
     </div>
   </div>
   <div class="chart-grid">
     <div class="chart-card"><div class="chart-title"><span>🛏️</span>Median Price by Bedrooms</div><div class="chart-wrap"><canvas id="bedroomChart"></canvas></div></div>
     <div class="chart-card"><div class="chart-title"><span>🏠</span>Listings by Property Type</div><div class="chart-wrap"><canvas id="typeChart"></canvas></div></div>
   </div>
-  <div class="chart-card" style="margin-bottom:16px"><div class="chart-title"><span>📐</span>Price per Sq Ft by Bedroom Count</div><div class="chart-wrap" style="height:160px"><canvas id="sqftChart"></canvas></div></div>
+  <div class="chart-card" style="margin-bottom:16px"><div class="chart-title"><span>📐</span>Price per Sq Ft by Bedroom Count</div><div class="chart-wrap" style="height:150px"><canvas id="sqftChart"></canvas></div></div>
   <div class="chart-card">
     <div class="chart-title"><span>📋</span>Bedroom-Level Breakdown</div>
-    <table class="comp-table" id="compTable"><thead><tr><th>Beds</th><th>Median Price</th><th>Avg $/sqft</th><th>Avg DOM</th><th>Listings</th><th>Pace</th></tr></thead><tbody id="compBody"></tbody></table>
+    <table class="comp-table"><thead><tr><th>Beds</th><th>Median Price</th><th>Avg $/sqft</th><th>Avg DOM</th><th>Listings</th><th>Pace</th></tr></thead><tbody id="compBody"></tbody></table>
   </div>
 </div>
 <script>
-const RENTCAST_API_KEY='YOUR_RENTCAST_API_KEY';
-const USE_DEMO=(RENTCAST_API_KEY==='YOUR_RENTCAST_API_KEY');
-let charts={};
-function destroyCharts(){Object.values(charts).forEach(c=>c&&c.destroy());charts={};}
-Chart.defaults.color='#888';Chart.defaults.borderColor='#2a2a2a';Chart.defaults.font.family="'Segoe UI', system-ui, sans-serif";
-const fmt={price:v=>v>=1e6?'$'+(v/1e6).toFixed(2)+'M':'$'+Math.round(v).toLocaleString(),pct:v=>(v>=0?'+':'')+v.toFixed(1)+'%'};
-async function runSearch(){
-  const zip=document.getElementById('zipInput').value.trim();
+var RENTCAST_KEY='YOUR_RENTCAST_API_KEY';
+var USE_DEMO=(RENTCAST_KEY==='YOUR_RENTCAST_API_KEY');
+var charts={};
+function destroyCharts(){Object.values(charts).forEach(function(c){if(c)c.destroy();});charts={};}
+Chart.defaults.color='#888';
+Chart.defaults.borderColor='#2a2a2a';
+Chart.defaults.font.family="'Segoe UI',system-ui,sans-serif";
+function fmtPrice(v){return v>=1e6?'$'+(v/1e6).toFixed(2)+'M':'$'+Math.round(v).toLocaleString();}
+function fmtPct(v){return(v>=0?'+':'')+v.toFixed(1)+'%';}
+
+function runSearch(){
+  var zip=document.getElementById('zipInput').value.trim();
+  var addr=document.getElementById('addrInput').value.trim();
   if(!/^d{5}$/.test(zip)){showError('Please enter a valid 5-digit ZIP code.');return;}
   setLoading(true);hideError();hideDashboard();
-  try{const data=USE_DEMO?getDemoData(zip):await fetchRentcast(zip);renderDashboard(data,zip);}
-  catch(e){showError('Could not load market data. Check your API key or try a different ZIP code.');console.error(e);}
-  finally{setLoading(false);}
+  var data=USE_DEMO?getDemoData(zip,addr):null;
+  if(data){renderDashboard(data,zip,addr);setLoading(false);}
+  else{
+    fetch('https://api.rentcast.io/v1/markets?zipCode='+zip+'&dataType=Sale&historyRange=12',{headers:{'X-Api-Key':RENTCAST_KEY,'Accept':'application/json'}})
+    .then(function(r){if(!r.ok)throw new Error('API error '+r.status);return r.json();})
+    .then(function(d){renderDashboard(d,zip,addr);setLoading(false);})
+    .catch(function(e){showError('Could not load market data. Try a different ZIP code.');setLoading(false);console.error(e);});
+  }
 }
-async function fetchRentcast(zip){
-  const res=await fetch('https://api.rentcast.io/v1/markets?zipCode='+zip+'&dataType=Sale&historyRange=12',{headers:{'X-Api-Key':RENTCAST_API_KEY,'Accept':'application/json'}});
-  if(!res.ok)throw new Error('API error '+res.status);return res.json();
-}
-function renderDashboard(data,zip){
-  destroyCharts();const sale=data.saleData;
-  if(!sale){showError('No sale market data available for ZIP '+zip);return;}
-  document.getElementById('zipDisplay').textContent=zip;
-  const updated=new Date(sale.lastUpdatedDate);
+
+function renderDashboard(data,zip,addr){
+  destroyCharts();
+  var sale=data.saleData;
+  if(!sale){showError('No data available for ZIP '+zip);return;}
+  var title=addr?addr+', '+zip:'ZIP '+zip;
+  document.getElementById('zipDisplay').textContent=title;
+  var updated=new Date(sale.lastUpdatedDate);
   document.getElementById('lastUpdated').textContent='Updated '+updated.toLocaleDateString('en-US',{month:'short',day:'numeric',year:'numeric'});
-  document.getElementById('kpiMedianPrice').textContent=fmt.price(sale.medianPrice);
-  document.getElementById('kpiAvgPrice').textContent='Avg: '+fmt.price(sale.averagePrice);
+  document.getElementById('kpiMedianPrice').textContent=fmtPrice(sale.medianPrice);
+  document.getElementById('kpiAvgPrice').textContent='Avg: '+fmtPrice(sale.averagePrice);
   document.getElementById('kpiPricePerSqft').textContent='$'+Math.round(sale.medianPricePerSquareFoot);
   document.getElementById('kpiDOM').textContent=Math.round(sale.medianDaysOnMarket);
   document.getElementById('kpiTotal').textContent=(sale.totalListings||0).toLocaleString();
   document.getElementById('kpiNew').textContent=(sale.newListings||0)+' new this month';
-  document.getElementById('kpiMin').textContent=fmt.price(sale.minPrice);
-  document.getElementById('kpiMax').textContent='Max: '+fmt.price(sale.maxPrice);
-  if(sale.history&&Object.keys(sale.history).length>=2){const months=Object.keys(sale.history).sort();const oldest=sale.history[months[0]]?.medianPrice;const newest=sale.medianPrice;if(oldest&&newest){const delta=((newest-oldest)/oldest)*100;const el=document.getElementById('kpiPriceDelta');el.textContent=fmt.pct(delta)+' vs 12mo ago';el.className='kpi-delta '+(delta>=0?'up':'down');}}
-  const dom=sale.medianDaysOnMarket;let heatPct,heatLabel,heatDesc;
+  document.getElementById('kpiMin').textContent=fmtPrice(sale.minPrice);
+  document.getElementById('kpiMax').textContent='Max: '+fmtPrice(sale.maxPrice);
+  if(sale.history){var months=Object.keys(sale.history).sort();if(months.length>=2){var oldest=sale.history[months[0]].medianPrice;var newest=sale.medianPrice;if(oldest&&newest){var delta=((newest-oldest)/oldest)*100;var el=document.getElementById('kpiPriceDelta');el.textContent=fmtPct(delta)+' vs 12mo ago';el.className='kpi-delta '+(delta>=0?'up':'down');}}}
+  var dom=sale.medianDaysOnMarket;var heatPct,heatLabel,heatDesc;
   if(dom<=10){heatPct=92;heatLabel='🔥 Hot Seller's Market';heatDesc='Homes flying off market — avg '+Math.round(dom)+' days';}
-  else if(dom<=20){heatPct=75;heatLabel='📈 Strong Seller's Market';heatDesc='Fast-moving market — '+Math.round(dom)+' days avg';}
+  else if(dom<=20){heatPct=75;heatLabel='📈 Strong Seller's Market';heatDesc='Fast-moving — '+Math.round(dom)+' days avg';}
   else if(dom<=35){heatPct=55;heatLabel='⚖️ Balanced Market';heatDesc='Moderate pace — '+Math.round(dom)+' days avg';}
-  else if(dom<=60){heatPct=35;heatLabel='📉 Buyer's Market';heatDesc='Slower pace — homes sitting '+Math.round(dom)+' days';}
+  else if(dom<=60){heatPct=35;heatLabel='📉 Buyer's Market';heatDesc='Slower — homes sitting '+Math.round(dom)+' days';}
   else{heatPct=12;heatLabel='❄️ Cold Market';heatDesc='Lots of supply — '+Math.round(dom)+' days avg';}
   document.getElementById('heatIndicator').style.left=heatPct+'%';
   document.getElementById('heatStatus').textContent=heatLabel;
   document.getElementById('heatDesc').textContent=heatDesc;
-  const historyMonths=sale.history?Object.keys(sale.history).sort():[];
-  const trendLabels=historyMonths.map(m=>{const d=new Date(m);return d.toLocaleDateString('en-US',{month:'short',year:'2-digit'});});
-  const trendPrices=historyMonths.map(m=>sale.history[m]?.medianPrice||null);
-  charts.trend=new Chart(document.getElementById('trendChart'),{type:'line',data:{labels:trendLabels,datasets:[{label:'Median Price',data:trendPrices,borderColor:'#e07940',backgroundColor:'rgba(224,121,64,0.08)',borderWidth:2.5,pointBackgroundColor:'#e07940',pointRadius:4,fill:true,tension:0.4}]},options:{responsive:true,maintainAspectRatio:false,plugins:{legend:{display:false},tooltip:{callbacks:{label:ctx=>' '+fmt.price(ctx.parsed.y)}}},scales:{x:{grid:{color:'#1e1e1e'},ticks:{maxTicksLimit:6}},y:{grid:{color:'#1e1e1e'},ticks:{callback:v=>fmt.price(v)}}}}});
-  const domPrices=historyMonths.map(m=>sale.history[m]?.medianDaysOnMarket||null);
-  charts.dom=new Chart(document.getElementById('domChart'),{type:'bar',data:{labels:trendLabels,datasets:[{label:'Days on Market',data:domPrices,backgroundColor:'rgba(224,121,64,0.6)',borderRadius:4}]},options:{responsive:true,maintainAspectRatio:false,plugins:{legend:{display:false}},scales:{x:{grid:{display:false},ticks:{maxTicksLimit:4,font:{size:10}}},y:{grid:{color:'#1e1e1e'},ticks:{stepSize:10}}}}});
-  const bdData=(sale.dataByBedrooms||[]).filter(d=>d.bedrooms<=5).sort((a,b)=>a.bedrooms-b.bedrooms);
-  charts.bedroom=new Chart(document.getElementById('bedroomChart'),{type:'bar',data:{labels:bdData.map(d=>d.bedrooms+' Bed'+(d.bedrooms!==1?'s':'')),datasets:[{label:'Median Price',data:bdData.map(d=>d.medianPrice),backgroundColor:['#e07940','#f0914f','#c96830','#b55828','#a04820'],borderRadius:8}]},options:{responsive:true,maintainAspectRatio:false,plugins:{legend:{display:false},tooltip:{callbacks:{label:ctx=>' '+fmt.price(ctx.parsed.y)}}},scales:{x:{grid:{display:false}},y:{grid:{color:'#1e1e1e'},ticks:{callback:v=>fmt.price(v)}}}}});
-  const ptData=(sale.dataByPropertyType||[]).filter(d=>d.totalListings>0);
-  const typeColors=['#e07940','#4ade80','#60a5fa','#c084fc','#facc15'];
-  charts.type=new Chart(document.getElementById('typeChart'),{type:'doughnut',data:{labels:ptData.map(d=>d.propertyType),datasets:[{data:ptData.map(d=>d.totalListings),backgroundColor:typeColors.slice(0,ptData.length),borderColor:'#161616',borderWidth:3,hoverOffset:6}]},options:{responsive:true,maintainAspectRatio:false,plugins:{legend:{position:'bottom',labels:{padding:12,font:{size:12}}}},cutout:'65%'}});
-  charts.sqft=new Chart(document.getElementById('sqftChart'),{type:'bar',data:{labels:bdData.map(d=>d.bedrooms+'BR'),datasets:[{label:'$/sqft',data:bdData.map(d=>Math.round(d.medianPricePerSquareFoot)),backgroundColor:'rgba(74,222,128,0.7)',borderRadius:6}]},options:{indexAxis:'y',responsive:true,maintainAspectRatio:false,plugins:{legend:{display:false},tooltip:{callbacks:{label:ctx=>' $'+ctx.parsed.x+'/sqft'}}},scales:{x:{grid:{color:'#1e1e1e'},ticks:{callback:v=>'$'+v}},y:{grid:{display:false}}}}});
-  const tbody=document.getElementById('compBody');tbody.innerHTML='';
-  bdData.forEach(d=>{const dom2=Math.round(d.medianDaysOnMarket||0);const pace=dom2<=14?'<span class="pill hot">Hot</span>':dom2<=30?'<span class="pill warm">Warm</span>':'<span class="pill cool">Slow</span>';tbody.innerHTML+='<tr><td><strong>'+d.bedrooms+' BR</strong></td><td>'+fmt.price(d.medianPrice)+'</td><td>$'+Math.round(d.medianPricePerSquareFoot||0)+'</td><td>'+dom2+'d</td><td>'+(d.totalListings||0).toLocaleString()+'</td><td>'+pace+'</td></tr>';});
-  document.getElementById('dashboard').style.display='block';document.getElementById('emptyState').style.display='none';
+  var histMonths=sale.history?Object.keys(sale.history).sort():[];
+  var tLabels=histMonths.map(function(m){var d=new Date(m);return d.toLocaleDateString('en-US',{month:'short',year:'2-digit'});});
+  var tPrices=histMonths.map(function(m){return sale.history[m]?sale.history[m].medianPrice:null;});
+  charts.trend=new Chart(document.getElementById('trendChart'),{type:'line',data:{labels:tLabels,datasets:[{label:'Median Price',data:tPrices,borderColor:'#e07940',backgroundColor:'rgba(224,121,64,0.08)',borderWidth:2.5,pointBackgroundColor:'#e07940',pointRadius:4,fill:true,tension:0.4}]},options:{responsive:true,maintainAspectRatio:false,plugins:{legend:{display:false},tooltip:{callbacks:{label:function(c){return' '+fmtPrice(c.parsed.y);}}}},scales:{x:{grid:{color:'#1e1e1e'},ticks:{maxTicksLimit:6}},y:{grid:{color:'#1e1e1e'},ticks:{callback:function(v){return fmtPrice(v);}}}}}});
+  var domPrices=histMonths.map(function(m){return sale.history[m]?sale.history[m].medianDaysOnMarket:null;});
+  charts.dom=new Chart(document.getElementById('domChart'),{type:'bar',data:{labels:tLabels,datasets:[{label:'DOM',data:domPrices,backgroundColor:'rgba(224,121,64,0.6)',borderRadius:4}]},options:{responsive:true,maintainAspectRatio:false,plugins:{legend:{display:false}},scales:{x:{grid:{display:false},ticks:{maxTicksLimit:4,font:{size:10}}},y:{grid:{color:'#1e1e1e'}}}}});
+  var bdData=(sale.dataByBedrooms||[]).filter(function(d){return d.bedrooms<=5;}).sort(function(a,b){return a.bedrooms-b.bedrooms;});
+  charts.bedroom=new Chart(document.getElementById('bedroomChart'),{type:'bar',data:{labels:bdData.map(function(d){return d.bedrooms+' Bed'+(d.bedrooms!==1?'s':'');}),datasets:[{label:'Median Price',data:bdData.map(function(d){return d.medianPrice;}),backgroundColor:['#e07940','#f0914f','#c96830','#b55828','#a04820'],borderRadius:8}]},options:{responsive:true,maintainAspectRatio:false,plugins:{legend:{display:false},tooltip:{callbacks:{label:function(c){return' '+fmtPrice(c.parsed.y);}}}},scales:{x:{grid:{display:false}},y:{grid:{color:'#1e1e1e'},ticks:{callback:function(v){return fmtPrice(v);}}}}}});
+  var ptData=(sale.dataByPropertyType||[]).filter(function(d){return d.totalListings>0;});
+  charts.type=new Chart(document.getElementById('typeChart'),{type:'doughnut',data:{labels:ptData.map(function(d){return d.propertyType;}),datasets:[{data:ptData.map(function(d){return d.totalListings;}),backgroundColor:['#e07940','#4ade80','#60a5fa','#c084fc','#facc15'],borderColor:'#161616',borderWidth:3,hoverOffset:6}]},options:{responsive:true,maintainAspectRatio:false,plugins:{legend:{position:'bottom',labels:{padding:12,font:{size:11}}}},cutout:'65%'}});
+  charts.sqft=new Chart(document.getElementById('sqftChart'),{type:'bar',data:{labels:bdData.map(function(d){return d.bedrooms+'BR';}),datasets:[{label:'$/sqft',data:bdData.map(function(d){return Math.round(d.medianPricePerSquareFoot);}),backgroundColor:'rgba(74,222,128,0.7)',borderRadius:6}]},options:{indexAxis:'y',responsive:true,maintainAspectRatio:false,plugins:{legend:{display:false},tooltip:{callbacks:{label:function(c){return' $'+c.parsed.x+'/sqft';}}}},scales:{x:{grid:{color:'#1e1e1e'},ticks:{callback:function(v){return'$'+v;}}},y:{grid:{display:false}}}}});
+  var tbody=document.getElementById('compBody');tbody.innerHTML='';
+  bdData.forEach(function(d){var dom2=Math.round(d.medianDaysOnMarket||0);var pace=dom2<=14?'<span class="pill hot">Hot</span>':dom2<=30?'<span class="pill warm">Warm</span>':'<span class="pill cool">Slow</span>';tbody.innerHTML+='<tr><td><strong>'+d.bedrooms+' BR</strong></td><td>'+fmtPrice(d.medianPrice)+'</td><td>$'+Math.round(d.medianPricePerSquareFoot||0)+'</td><td>'+dom2+'d</td><td>'+(d.totalListings||0).toLocaleString()+'</td><td>'+pace+'</td></tr>';});
+  document.getElementById('dashboard').style.display='block';
+  document.getElementById('emptyState').style.display='none';
 }
-function getDemoData(zip){
-  const basePrice=380000+(parseInt(zip)%300)*800;const months=[];const now=new Date();
-  for(let i=11;i>=0;i--){const d=new Date(now.getFullYear(),now.getMonth()-i,1);months.push(d.toISOString().slice(0,7));}
-  const history={};months.forEach((m,i)=>{history[m]={medianPrice:Math.round(basePrice*(1+i*0.006+(Math.random()-0.5)*0.02)),medianDaysOnMarket:Math.round(18-i*0.4+(Math.random()-0.5)*4)};});
-  return{saleData:{lastUpdatedDate:new Date().toISOString(),medianPrice:basePrice,averagePrice:Math.round(basePrice*1.08),minPrice:Math.round(basePrice*0.45),maxPrice:Math.round(basePrice*2.4),medianPricePerSquareFoot:Math.round(basePrice/1800),medianDaysOnMarket:17,totalListings:148,newListings:31,history,dataByBedrooms:[{bedrooms:1,medianPrice:Math.round(basePrice*0.52),medianPricePerSquareFoot:Math.round(basePrice/1100),medianDaysOnMarket:12,totalListings:18},{bedrooms:2,medianPrice:Math.round(basePrice*0.78),medianPricePerSquareFoot:Math.round(basePrice/1400),medianDaysOnMarket:15,totalListings:34},{bedrooms:3,medianPrice:basePrice,medianPricePerSquareFoot:Math.round(basePrice/1800),medianDaysOnMarket:17,totalListings:52},{bedrooms:4,medianPrice:Math.round(basePrice*1.38),medianPricePerSquareFoot:Math.round(basePrice/2100),medianDaysOnMarket:21,totalListings:30},{bedrooms:5,medianPrice:Math.round(basePrice*1.85),medianPricePerSquareFoot:Math.round(basePrice/2600),medianDaysOnMarket:28,totalListings:14}],dataByPropertyType:[{propertyType:'Single Family',totalListings:84},{propertyType:'Condo',totalListings:38},{propertyType:'Townhouse',totalListings:22},{propertyType:'Multi-Family',totalListings:4}]}};
+
+function getDemoData(zip,addr){
+  var basePrice=380000+(parseInt(zip)%300)*800;
+  var months=[];var now=new Date();
+  for(var i=11;i>=0;i--){var d=new Date(now.getFullYear(),now.getMonth()-i,1);months.push(d.toISOString().slice(0,7));}
+  var history={};
+  months.forEach(function(m,i){history[m]={medianPrice:Math.round(basePrice*(1+i*0.006+(Math.random()-.5)*.02)),medianDaysOnMarket:Math.round(18-i*.4+(Math.random()-.5)*4)};});
+  return{saleData:{lastUpdatedDate:new Date().toISOString(),medianPrice:basePrice,averagePrice:Math.round(basePrice*1.08),minPrice:Math.round(basePrice*.45),maxPrice:Math.round(basePrice*2.4),medianPricePerSquareFoot:Math.round(basePrice/1800),medianDaysOnMarket:17,totalListings:148,newListings:31,history:history,dataByBedrooms:[{bedrooms:1,medianPrice:Math.round(basePrice*.52),medianPricePerSquareFoot:Math.round(basePrice/1100),medianDaysOnMarket:12,totalListings:18},{bedrooms:2,medianPrice:Math.round(basePrice*.78),medianPricePerSquareFoot:Math.round(basePrice/1400),medianDaysOnMarket:15,totalListings:34},{bedrooms:3,medianPrice:basePrice,medianPricePerSquareFoot:Math.round(basePrice/1800),medianDaysOnMarket:17,totalListings:52},{bedrooms:4,medianPrice:Math.round(basePrice*1.38),medianPricePerSquareFoot:Math.round(basePrice/2100),medianDaysOnMarket:21,totalListings:30},{bedrooms:5,medianPrice:Math.round(basePrice*1.85),medianPricePerSquareFoot:Math.round(basePrice/2600),medianDaysOnMarket:28,totalListings:14}],dataByPropertyType:[{propertyType:'Single Family',totalListings:84},{propertyType:'Condo',totalListings:38},{propertyType:'Townhouse',totalListings:22},{propertyType:'Multi-Family',totalListings:4}]}};
 }
 function setLoading(on){document.getElementById('loading').style.display=on?'block':'none';document.getElementById('searchBtn').disabled=on;}
 function hideDashboard(){document.getElementById('dashboard').style.display='none';}
-function showError(msg){const el=document.getElementById('errorBox');el.textContent='⚠️  '+msg;el.style.display='block';}
+function showError(msg){var el=document.getElementById('errorBox');el.textContent='⚠️  '+msg;el.style.display='block';}
 function hideError(){document.getElementById('errorBox').style.display='none';}
-document.getElementById('zipInput').addEventListener('keydown',e=>{if(e.key==='Enter')runSearch();});
-window.addEventListener('load',()=>{document.getElementById('zipInput').value='30309';runSearch();});
+document.getElementById('zipInput').addEventListener('keydown',function(e){if(e.key==='Enter')runSearch();});
+document.getElementById('addrInput').addEventListener('keydown',function(e){if(e.key==='Enter')runSearch();});
 </script>
 </body>
 </html>

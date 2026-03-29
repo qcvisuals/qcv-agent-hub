@@ -5,44 +5,77 @@
 <meta name="viewport" content="width=device-width,initial-scale=1.0"/>
 <title>QCV Market Analytics</title>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.1/chart.umd.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
 <link rel="stylesheet" href="/ma.css">
 </head>
 <body>
 <div class="search-section">
-  <div class="search-label">Market Analytics</div>
+  <div class="search-label">QCV Market Analytics</div>
   <div class="search-row">
-    <input class="search-input" id="addrInput" type="text" placeholder="Street address (optional)"/>
-    <input class="search-input" id="zipInput" type="text" placeholder="ZIP Code" maxlength="5"/>
+    <input class="search-input" id="addrInput" type="text" placeholder="Street address (optional)" style="flex:2;min-width:180px"/>
+    <input class="search-input" id="zipInput" type="text" placeholder="ZIP Code" maxlength="5" style="flex:1;min-width:120px"/>
     <button class="search-btn" id="searchBtn">Analyze Market</button>
   </div>
-  <div class="addr-note">Enter a ZIP code to see market stats. Add a street address for neighborhood context.</div>
+  <div class="addr-note">ZIP code required. Add a street address for neighborhood context.</div>
+</div>
+<div class="progress-wrap" id="progressWrap">
+  <div class="progress-bar-outer"><div class="progress-bar-inner" id="progressBar"></div></div>
+  <div class="progress-label" id="progressLabel">Starting analysis...</div>
 </div>
 <div class="error-box" id="errorBox"></div>
-<div class="loading" id="loading"><div class="spinner"></div><div>Pulling market data...</div></div>
 <div class="empty" id="emptyState">
   <div class="empty-icon">chart</div>
   <div class="empty-title">Enter a ZIP code to get started</div>
-  <div class="empty-sub">See median prices, days on market, price trends, and market heat.</div>
+  <div class="empty-sub">Median prices, days on market, absorption rate, list-to-sale ratio, price trends, and more.</div>
 </div>
 <div class="dashboard" id="dashboard">
-  <div class="dashboard-header"><div class="dashboard-title">Market Report - <span id="zipDisplay"></span></div><div class="badge" id="lastUpdated"></div></div>
+  <div class="dashboard-header">
+    <div>
+      <div class="dashboard-title">Market Report - <span id="zipDisplay"></span></div>
+      <div class="badge" id="lastUpdated"></div>
+    </div>
+    <div class="action-btns">
+      <button class="action-btn" id="downloadBtn">Download PDF</button>
+      <button class="action-btn secondary" id="emailToggleBtn">Email Report</button>
+    </div>
+  </div>
+  <div class="email-row" id="emailRow">
+    <input class="search-input" id="emailInput" type="email" placeholder="agent@brokerage.com" style="flex:1"/>
+    <button class="search-btn" id="sendEmailBtn">Send Report</button>
+  </div>
   <div class="kpi-grid">
     <div class="kpi-card"><div class="kpi-label">Median Sale Price</div><div class="kpi-value" id="kpiMedianPrice">-</div><div class="kpi-sub" id="kpiAvgPrice"></div><div class="kpi-delta" id="kpiPriceDelta"></div></div>
     <div class="kpi-card"><div class="kpi-label">Price Per Sq Ft</div><div class="kpi-value" id="kpiPricePerSqft">-</div><div class="kpi-sub">Median</div></div>
     <div class="kpi-card"><div class="kpi-label">Days on Market</div><div class="kpi-value" id="kpiDOM">-</div><div class="kpi-sub">days avg</div></div>
     <div class="kpi-card"><div class="kpi-label">Active Listings</div><div class="kpi-value" id="kpiTotal">-</div><div class="kpi-sub" id="kpiNew"></div></div>
+    <div class="kpi-card"><div class="kpi-label">Absorption Rate</div><div class="kpi-value" id="kpiAbsorption">-</div><div class="kpi-sub">months of inventory</div></div>
+    <div class="kpi-card"><div class="kpi-label">List-to-Sale Ratio</div><div class="kpi-value" id="kpiLTS">-</div><div class="kpi-sub" id="kpiLTSSub"></div></div>
+    <div class="kpi-card"><div class="kpi-label">Price Reduction Rate</div><div class="kpi-value" id="kpiPriceReduction">-</div><div class="kpi-sub">of listings reduced</div></div>
     <div class="kpi-card"><div class="kpi-label">Price Range</div><div class="kpi-value" id="kpiMin" style="font-size:18px">-</div><div class="kpi-sub" id="kpiMax"></div></div>
   </div>
+  <div class="insight-bar" id="insightBar"></div>
   <div class="chart-grid">
     <div class="chart-card"><div class="chart-title">12-Month Price Trend</div><div class="chart-wrap tall"><canvas id="trendChart"></canvas></div></div>
-    <div class="chart-card"><div class="chart-title">Market Heat</div><div style="margin-top:20px"><div class="heat-labels"><span>Buyers</span><span>Sellers</span></div><div class="heat-bar"><div class="heat-indicator" id="heatIndicator"></div></div></div><div class="heat-status" id="heatStatus">-</div><div class="heat-desc" id="heatDesc">-</div><div style="margin-top:24px"><div class="chart-title">DOM Trend</div><div class="chart-wrap" style="height:120px"><canvas id="domChart"></canvas></div></div></div>
+    <div class="chart-card">
+      <div class="chart-title">Market Heat</div>
+      <div style="margin-top:16px"><div class="heat-labels"><span>Buyers</span><span>Sellers</span></div><div class="heat-bar"><div class="heat-indicator" id="heatIndicator"></div></div></div>
+      <div class="heat-status" id="heatStatus">-</div><div class="heat-desc" id="heatDesc">-</div>
+      <div style="margin-top:20px"><div class="chart-title">DOM Trend</div><div class="chart-wrap" style="height:120px"><canvas id="domChart"></canvas></div></div>
+    </div>
   </div>
   <div class="chart-grid">
     <div class="chart-card"><div class="chart-title">Price by Bedrooms</div><div class="chart-wrap"><canvas id="bedroomChart"></canvas></div></div>
     <div class="chart-card"><div class="chart-title">Listings by Type</div><div class="chart-wrap"><canvas id="typeChart"></canvas></div></div>
   </div>
-  <div class="chart-card" style="margin-bottom:16px"><div class="chart-title">Price per Sq Ft by Bedroom</div><div class="chart-wrap" style="height:150px"><canvas id="sqftChart"></canvas></div></div>
-  <div class="chart-card"><div class="chart-title">Bedroom Breakdown</div><table class="comp-table"><thead><tr><th>Beds</th><th>Median Price</th><th>$/sqft</th><th>DOM</th><th>Listings</th><th>Pace</th></tr></thead><tbody id="compBody"></tbody></table></div>
+  <div class="chart-grid">
+    <div class="chart-card"><div class="chart-title">Price per Sq Ft by Bedroom</div><div class="chart-wrap" style="height:160px"><canvas id="sqftChart"></canvas></div></div>
+    <div class="chart-card"><div class="chart-title">New vs Closed Listings (12mo)</div><div class="chart-wrap" style="height:160px"><canvas id="supplyChart"></canvas></div></div>
+  </div>
+  <div class="chart-card" style="margin-bottom:16px">
+    <div class="chart-title">Bedroom Breakdown</div>
+    <table class="comp-table"><thead><tr><th>Beds</th><th>Median Price</th><th>$/sqft</th><th>DOM</th><th>Listings</th><th>vs ZIP Avg</th><th>Pace</th></tr></thead><tbody id="compBody"></tbody></table>
+  </div>
+  <div class="demo-note" id="demoNote">Demo data shown. Connect a Rentcast API key for live MLS data.</div>
 </div>
 <script src="/ma.js"></script>
 </body>

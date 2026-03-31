@@ -95,7 +95,7 @@ textarea { resize: none; }
 .paywall-features { text-align: left; margin: 0 0 32px; padding: 20px 24px; background: #f9f9f9; border-radius: 8px; }
 .paywall-features p { font-size: 13px; color: #555; margin-bottom: 8px; padding-left: 22px; position: relative; line-height: 1.5; }
 .paywall-features p:last-child { margin-bottom: 0; }
-.paywall-features p::before { content: 'â'; position: absolute; left: 0; color: #F47920; font-weight: bold; }
+.paywall-features p::before { content: 'Ã¢ÂÂ'; position: absolute; left: 0; color: #F47920; font-weight: bold; }
 .paywall-divider { font-size: 11px; color: #bbb; margin: 20px 0; letter-spacing: 0.05em; text-transform: uppercase; }
 .transfer-btn { width: 100%; padding: 12px; background: #f5f5f3; color: #1a1a1a; border: 1px solid #ddd; border-radius: 6px; font-size: 13px; cursor: pointer; font-family: Georgia, serif; margin-top: 16px; transition: all 0.15s; }
 .transfer-btn:hover { background: #1a1a1a; color: #fff; border-color: #1a1a1a; }
@@ -113,206 +113,123 @@ textarea { resize: none; }
 
   <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;600;700;900&display=swap" rel="stylesheet">
   <style id="qcv-dark-theme">
-    :root {
-      --bg:#0d0d0d; --surface:#111; --surface2:#1a1a1a;
-      --border:rgba(255,255,255,0.08); --text:#fff;
-      --sub:rgba(255,255,255,0.4); --orange:#e85d26;
-    }
-    *{box-sizing:border-box;}
-    body{background:var(--bg)!important;color:var(--text)!important;font-family:'Montserrat',sans-serif!important;}
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700&display=swap');
+:root{--bg:#0d0d0d;--surface:#111;--surface2:#1a1a1a;--border:rgba(255,255,255,0.08);--text:#fff;--sub:rgba(255,255,255,0.4);--orange:#e85d26;}
+*{box-sizing:border-box;}
+body{background:var(--bg)!important;color:var(--text)!important;font-family:'Montserrat',sans-serif!important;}
 
-    /* NAV */
-    nav{background:#0d0d0d!important;border-bottom:1px solid rgba(255,255,255,0.07)!important;box-shadow:none!important;}
-    .hub-logo,.nav-logo{color:#fff!important;font-family:'Montserrat',sans-serif!important;letter-spacing:3px!important;text-transform:uppercase!important;font-weight:900!important;font-size:13px!important;}
-    .hub-nav-link,.nav-link{color:rgba(255,255,255,0.5)!important;font-family:'Montserrat',sans-serif!important;letter-spacing:2px!important;text-transform:uppercase!important;font-size:10px!important;}
-    .hub-nav-link:hover,.nav-link:hover{color:#e85d26!important;}
-    a[href="https://qualitycapturevisuals.com"]{color:rgba(255,255,255,0.35)!important;font-family:'Montserrat',sans-serif!important;font-size:10px!important;letter-spacing:2px!important;text-transform:uppercase!important;}
-    a[href="https://qualitycapturevisuals.com"]:hover{color:#e85d26!important;}
+/* NAV */
+nav,header,.header{background:#0d0d0d!important;border-bottom:1px solid rgba(255,255,255,0.07)!important;box-shadow:none!important;}
+.hub-logo,.nav-logo,.header-logo{color:#fff!important;font-family:'Montserrat',sans-serif!important;letter-spacing:3px!important;}
+.header-link{color:rgba(255,255,255,0.35)!important;font-family:'Montserrat',sans-serif!important;font-size:11px!important;letter-spacing:2px!important;text-transform:uppercase!important;border-bottom:none!important;}
+.header-link:hover{color:#e85d26!important;}
+a[href="https://qualitycapturevisuals.com"]{color:rgba(255,255,255,0.35)!important;font-family:'Montserrat',sans-serif!important;font-size:11px!important;letter-spacing:2px!important;text-transform:uppercase!important;}
 
-    /* TRIAL BANNER */
-    .trial-banner{background:#e85d26!important;color:#fff!important;font-family:'Montserrat',sans-serif!important;font-size:11px!important;letter-spacing:2px!important;}
+/* TRIAL BANNER */
+.trial-banner{background:#e85d26!important;color:#fff!important;font-family:'Montserrat',sans-serif!important;font-size:11px!important;letter-spacing:1px!important;text-align:center!important;padding:10px!important;}
 
-    /* GATE */
-    .gate-left{background:#0d0d0d!important;}
-    .gate-right{background:#111!important;}
-    .gate-headline{color:#fff!important;font-family:'Bebas Neue',sans-serif!important;}
-    .gate-subtext{color:rgba(255,255,255,0.45)!important;}
-    .gate-feature-item{color:rgba(255,255,255,0.55)!important;font-family:'Montserrat',sans-serif!important;}
-    .gate-qcv{color:#e85d26!important;}
-    .gate-vert{background:#e85d26!important;}
-    .gate-form-label{color:rgba(255,255,255,0.35)!important;font-family:'Montserrat',sans-serif!important;}
-    .gate-form-input{background:rgba(255,255,255,0.05)!important;border:1px solid rgba(255,255,255,0.1)!important;color:#fff!important;font-family:'Montserrat',sans-serif!important;border-radius:0!important;}
-    .gate-form-input::placeholder{color:rgba(255,255,255,0.2)!important;}
-    .gate-form-input:focus{border-color:#e85d26!important;}
-    .gate-form-btn{background:#e85d26!important;border-radius:0!important;font-family:'Montserrat',sans-serif!important;letter-spacing:3px!important;}
-    .gate-fine{color:rgba(255,255,255,0.2)!important;}
-    .gate-trial-badge{background:#e85d26!important;border-radius:2px!important;}
+/* HERO */
+.hero{background:var(--bg)!important;text-align:center!important;padding:52px 24px 32px!important;}
+.hero h2{font-family:'Montserrat',sans-serif!important;font-weight:300!important;font-size:clamp(28px,5vw,52px)!important;letter-spacing:4px!important;text-transform:uppercase!important;color:#fff!important;}
+.hero p{color:rgba(255,255,255,0.45)!important;font-size:13px!important;letter-spacing:2px!important;}
 
-    /* PREVIEW SECTION */
-    .preview-section{background:#111!important;border-top:1px solid rgba(255,255,255,0.06)!important;}
-    .preview-eyebrow{color:#e85d26!important;font-family:'Montserrat',sans-serif!important;}
-    .preview-title{color:#fff!important;}
-    .preview-sub{color:rgba(255,255,255,0.35)!important;}
-    .screen-card{background:#1a1a1a!important;border:1px solid rgba(255,255,255,0.07)!important;border-radius:4px!important;}
-    .screen-label{border-bottom:1px solid rgba(255,255,255,0.06)!important;background:#141414!important;}
-    .screen-dot{background:#e85d26!important;}
-    .screen-label-text{color:rgba(255,255,255,0.3)!important;}
-    .mock-field-label{color:rgba(255,255,255,0.25)!important;}
-    .mock-input{background:rgba(255,255,255,0.04)!important;border:1px solid rgba(255,255,255,0.07)!important;color:rgba(255,255,255,0.4)!important;}
-    .mock-result{background:rgba(255,255,255,0.03)!important;border:1px solid rgba(255,255,255,0.06)!important;}
-    .mock-result-header{background:#141414!important;border-bottom:1px solid rgba(255,255,255,0.05)!important;}
-    .mock-result-label{color:rgba(255,255,255,0.25)!important;}
-    .mock-result-copy{background:rgba(255,255,255,0.04)!important;border:1px solid rgba(255,255,255,0.07)!important;color:rgba(255,255,255,0.25)!important;}
-    .mock-result-body{color:rgba(255,255,255,0.35)!important;}
-    .mock-section-title{color:rgba(255,255,255,0.5)!important;}
-    .mock-opt{background:rgba(255,255,255,0.04)!important;border:1px solid rgba(255,255,255,0.08)!important;color:rgba(255,255,255,0.4)!important;}
-    .mock-opt.sel{background:#e85d26!important;border-color:#e85d26!important;color:#fff!important;}
-    .mock-btn{background:#e85d26!important;}
-    .mock-upload{border:2px dashed rgba(255,255,255,0.1)!important;}
-    .mock-upload-text{color:rgba(255,255,255,0.25)!important;}
-    .preview-cta-btn{background:#e85d26!important;border-radius:0!important;font-family:'Montserrat',sans-serif!important;letter-spacing:3px!important;}
-    .preview-cta-sub{color:rgba(255,255,255,0.3)!important;}
+/* TOOL TABS */
+.tools-nav{background:#0d0d0d!important;border-bottom:1px solid rgba(255,255,255,0.07)!important;}
+.tool-tab{background:transparent!important;color:rgba(255,255,255,0.4)!important;border:none!important;border-bottom:2px solid transparent!important;font-family:'Montserrat',sans-serif!important;font-size:10px!important;letter-spacing:3px!important;text-transform:uppercase!important;padding:16px 24px!important;cursor:pointer!important;}
+.tool-tab.active{color:#e85d26!important;border-bottom:2px solid #e85d26!important;}
+.tool-tab:hover:not(.active){color:rgba(255,255,255,0.7)!important;}
 
-    /* PAYWALL */
-    #paywall{background:#0d0d0d!important;}
-    #paywall h2{color:#fff!important;font-family:'Montserrat',sans-serif!important;letter-spacing:3px!important;text-transform:uppercase!important;}
-    #paywall p{color:rgba(255,255,255,0.45)!important;}
-    #paywall li{color:rgba(255,255,255,0.55)!important;}
-    #paywall .price{color:#fff!important;}
-    #paywall .price span{color:rgba(255,255,255,0.4)!important;}
+/* MAIN CONTAINER */
+.container{background:var(--bg)!important;max-width:860px!important;margin:0 auto!important;padding:32px 24px!important;}
 
-    /* MAIN HUB */
-    #main-content{background:#0d0d0d!important;}
-    .hub-header{background:#0d0d0d!important;border-bottom:1px solid rgba(255,255,255,0.06)!important;padding:48px 0 36px!important;}
-    .hub-title{color:#fff!important;font-family:'Montserrat',sans-serif!important;font-weight:900!important;letter-spacing:4px!important;text-transform:uppercase!important;}
-    .hub-subtitle{color:rgba(255,255,255,0.4)!important;font-family:'Montserrat',sans-serif!important;font-size:12px!important;letter-spacing:2px!important;}
+/* FORM CARDS / PANELS */
+.card{background:#111!important;border:1px solid rgba(255,255,255,0.07)!important;border-radius:0!important;padding:28px!important;margin-bottom:20px!important;}
 
-    /* TABS */
-    .tool-tabs{border-bottom:1px solid rgba(255,255,255,0.07)!important;background:#0d0d0d!important;padding:0 40px!important;}
-    .tool-tab{background:transparent!important;color:rgba(255,255,255,0.4)!important;border:none!important;border-bottom:2px solid transparent!important;font-family:'Montserrat',sans-serif!important;font-size:10px!important;letter-spacing:3px!important;text-transform:uppercase!important;padding:20px 24px!important;border-radius:0!important;transition:all 0.2s!important;}
-    .tool-tab:hover{color:#fff!important;border-bottom-color:rgba(255,255,255,0.2)!important;}
-    .tool-tab.active{color:#e85d26!important;border-bottom:2px solid #e85d26!important;background:transparent!important;}
+/* SECTION LABELS (Occasion, Format, etc.) */
+.section-label,.field-label{color:rgba(255,255,255,0.3)!important;font-size:9px!important;letter-spacing:3px!important;text-transform:uppercase!important;font-family:'Montserrat',sans-serif!important;margin-bottom:10px!important;display:block!important;}
+.card h3,.card h4{color:rgba(255,255,255,0.85)!important;font-family:'Montserrat',sans-serif!important;font-size:11px!important;letter-spacing:3px!important;text-transform:uppercase!important;margin-bottom:4px!important;}
+.card p{color:rgba(255,255,255,0.35)!important;font-size:12px!important;margin-bottom:14px!important;}
 
-    /* PANELS */
-    .tool-panel{background:#0d0d0d!important;}
-    .form-section,.panel-section{background:#111!important;border:1px solid rgba(255,255,255,0.07)!important;border-radius:0!important;}
+/* OPTION BUTTONS (occasion/format selector) */
+.opt-btn{background:rgba(255,255,255,0.03)!important;border:1px solid rgba(255,255,255,0.1)!important;color:rgba(255,255,255,0.5)!important;border-radius:0!important;font-family:'Montserrat',sans-serif!important;font-size:10px!important;letter-spacing:1px!important;padding:9px 14px!important;cursor:pointer!important;transition:all 0.15s!important;}
+.opt-btn:hover:not(.active){border-color:rgba(255,255,255,0.25)!important;color:rgba(255,255,255,0.8)!important;}
+.opt-btn.active{background:#e85d26!important;border-color:#e85d26!important;color:#fff!important;}
 
-    /* LABELS */
-    .section-label,.field-label,.label-text,.form-label{color:rgba(255,255,255,0.3)!important;font-family:'Montserrat',sans-serif!important;font-size:9px!important;letter-spacing:4px!important;text-transform:uppercase!important;}
+/* CUSTOM DROPDOWNS */
+.dd-btn{background:rgba(255,255,255,0.03)!important;border:1px solid rgba(255,255,255,0.1)!important;color:#fff!important;border-radius:0!important;font-family:'Montserrat',sans-serif!important;font-size:12px!important;padding:11px 14px!important;cursor:pointer!important;width:100%!important;text-align:left!important;}
+.dd-btn.open,.dd-btn:hover{border-color:rgba(255,255,255,0.25)!important;}
+.dd-arrow{border-top:5px solid rgba(255,255,255,0.4)!important;border-left:4px solid transparent!important;border-right:4px solid transparent!important;}
+.dd-list{background:#1a1a1a!important;border:1px solid rgba(255,255,255,0.1)!important;border-radius:0!important;box-shadow:0 8px 24px rgba(0,0,0,0.6)!important;}
+.dd-item{color:rgba(255,255,255,0.6)!important;font-family:'Montserrat',sans-serif!important;font-size:12px!important;padding:10px 14px!important;}
+.dd-item:hover{background:rgba(255,255,255,0.05)!important;color:#fff!important;}
+.dd-item.active{background:#e85d26!important;color:#fff!important;}
 
-    /* OPTION BUTTONS */
-    .opt-btn{background:rgba(255,255,255,0.03)!important;border:1px solid rgba(255,255,255,0.1)!important;color:rgba(255,255,255,0.55)!important;font-family:'Montserrat',sans-serif!important;font-size:10px!important;letter-spacing:1px!important;border-radius:0!important;transition:all 0.2s!important;}
-    .opt-btn:hover{border-color:rgba(255,255,255,0.3)!important;color:#fff!important;}
-    .opt-btn.active{background:#e85d26!important;border-color:#e85d26!important;color:#fff!important;}
+/* TEXT INPUTS & SELECTS */
+input[type=text],input[type=number],input[type=email],input[type=url],textarea,select{background:rgba(255,255,255,0.04)!important;border:1px solid rgba(255,255,255,0.1)!important;color:#fff!important;border-radius:0!important;font-family:'Montserrat',sans-serif!important;font-size:13px!important;padding:11px 14px!important;}
+input:focus,textarea:focus,select:focus{border-color:#e85d26!important;outline:none!important;}
+input::placeholder,textarea::placeholder{color:rgba(255,255,255,0.2)!important;}
+select option{background:#1a1a1a!important;color:#fff!important;}
 
-    /* THEME BUTTONS */
-    .theme-btn{border:2px solid rgba(255,255,255,0.1)!important;}
-    .theme-btn.active{border-color:#e85d26!important;}
+/* GENERATE / PRIMARY BUTTON */
+.btn,.full{background:#e85d26!important;color:#fff!important;border:none!important;border-radius:0!important;font-family:'Montserrat',sans-serif!important;letter-spacing:2px!important;text-transform:uppercase!important;font-size:11px!important;padding:14px 24px!important;cursor:pointer!important;width:100%!important;}
+.btn:hover,.full:hover{opacity:0.88!important;}
+.btn:disabled,.full:disabled{opacity:0.45!important;cursor:not-allowed!important;}
 
-    /* ALL INPUTS */
-    input[type=text],input[type=number],input[type=email],input[type=url],textarea,select{
-      background:rgba(255,255,255,0.05)!important;border:1px solid rgba(255,255,255,0.1)!important;
-      color:#fff!important;font-family:'Montserrat',sans-serif!important;border-radius:0!important;
-    }
-    input::placeholder,textarea::placeholder{color:rgba(255,255,255,0.18)!important;}
-    input:focus,textarea:focus,select:focus{border-color:#e85d26!important;outline:none!important;}
-    select option{background:#1a1a1a!important;color:#fff!important;}
-    label{color:rgba(255,255,255,0.35)!important;font-family:'Montserrat',sans-serif!important;font-size:9px!important;letter-spacing:3px!important;text-transform:uppercase!important;}
+/* TRANSFER / SECONDARY BUTTON */
+.transfer-btn{background:transparent!important;border:1px solid rgba(255,255,255,0.12)!important;color:rgba(255,255,255,0.45)!important;border-radius:0!important;font-family:'Montserrat',sans-serif!important;font-size:10px!important;letter-spacing:2px!important;text-transform:uppercase!important;padding:10px 18px!important;cursor:pointer!important;}
+.transfer-btn:hover{border-color:rgba(255,255,255,0.3)!important;color:rgba(255,255,255,0.8)!important;}
 
-    /* DROPDOWNS */
-    .dd-btn{background:rgba(255,255,255,0.05)!important;border:1px solid rgba(255,255,255,0.1)!important;color:#fff!important;font-family:'Montserrat',sans-serif!important;border-radius:0!important;}
-    .dd-btn.open{border-color:#e85d26!important;}
-    .dd-list{background:#1a1a1a!important;border:1px solid rgba(255,255,255,0.1)!important;border-radius:0!important;}
-    .dd-item{color:rgba(255,255,255,0.6)!important;font-family:'Montserrat',sans-serif!important;font-size:11px!important;}
-    .dd-item:hover{background:rgba(255,255,255,0.05)!important;}
-    .dd-item.active{color:#e85d26!important;}
+/* GRID LAYOUT */
+.grid2{display:grid!important;grid-template-columns:1fr 1fr!important;gap:14px!important;}
+.option-grid-2,.option-grid-3,.option-grid-4{display:flex!important;flex-wrap:wrap!important;gap:8px!important;}
 
-    /* GENERATE BUTTON */
-    #copy-btn,#gen-btn,button[id$="-btn"]:not(.opt-btn):not(.tool-tab):not(.dd-btn){
-      background:#e85d26!important;color:#fff!important;
-      font-family:'Montserrat',sans-serif!important;letter-spacing:3px!important;
-      text-transform:uppercase!important;border-radius:0!important;border:none!important;
-    }
-    #copy-btn:disabled{background:rgba(232,93,38,0.3)!important;}
+/* COPY RESULT CARDS */
+.result-card{background:#111!important;border:1px solid rgba(255,255,255,0.07)!important;border-radius:0!important;}
+.result-header{background:rgba(255,255,255,0.02)!important;border-bottom:1px solid rgba(255,255,255,0.07)!important;padding:10px 16px!important;display:flex!important;justify-content:space-between!important;align-items:center!important;}
+.result-label{color:rgba(255,255,255,0.3)!important;font-family:'Montserrat',sans-serif!important;font-size:9px!important;letter-spacing:3px!important;text-transform:uppercase!important;}
+.copy-btn{background:transparent!important;border:1px solid rgba(255,255,255,0.12)!important;color:rgba(255,255,255,0.4)!important;border-radius:0!important;font-family:'Montserrat',sans-serif!important;font-size:9px!important;letter-spacing:2px!important;padding:5px 12px!important;cursor:pointer!important;}
+.copy-btn:hover{border-color:rgba(255,255,255,0.3)!important;color:#fff!important;}
+.result-body{color:rgba(255,255,255,0.75)!important;font-size:13px!important;line-height:1.7!important;padding:16px!important;}
+.results{display:flex!important;flex-direction:column!important;gap:12px!important;}
 
-    /* COPY RESULTS */
-    .copy-results,.result-row{gap:12px!important;}
-    .result-card{background:#111!important;border:1px solid rgba(255,255,255,0.07)!important;border-radius:0!important;}
-    .result-card-header,.result-head{background:#141414!important;border-bottom:1px solid rgba(255,255,255,0.06)!important;color:rgba(255,255,255,0.4)!important;font-family:'Montserrat',sans-serif!important;font-size:9px!important;letter-spacing:3px!important;text-transform:uppercase!important;}
-    .result-card-body,.result-body{color:rgba(255,255,255,0.75)!important;font-family:'Montserrat',sans-serif!important;line-height:1.8!important;}
-    .copy-btn{background:rgba(255,255,255,0.05)!important;border:1px solid rgba(255,255,255,0.1)!important;color:rgba(255,255,255,0.4)!important;font-family:'Montserrat',sans-serif!important;font-size:9px!important;letter-spacing:2px!important;border-radius:0!important;}
-    .copy-btn:hover{color:#e85d26!important;border-color:#e85d26!important;}
+/* LOADING STATE */
+.loading{color:rgba(255,255,255,0.4)!important;font-family:'Montserrat',sans-serif!important;font-size:11px!important;letter-spacing:2px!important;text-align:center!important;padding:24px!important;}
 
-    /* LOADING */
-    #copy-loading{color:rgba(255,255,255,0.4)!important;font-family:'Montserrat',sans-serif!important;font-size:10px!important;letter-spacing:3px!important;text-transform:uppercase!important;}
+/* THEME BUTTONS (flyer builder) */
+.theme-btn{border:1px solid rgba(255,255,255,0.1)!important;border-radius:0!important;padding:10px!important;cursor:pointer!important;background:rgba(255,255,255,0.02)!important;}
+.theme-btn.active{border-color:#e85d26!important;outline:1px solid #e85d26!important;}
+.theme-btn span,.theme-btn small{color:rgba(255,255,255,0.45)!important;font-family:'Montserrat',sans-serif!important;font-size:9px!important;letter-spacing:1px!important;}
 
-    /* UPLOAD AREAS */
-    .upload-wrap,.upload-zone,.photo-upload{background:rgba(255,255,255,0.03)!important;border:1px dashed rgba(255,255,255,0.1)!important;border-radius:0!important;color:rgba(255,255,255,0.3)!important;}
-    .upload-wrap:hover,.upload-zone:hover{border-color:#e85d26!important;}
-    .upload-label{color:rgba(255,255,255,0.3)!important;font-family:'Montserrat',sans-serif!important;font-size:10px!important;letter-spacing:2px!important;}
+/* UPLOAD AREAS */
+.upload-area{background:rgba(255,255,255,0.02)!important;border:1px dashed rgba(255,255,255,0.12)!important;border-radius:0!important;color:rgba(255,255,255,0.35)!important;font-family:'Montserrat',sans-serif!important;font-size:11px!important;text-align:center!important;padding:20px!important;cursor:pointer!important;}
+.upload-area:hover{border-color:rgba(255,255,255,0.25)!important;background:rgba(255,255,255,0.04)!important;}
+.upload-area p,.upload-area small{color:rgba(255,255,255,0.3)!important;}
 
-    /* CTA BAR */
-    .cta-bar{background:#111!important;border-top:1px solid rgba(255,255,255,0.06)!important;}
-    .cta-bar p,.cta-bar span{color:rgba(255,255,255,0.5)!important;font-family:'Montserrat',sans-serif!important;}
-    .cta-bar a,.cta-bar strong{color:#e85d26!important;}
+/* DOWNLOAD BUTTON */
+.download-btn{background:#e85d26!important;color:#fff!important;border:none!important;border-radius:0!important;font-family:'Montserrat',sans-serif!important;letter-spacing:2px!important;text-transform:uppercase!important;font-size:11px!important;padding:14px 24px!important;cursor:pointer!important;}
 
-    /* FOOTER */
-    .hub-footer,footer{background:#0d0d0d!important;border-top:1px solid rgba(255,255,255,0.06)!important;color:rgba(255,255,255,0.25)!important;font-family:'Montserrat',sans-serif!important;font-size:10px!important;letter-spacing:2px!important;}
-    .hub-footer a,footer a{color:#e85d26!important;}
+/* BOOK CTA / CONTACT BAR */
+.book-cta{background:#111!important;border-top:1px solid rgba(255,255,255,0.06)!important;padding:40px 24px!important;text-align:center!important;}
+.book-cta h3{color:#fff!important;font-family:'Montserrat',sans-serif!important;font-size:11px!important;letter-spacing:4px!important;text-transform:uppercase!important;margin-bottom:10px!important;}
+.book-cta p,.book-cta a{color:rgba(255,255,255,0.4)!important;font-size:13px!important;}
+.book-cta a:hover{color:#e85d26!important;}
+.cta-bar{background:#0d0d0d!important;border-top:1px solid rgba(255,255,255,0.06)!important;padding:32px 24px!important;text-align:center!important;}
 
-    /* FLYER OUTPUT */
-    #flyer-output{background:#111!important;border:1px solid rgba(255,255,255,0.07)!important;border-radius:0!important;}
-    #flyer-output h3{color:#fff!important;font-family:'Montserrat',sans-serif!important;letter-spacing:3px!important;text-transform:uppercase!important;}
+/* SUBSCRIBER / POWERED */
+.subscriber-bar{background:rgba(255,255,255,0.02)!important;border-top:1px solid rgba(255,255,255,0.06)!important;color:rgba(255,255,255,0.4)!important;font-size:11px!important;}
+.powered{color:rgba(255,255,255,0.2)!important;font-size:10px!important;}
 
-    /* MARKET ANALYTICS LINK */
-    #market-analytics-btn,button[onclick*="MarketAnalytics"],button[onclick*="marketAnalytics"]{
-      background:transparent!important;color:rgba(255,255,255,0.5)!important;
-      border:1px solid rgba(255,255,255,0.1)!important;
-      font-family:'Montserrat',sans-serif!important;letter-spacing:3px!important;
-      text-transform:uppercase!important;border-radius:0!important;
-    }
+/* FOOTER */
+footer,#footer,.footer{background:#0d0d0d!important;color:rgba(255,255,255,0.35)!important;border-top:1px solid rgba(255,255,255,0.06)!important;font-size:11px!important;}
 
-    /* SCROLLBAR */
-    ::-webkit-scrollbar{width:4px;}
-    ::-webkit-scrollbar-track{background:#0d0d0d;}
-    ::-webkit-scrollbar-thumb{background:#333;}
-    ::-webkit-scrollbar-thumb:hover{background:#e85d26;}
+/* GATE / PAYWALL */
+.gate-left{background:#0d0d0d!important;}
+.gate-right{background:#111!important;}
+.paywall-wrap,.paywall-card{background:#111!important;border:1px solid rgba(255,255,255,0.07)!important;}
 
-    /* MISC */
-    hr{border-color:rgba(255,255,255,0.06)!important;}
-    .divider{background:rgba(255,255,255,0.06)!important;}
-    strong{color:#fff!important;}
-    h1,h2,h3,h4{font-family:'Montserrat',sans-serif!important;}
-    p{font-family:'Montserrat',sans-serif!important;}
-
-    /* GENERATE FLYER BUTTON */
-    #generate-flyer-btn,button[onclick*="generateFlyer"],button[onclick*="Flyer"]{
-      background:#e85d26!important;color:#fff!important;border:none!important;
-      font-family:'Montserrat',sans-serif!important;letter-spacing:3px!important;
-      text-transform:uppercase!important;border-radius:0!important;
-    }
-
-    /* IMAGE PREVIEWS */
-    #preview1,#preview2,#preview3{border:1px solid rgba(255,255,255,0.08)!important;}
-
-    /* FLYER CANVAS AREA */
-    #flyer-canvas{border:1px solid rgba(255,255,255,0.07)!important;}
-
-    /* SUBSCRIBE/PAYWALL BUTTONS */
-    button[onclick*="paypal"],button[onclick*="subscribe"],
-    .subscribe-btn,.paywall-btn{
-      background:#e85d26!important;border-radius:0!important;
-      font-family:'Montserrat',sans-serif!important;letter-spacing:2px!important;
-    }
-
-    /* FLYER DOWNLOAD BTN */
-    button[onclick*="downloadFlyer"]{
-      background:transparent!important;border:1px solid rgba(255,255,255,0.2)!important;
-      color:#fff!important;font-family:'Montserrat',sans-serif!important;
-      letter-spacing:3px!important;text-transform:uppercase!important;border-radius:0!important;
-    }
-    button[onclick*="downloadFlyer"]:hover{border-color:#e85d26!important;color:#e85d26!important;}
-  </style>
+/* FLYER CANVAS AREA */
+#flyer-output{background:var(--bg)!important;}
+</style>
 </head>
 <body>
 
@@ -428,10 +345,10 @@ textarea { resize: none; }
         <div class="mock-grid">
           <div class="mock-field"><div class="mock-field-label">Address</div><div class="mock-input">123 Peachtree St NE</div></div>
           <div class="mock-field"><div class="mock-field-label">Price</div><div class="mock-input">$1,250,000</div></div>
-          <div class="mock-field"><div class="mock-field-label">Beds</div><div class="mock-input">5 Beds â¼</div></div>
-          <div class="mock-field"><div class="mock-field-label">Baths</div><div class="mock-input">4 Baths â¼</div></div>
+          <div class="mock-field"><div class="mock-field-label">Beds</div><div class="mock-input">5 Beds Ã¢ÂÂ¼</div></div>
+          <div class="mock-field"><div class="mock-field-label">Baths</div><div class="mock-input">4 Baths Ã¢ÂÂ¼</div></div>
         </div>
-        <div class="mock-field"><div class="mock-field-label">Occasion</div><div class="mock-input" style="color:#111;background:#fff;border-color:#ddd;">New Listing â</div></div>
+        <div class="mock-field"><div class="mock-field-label">Occasion</div><div class="mock-input" style="color:#111;background:#fff;border-color:#ddd;">New Listing Ã¢ÂÂ</div></div>
         <div class="mock-btn">Generate My Listing Copy</div>
         <div class="mock-result">
           <div class="mock-result-header"><span class="mock-result-label">MLS Description</span><span class="mock-result-copy">Copy</span></div>
@@ -444,10 +361,10 @@ textarea { resize: none; }
       <div class="screen-body">
         <div class="mock-section-title">Format</div>
         <div class="mock-options">
-          <div class="mock-opt sel">4Ã9 Door Hanger</div>
-          <div class="mock-opt">9Ã16 Story</div>
-          <div class="mock-opt">1Ã1 Square</div>
-          <div class="mock-opt">8.5Ã11 Print</div>
+          <div class="mock-opt sel">4ÃÂ9 Door Hanger</div>
+          <div class="mock-opt">9ÃÂ16 Story</div>
+          <div class="mock-opt">1ÃÂ1 Square</div>
+          <div class="mock-opt">8.5ÃÂ11 Print</div>
         </div>
         <div class="mock-section-title">Color Theme</div>
         <div class="mock-themes">
@@ -530,14 +447,14 @@ textarea { resize: none; }
           <div>
             <div class="field-label">Bedrooms</div>
             <div class="dd-wrap">
-              <button class="dd-btn" id="bed-btn" onclick="toggleDD('bed')"><span id="bed-label">4 Beds</span><span class="dd-arrow">â¼</span></button>
+              <button class="dd-btn" id="bed-btn" onclick="toggleDD('bed')"><span id="bed-label">4 Beds</span><span class="dd-arrow">Ã¢ÂÂ¼</span></button>
               <div class="dd-list" id="bed-list"></div>
             </div>
           </div>
           <div>
             <div class="field-label">Bathrooms</div>
             <div class="dd-wrap">
-              <button class="dd-btn" id="bath-btn" onclick="toggleDD('bath')"><span id="bath-label">3 Baths</span><span class="dd-arrow">â¼</span></button>
+              <button class="dd-btn" id="bath-btn" onclick="toggleDD('bath')"><span id="bath-label">3 Baths</span><span class="dd-arrow">Ã¢ÂÂ¼</span></button>
               <div class="dd-list" id="bath-list"></div>
             </div>
           </div>
@@ -589,24 +506,24 @@ textarea { resize: none; }
         <h3 style="margin-bottom:6px;">Format</h3>
         <p>Choose your flyer size.</p>
         <div class="option-grid-4">
-          <button class="opt-btn active" onclick="setFormat(this)" data-w="1200" data-h="2700" data-max="3">4Ã9<br><span style="font-size:10px;opacity:0.7;">Door Hanger</span></button>
-          <button class="opt-btn" onclick="setFormat(this)" data-w="1080" data-h="1920" data-max="2">9Ã16<br><span style="font-size:10px;opacity:0.7;">Story</span></button>
-          <button class="opt-btn" onclick="setFormat(this)" data-w="1080" data-h="1080" data-max="2">1Ã1<br><span style="font-size:10px;opacity:0.7;">Square Post</span></button>
-          <button class="opt-btn" onclick="setFormat(this)" data-w="2550" data-h="3300" data-max="3">8.5Ã11<br><span style="font-size:10px;opacity:0.7;">Print</span></button>
+          <button class="opt-btn active" onclick="setFormat(this)" data-w="1200" data-h="2700" data-max="3">4ÃÂ9<br><span style="font-size:10px;opacity:0.7;">Door Hanger</span></button>
+          <button class="opt-btn" onclick="setFormat(this)" data-w="1080" data-h="1920" data-max="2">9ÃÂ16<br><span style="font-size:10px;opacity:0.7;">Story</span></button>
+          <button class="opt-btn" onclick="setFormat(this)" data-w="1080" data-h="1080" data-max="2">1ÃÂ1<br><span style="font-size:10px;opacity:0.7;">Square Post</span></button>
+          <button class="opt-btn" onclick="setFormat(this)" data-w="2550" data-h="3300" data-max="3">8.5ÃÂ11<br><span style="font-size:10px;opacity:0.7;">Print</span></button>
         </div>
         <h3 style="margin-bottom:6px;">Color Theme</h3>
         <p>Choose a look for your flyer.</p>
         <div class="option-grid-2" style="margin-bottom:20px;">
-          <button class="theme-btn theme-classic active" onclick="setTheme(this,'classic')">Classic<br><span style="font-size:11px;opacity:0.6;">White Â· Clean Â· Minimal</span></button>
-          <button class="theme-btn theme-dark" onclick="setTheme(this,'dark')">Dark<br><span style="font-size:11px;opacity:0.6;">Black Â· Bold Â· Dramatic</span></button>
-          <button class="theme-btn theme-warm" onclick="setTheme(this,'warm')">Warm<br><span style="font-size:11px;opacity:0.6;">Cream Â· Soft Â· Elegant</span></button>
-          <button class="theme-btn theme-bold" onclick="setTheme(this,'bold')">Navy Â· Sharp Â· Premium</button>
+          <button class="theme-btn theme-classic active" onclick="setTheme(this,'classic')">Classic<br><span style="font-size:11px;opacity:0.6;">White ÃÂ· Clean ÃÂ· Minimal</span></button>
+          <button class="theme-btn theme-dark" onclick="setTheme(this,'dark')">Dark<br><span style="font-size:11px;opacity:0.6;">Black ÃÂ· Bold ÃÂ· Dramatic</span></button>
+          <button class="theme-btn theme-warm" onclick="setTheme(this,'warm')">Warm<br><span style="font-size:11px;opacity:0.6;">Cream ÃÂ· Soft ÃÂ· Elegant</span></button>
+          <button class="theme-btn theme-bold" onclick="setTheme(this,'bold')">Navy ÃÂ· Sharp ÃÂ· Premium</button>
         </div>
         <h3 style="margin-bottom:6px;">Typography</h3>
         <p>Choose your text style.</p>
         <div class="option-grid-2">
-          <button class="opt-btn active" onclick="setTypo(this)" data-font="Georgia">Serif<br><span style="font-size:11px;opacity:0.6;">Classic Â· Elegant</span></button>
-          <button class="opt-btn" onclick="setTypo(this)" data-font="Arial">Sans-serif<br><span style="font-size:11px;opacity:0.6;">Clean Â· Modern</span></button>
+          <button class="opt-btn active" onclick="setTypo(this)" data-font="Georgia">Serif<br><span style="font-size:11px;opacity:0.6;">Classic ÃÂ· Elegant</span></button>
+          <button class="opt-btn" onclick="setTypo(this)" data-font="Arial">Sans-serif<br><span style="font-size:11px;opacity:0.6;">Clean ÃÂ· Modern</span></button>
         </div>
         <h3 style="margin-bottom:6px;">Divider Line</h3>
         <p>Accent between photo and text.</p>
@@ -664,14 +581,14 @@ textarea { resize: none; }
           <div>
             <div class="field-label">Bedrooms</div>
             <div class="dd-wrap">
-              <button class="dd-btn" id="fl-bed-btn" onclick="toggleDD('fl-bed')"><span id="fl-bed-label">4 Beds</span><span class="dd-arrow">â¼</span></button>
+              <button class="dd-btn" id="fl-bed-btn" onclick="toggleDD('fl-bed')"><span id="fl-bed-label">4 Beds</span><span class="dd-arrow">Ã¢ÂÂ¼</span></button>
               <div class="dd-list" id="fl-bed-list"></div>
             </div>
           </div>
           <div>
             <div class="field-label">Bathrooms</div>
             <div class="dd-wrap">
-              <button class="dd-btn" id="fl-bath-btn" onclick="toggleDD('fl-bath')"><span id="fl-bath-label">3 Baths</span><span class="dd-arrow">â¼</span></button>
+              <button class="dd-btn" id="fl-bath-btn" onclick="toggleDD('fl-bath')"><span id="fl-bath-label">3 Baths</span><span class="dd-arrow">Ã¢ÂÂ¼</span></button>
               <div class="dd-list" id="fl-bath-list"></div>
             </div>
           </div>
@@ -704,7 +621,7 @@ textarea { resize: none; }
   <p>Already a subscriber? Get 5% off your next shoot.</p>
   <span>Email qualitycapturevisuals@gmail.com with your subscription confirmation to claim your discount.</span>
 </div>
-<div class="powered">Â© 2026 Quality Capture Visuals Â· qualitycapturevisuals.com Â· All rights reserved.</div>
+<div class="powered">ÃÂ© 2026 Quality Capture Visuals ÃÂ· qualitycapturevisuals.com ÃÂ· All rights reserved.</div>
 
 <script src="https://www.paypal.com/sdk/js?client-id=AYl6LFRknGsNeJaIUOQYgZ-QUIfaQ8p5ABFit39YllonJNujySTlLgCZAkiWjj3MP_3gHhfqXHQ8Ply-&vault=true&intent=subscription" data-sdk-integration-source="button-factory"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
@@ -791,7 +708,7 @@ function wrapText(ctx,text,x,y,maxW,lineH,maxLines){var words=text.split(' '),li
 function drawDivider(ctx,t,y){if(selectedDivider==='none')return;ctx.strokeStyle=t.divider;ctx.lineWidth=Math.round(selectedW*0.002);if(selectedDivider==='solid'||selectedDivider==='double'){ctx.beginPath();ctx.moveTo(0,y);ctx.lineTo(selectedW,y);ctx.stroke();}if(selectedDivider==='double'){var gap=Math.round(selectedW*0.008);ctx.beginPath();ctx.moveTo(0,y+gap);ctx.lineTo(selectedW,y+gap);ctx.stroke();}}
 function getPhotoHeight(){var r=selectedW/selectedH;if(r<0.5)return Math.round(selectedH*0.52);if(r<0.7)return Math.round(selectedH*0.55);return Math.round(selectedH*0.58);}
 function generateFlyer(){if(!uploadedPhoto1){alert('Please upload at least one photo.');return;}if(photoCount>=2&&!uploadedPhoto2){alert('Please upload photo 2.');return;}if(photoCount>=3&&!uploadedPhoto3){alert('Please upload photo 3.');return;}var headline=document.getElementById('fl-headline').value||selectedOccasion,address=document.getElementById('fl-address').value,price=document.getElementById('fl-price').value,beds=selectedFlBeds+' bed / '+selectedFlBaths+' bath',sqft=document.getElementById('fl-sqft').value,agent=document.getElementById('fl-agent').value,phone=document.getElementById('fl-phone').value,brokerage=document.getElementById('fl-brokerage').value,qrUrl=document.getElementById('fl-qr').value.trim(),t=themes[selectedTheme];var canvas=document.getElementById('flyer-canvas');canvas.width=selectedW;canvas.height=selectedH;canvas.style.maxWidth='400px';canvas.style.height='auto';var ctx=canvas.getContext('2d');ctx.imageSmoothingEnabled=true;ctx.imageSmoothingQuality='high';ctx.fillStyle=t.bg;ctx.fillRect(0,0,selectedW,selectedH);var photoH=getPhotoHeight(),pad=Math.round(selectedW*0.07),borderPad=Math.round(selectedW*0.04),gap=6,loadCount=0,totalPhotos=photoCount,imgs=[null,null,null];function onImgLoad(idx,src){var img=new Image();img.onload=function(){imgs[idx]=img;loadCount++;if(loadCount===totalPhotos)renderFlyer();};img.src=src;}onImgLoad(0,uploadedPhoto1);if(photoCount>=2)onImgLoad(1,uploadedPhoto2);if(photoCount>=3)onImgLoad(2,uploadedPhoto3);function renderFlyer(){if(photoCount===1){if(selectedPhotoLayout==='single-full'){drawCover(ctx,imgs[0],0,0,selectedW,photoH);}else{drawCover(ctx,imgs[0],borderPad,borderPad,selectedW-borderPad*2,photoH-borderPad*2);}}else if(photoCount===2){if(selectedPhotoLayout==='double-side'){drawCover(ctx,imgs[0],0,0,(selectedW-gap)/2,photoH);drawCover(ctx,imgs[1],(selectedW+gap)/2,0,(selectedW-gap)/2,photoH);}else if(selectedPhotoLayout==='double-hero'){var hH=Math.round(photoH*0.65),aH=photoH-hH-gap;drawCover(ctx,imgs[0],0,0,selectedW,hH);drawCover(ctx,imgs[1],0,hH+gap,selectedW,aH);}else if(selectedPhotoLayout==='double-left'){var lW=Math.round(selectedW*0.62);drawCover(ctx,imgs[0],0,0,lW-gap,photoH);drawCover(ctx,imgs[1],lW,0,selectedW-lW,photoH);}else{var hfH=Math.round(photoH/2)-Math.round(gap/2);drawCover(ctx,imgs[0],0,0,selectedW,hfH);drawCover(ctx,imgs[1],0,hfH+gap,selectedW,hfH);}}else if(photoCount===3){var tH=Math.round(photoH*0.6),bH=photoH-tH-gap,hW=Math.round((selectedW-gap)/2);drawCover(ctx,imgs[0],0,0,selectedW,tH);drawCover(ctx,imgs[1],0,tH+gap,hW,bH);drawCover(ctx,imgs[2],hW+gap,tH+gap,selectedW-hW-gap,bH);}drawDivider(ctx,t,photoH);renderTextBlock(ctx,t,pad,photoH,headline,address,price,beds,sqft,agent,phone,brokerage,qrUrl);}}
-function renderTextBlock(ctx,t,pad,photoH,headline,address,price,beds,sqft,agent,phone,brokerage,qrUrl){var textAreaH=selectedH-photoH,fs=Math.min(Math.round(selectedW*0.042),Math.round(textAreaH*0.08)),lh=Math.round(fs*1.45),y=photoH+pad,bottomReserve=Math.round(selectedH*0.10),maxY=selectedH-bottomReserve,qrSize=Math.round(selectedW*0.16),maxW=selectedW-pad*2;if(qrUrl)maxW=selectedW-pad*2-qrSize-pad;function fits(ny){return ny<maxY;}ctx.fillStyle=t.accent;ctx.font='bold '+Math.round(fs*0.6)+'px '+selectedFont;if(fits(y)){ctx.fillText(selectedOccasion.toUpperCase(),pad,y);y+=Math.round(lh*0.8);}ctx.fillStyle=t.text;ctx.font='bold '+fs+'px '+selectedFont;var mhl=Math.max(1,Math.min(3,Math.floor((maxY-y-lh*4)/lh)));if(fits(y)){var hl=wrapText(ctx,headline,pad,y,maxW,lh,mhl);y+=hl*lh+Math.round(lh*0.15);}if(price&&fits(y)){ctx.fillStyle=t.text;ctx.font='bold '+Math.round(fs*0.98)+'px '+selectedFont;ctx.fillText(price,pad,y);y+=Math.round(lh*1.05);}ctx.fillStyle=t.sub;ctx.font=Math.round(fs*0.68)+'px '+selectedFont;if(address&&fits(y)){ctx.fillText(address,pad,y);y+=Math.round(lh*0.88);}var details=[beds,sqft].filter(Boolean).join('   Â·   ');if(details&&fits(y)){ctx.fillText(details,pad,y);y+=Math.round(lh*1.0);}ctx.fillStyle=t.text;ctx.font='bold '+Math.round(fs*0.7)+'px '+selectedFont;if(agent&&fits(y)){ctx.fillText(agent,pad,y);y+=Math.round(lh*0.82);}ctx.fillStyle=t.sub;ctx.font=Math.round(fs*0.6)+'px '+selectedFont;if(brokerage&&fits(y)){ctx.fillText(brokerage,pad,y);y+=Math.round(lh*0.75);}if(phone&&fits(y)){ctx.fillText(phone,pad,y);}if(qrUrl){try{var qrCanvas=generateQR(qrUrl,qrSize),qrX=selectedW-pad-qrSize,qrY=photoH+pad;ctx.fillStyle='#ffffff';ctx.fillRect(qrX-6,qrY-6,qrSize+12,qrSize+12);ctx.drawImage(qrCanvas,qrX,qrY,qrSize,qrSize);ctx.fillStyle=t.sub;ctx.font=Math.round(selectedW*0.017)+'px '+selectedFont;ctx.textAlign='center';ctx.fillText('Scan to view',qrX+qrSize/2,qrY+qrSize+Math.round(selectedW*0.022));ctx.textAlign='left';}catch(e){}}
+function renderTextBlock(ctx,t,pad,photoH,headline,address,price,beds,sqft,agent,phone,brokerage,qrUrl){var textAreaH=selectedH-photoH,fs=Math.min(Math.round(selectedW*0.042),Math.round(textAreaH*0.08)),lh=Math.round(fs*1.45),y=photoH+pad,bottomReserve=Math.round(selectedH*0.10),maxY=selectedH-bottomReserve,qrSize=Math.round(selectedW*0.16),maxW=selectedW-pad*2;if(qrUrl)maxW=selectedW-pad*2-qrSize-pad;function fits(ny){return ny<maxY;}ctx.fillStyle=t.accent;ctx.font='bold '+Math.round(fs*0.6)+'px '+selectedFont;if(fits(y)){ctx.fillText(selectedOccasion.toUpperCase(),pad,y);y+=Math.round(lh*0.8);}ctx.fillStyle=t.text;ctx.font='bold '+fs+'px '+selectedFont;var mhl=Math.max(1,Math.min(3,Math.floor((maxY-y-lh*4)/lh)));if(fits(y)){var hl=wrapText(ctx,headline,pad,y,maxW,lh,mhl);y+=hl*lh+Math.round(lh*0.15);}if(price&&fits(y)){ctx.fillStyle=t.text;ctx.font='bold '+Math.round(fs*0.98)+'px '+selectedFont;ctx.fillText(price,pad,y);y+=Math.round(lh*1.05);}ctx.fillStyle=t.sub;ctx.font=Math.round(fs*0.68)+'px '+selectedFont;if(address&&fits(y)){ctx.fillText(address,pad,y);y+=Math.round(lh*0.88);}var details=[beds,sqft].filter(Boolean).join('   ÃÂ·   ');if(details&&fits(y)){ctx.fillText(details,pad,y);y+=Math.round(lh*1.0);}ctx.fillStyle=t.text;ctx.font='bold '+Math.round(fs*0.7)+'px '+selectedFont;if(agent&&fits(y)){ctx.fillText(agent,pad,y);y+=Math.round(lh*0.82);}ctx.fillStyle=t.sub;ctx.font=Math.round(fs*0.6)+'px '+selectedFont;if(brokerage&&fits(y)){ctx.fillText(brokerage,pad,y);y+=Math.round(lh*0.75);}if(phone&&fits(y)){ctx.fillText(phone,pad,y);}if(qrUrl){try{var qrCanvas=generateQR(qrUrl,qrSize),qrX=selectedW-pad-qrSize,qrY=photoH+pad;ctx.fillStyle='#ffffff';ctx.fillRect(qrX-6,qrY-6,qrSize+12,qrSize+12);ctx.drawImage(qrCanvas,qrX,qrY,qrSize,qrSize);ctx.fillStyle=t.sub;ctx.font=Math.round(selectedW*0.017)+'px '+selectedFont;ctx.textAlign='center';ctx.fillText('Scan to view',qrX+qrSize/2,qrY+qrSize+Math.round(selectedW*0.022));ctx.textAlign='left';}catch(e){}}
 if(uploadedLogo){var logoImg=new Image();logoImg.onload=function(){var maxLogoW=Math.round(selectedW*0.28),maxLogoH=Math.round(selectedH*0.06),logoAspect=logoImg.width/logoImg.height,logoW,logoH;if(logoAspect>maxLogoW/maxLogoH){logoW=maxLogoW;logoH=Math.round(maxLogoW/logoAspect);}else{logoH=maxLogoH;logoW=Math.round(maxLogoH*logoAspect);}ctx.drawImage(logoImg,pad,selectedH-Math.round(selectedH*0.04)-logoH,logoW,logoH);};logoImg.src=uploadedLogo;}else{ctx.fillStyle=t.sub;ctx.font=Math.round(selectedW*0.018)+'px '+selectedFont;ctx.fillText('Powered by Quality Capture Visuals',pad,selectedH-Math.round(selectedW*0.02));}
 document.getElementById('flyer-output').style.display='block';document.getElementById('flyer-output').scrollIntoView({behavior:'smooth'});}
 function generateQR(url,size){var div=document.createElement('div');new QRCode(div,{text:url,width:size,height:size,correctLevel:QRCode.CorrectLevel.M});return div.querySelector('canvas');}

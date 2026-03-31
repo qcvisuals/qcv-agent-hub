@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>QCV Agent Hub â Marketing Tools for Real Estate Professionals</title>
+<title>QCV Agent Hub — Marketing Tools for Real Estate Professionals</title>
 <style>
 * { box-sizing: border-box; margin: 0; padding: 0; }
 body { font-family: Georgia, serif; background: #f5f5f3; color: #1a1a1a; }
@@ -240,7 +240,7 @@ footer,#footer,.footer{background:#0d0d0d!important;color:rgba(255,255,255,0.35)
     </div>
     <h1>QCV <span>Agent Hub</span></h1>
   </div>
-  <a href="https://qualitycapturevisuals.com" target="_blank" class="header-link">qualitycapturevisuals.com â</a>
+  <a href="https://qualitycapturevisuals.com" target="_blank" class="header-link">qualitycapturevisuals.com →</a>
 </div>
 
 <div id="gate">
@@ -313,7 +313,7 @@ footer,#footer,.footer{background:#0d0d0d!important;color:rgba(255,255,255,0.35)
     <div class="gate-left-inner">
       <div class="gate-qcv">QCV</div>
       <h1 class="gate-headline">AGENT<br>HUB</h1>
-      <p class="gate-subtext">MLS copy, social captions, client emails, and branded flyers â <strong>generated in under 30 seconds.</strong> Efficient marketing, at your hands.</p>
+      <p class="gate-subtext">MLS copy, social captions, client emails, and branded flyers — <strong>generated in under 30 seconds.</strong> Efficient marketing, at your hands.</p>
       <div class="gate-features-list">
         <div class="gate-feature-item"><div class="gate-check"><svg width="11" height="11" viewBox="0 0 12 12"><polyline points="2,6 5,9 10,3" stroke="white" stroke-width="1.5" fill="none"/></svg></div>AI-generated MLS copy ready to paste</div>
         <div class="gate-feature-item"><div class="gate-check"><svg width="11" height="11" viewBox="0 0 12 12"><polyline points="2,6 5,9 10,3" stroke="white" stroke-width="1.5" fill="none"/></svg></div>Instagram & Facebook captions instantly</div>
@@ -387,7 +387,7 @@ footer,#footer,.footer{background:#0d0d0d!important;color:rgba(255,255,255,0.35)
     </div>
   </div>
   <div class="preview-cta">
-    <button class="preview-cta-btn" onclick="window.scrollTo({top:0,behavior:'smooth'});">Get Started Free â 30 Days On Us</button>
+    <button class="preview-cta-btn" onclick="window.scrollTo({top:0,behavior:'smooth'});">Get Started Free — 30 Days On Us</button>
     <div class="preview-cta-sub">Then $12/month. Cancel anytime.</div>
   </div>
 </div>
@@ -398,14 +398,14 @@ footer,#footer,.footer{background:#0d0d0d!important;color:rgba(255,255,255,0.35)
     <div class="paywall-card">
       <div class="paywall-badge">Trial Ended</div>
       <h2>Your free trial has ended</h2>
-      <p>Subscribe to continue using QCV Agent Hub â your all-in-one listing marketing toolkit.</p>
+      <p>Subscribe to continue using QCV Agent Hub — your all-in-one listing marketing toolkit.</p>
       <div class="paywall-price">$12 <span>/ month</span></div>
       <div class="paywall-trial-note">Cancel anytime. No contracts.</div>
       <div class="paywall-features">
         <p>MLS descriptions generated in seconds</p>
         <p>Instagram & Facebook captions ready to post</p>
         <p>Client email copy, done</p>
-        <p>Professional flyer builder â 4 formats, 4 themes</p>
+        <p>Professional flyer builder — 4 formats, 4 themes</p>
         <p>Logo upload on every flyer</p>
         <p>QR codes tied to your listing</p>
         <p>Cancel anytime</p>
@@ -421,7 +421,7 @@ footer,#footer,.footer{background:#0d0d0d!important;color:rgba(255,255,255,0.35)
   <div id="trial-banner-wrap"></div>
   <div class="hero">
     <h2>Your Agent Marketing Hub</h2>
-    <p>Everything you need to market your listings â copy, captions, emails, and flyers.</p>
+    <p>Everything you need to market your listings — copy, captions, emails, and flyers.</p>
   </div>
   <div class="tools-nav">
     <button class="tool-tab active" onclick="switchTool('copy', this)">Listing Copy Generator</button>
@@ -468,7 +468,7 @@ footer,#footer,.footer{background:#0d0d0d!important;color:rgba(255,255,255,0.35)
           </div>
         </div>
         <button class="btn" id="copy-btn" onclick="generateCopy()">Generate My Listing Copy</button>
-        <button class="transfer-btn" onclick="goToFlyer()">Use these details in the Flyer Builder â</button>
+        <button class="transfer-btn" onclick="goToFlyer()">Use these details in the Flyer Builder →</button>
       </div>
       <div class="loading" id="copy-loading">Writing your listing copy...</div>
       <div class="results" id="copy-results">
@@ -488,7 +488,7 @@ footer,#footer,.footer{background:#0d0d0d!important;color:rgba(255,255,255,0.35)
           <p>Want photos that match your copy? Quality Capture Visuals.</p>
           <a href="https://qualitycapturevisuals.com/contact-us">Contact Us</a>
         </div>
-        <button class="transfer-btn" style="margin-top:12px;" onclick="goToFlyer()">Now build your flyer â</button>
+        <button class="transfer-btn" style="margin-top:12px;" onclick="goToFlyer()">Now build your flyer →</button>
       </div>
     </div>
     <div id="tool-flyer" class="tool-panel">
@@ -634,7 +634,7 @@ function trialExpired(){var d=getTrialData();if(!d)return false;return(Date.now(
 function isSubscribed(){return localStorage.getItem('qcv_subscribed')==='true';}
 function checkAccess(){if(!getTrialData()&&!isSubscribed()){show('gate');return;}if(isSubscribed()){showMain();return;}if(trialExpired()){showPaywall();return;}showMain();}
 function show(id){['gate','main-content','paywall'].forEach(function(i){document.getElementById(i).style.display=i===id?'block':'none';});}
-function showMain(){show('main-content');var days=trialDaysLeft();if(!isSubscribed()&&days>0){document.getElementById('trial-banner-wrap').innerHTML='<div class="trial-banner"><strong>'+days+' day'+(days===1?'':'s')+' left in your free trial.</strong> Subscribe now to keep access â $12/month.</div>';}}
+function showMain(){show('main-content');var days=trialDaysLeft();if(!isSubscribed()&&days>0){document.getElementById('trial-banner-wrap').innerHTML='<div class="trial-banner"><strong>'+days+' day'+(days===1?'':'s')+' left in your free trial.</strong> Subscribe now to keep access — $12/month.</div>';}}
 function showPaywall(){show('paywall');if(window.paypal){var c=document.getElementById('paypal-button-container-P-8JH0204284127310MNHBVAPI');if(c&&c.children.length===0){paypal.Buttons({style:{shape:'pill',color:'blue',layout:'vertical',label:'subscribe'},createSubscription:function(data,actions){return actions.subscription.create({plan_id:'P-8JH0204284127310MNHBVAPI'});},onApprove:function(data){localStorage.setItem('qcv_subscribed','true');localStorage.setItem('qcv_subscription_id',data.subscriptionID);showMain();}}).render('#paypal-button-container-P-8JH0204284127310MNHBVAPI');}}}
 function unlock(){var n=document.getElementById('gname').value.trim(),e=document.getElementById('gemail').value.trim();if(!n||!e){alert('Please enter your name and email.');return;}if(e.indexOf('@')<0){alert('Please enter a valid email.');return;}setTrialStart();fetch('https://formspree.io/f/mwvwekvj',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({name:n,email:e,source:'QCV Agent Hub - Trial Start'})});showMain();}
 function openVideoCreator(){openMarketAnalytics();}

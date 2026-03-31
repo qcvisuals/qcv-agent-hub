@@ -171,9 +171,9 @@ input::placeholder,textarea::placeholder{color:rgba(255,255,255,0.2)!important;}
 select option{background:#1a1a1a!important;color:#fff!important;}
 
 /* GENERATE / PRIMARY BUTTON */
-.btn,.full{background:#e85d26!important;color:#fff!important;border:none!important;border-radius:0!important;font-family:'Montserrat',sans-serif!important;letter-spacing:2px!important;text-transform:uppercase!important;font-size:11px!important;padding:14px 24px!important;cursor:pointer!important;width:100%!important;}
-.btn:hover,.full:hover{opacity:0.88!important;}
-.btn:disabled,.full:disabled{opacity:0.45!important;cursor:not-allowed!important;}
+button.btn,button.full,input[type=button].btn,input[type=submit].btn{background:#e85d26!important;color:#fff!important;border:none!important;border-radius:0!important;font-family:'Montserrat',sans-serif!important;letter-spacing:2px!important;text-transform:uppercase!important;font-size:11px!important;padding:14px 24px!important;cursor:pointer!important;width:100%!important;}
+button.btn:hover,button.full:hover{opacity:0.88!important;}
+button.btn:disabled,button.full:disabled{opacity:0.45!important;cursor:not-allowed!important;}
 
 /* TRANSFER / SECONDARY BUTTON */
 .transfer-btn{background:transparent!important;border:1px solid rgba(255,255,255,0.12)!important;color:rgba(255,255,255,0.45)!important;border-radius:0!important;font-family:'Montserrat',sans-serif!important;font-size:10px!important;letter-spacing:2px!important;text-transform:uppercase!important;padding:10px 18px!important;cursor:pointer!important;}
@@ -345,8 +345,8 @@ footer,#footer,.footer{background:#0d0d0d!important;color:rgba(255,255,255,0.35)
         <div class="mock-grid">
           <div class="mock-field"><div class="mock-field-label">Address</div><div class="mock-input">123 Peachtree St NE</div></div>
           <div class="mock-field"><div class="mock-field-label">Price</div><div class="mock-input">$1,250,000</div></div>
-          <div class="mock-field"><div class="mock-field-label">Beds</div><div class="mock-input">5 Beds Ã¢ÂÂ¼</div></div>
-          <div class="mock-field"><div class="mock-field-label">Baths</div><div class="mock-input">4 Baths Ã¢ÂÂ¼</div></div>
+          <div class="mock-field"><div class="mock-field-label">Beds</div><div class="mock-input">5 Beds ▼</div></div>
+          <div class="mock-field"><div class="mock-field-label">Baths</div><div class="mock-input">4 Baths ▼</div></div>
         </div>
         <div class="mock-field"><div class="mock-field-label">Occasion</div><div class="mock-input" style="color:#111;background:#fff;border-color:#ddd;">New Listing Ã¢ÂÂ</div></div>
         <div class="mock-btn">Generate My Listing Copy</div>
@@ -447,14 +447,14 @@ footer,#footer,.footer{background:#0d0d0d!important;color:rgba(255,255,255,0.35)
           <div>
             <div class="field-label">Bedrooms</div>
             <div class="dd-wrap">
-              <button class="dd-btn" id="bed-btn" onclick="toggleDD('bed')"><span id="bed-label">4 Beds</span><span class="dd-arrow">Ã¢ÂÂ¼</span></button>
+              <button class="dd-btn" id="bed-btn" onclick="toggleDD('bed')"><span id="bed-label">4 Beds</span><span class="dd-arrow">▼</span></button>
               <div class="dd-list" id="bed-list"></div>
             </div>
           </div>
           <div>
             <div class="field-label">Bathrooms</div>
             <div class="dd-wrap">
-              <button class="dd-btn" id="bath-btn" onclick="toggleDD('bath')"><span id="bath-label">3 Baths</span><span class="dd-arrow">Ã¢ÂÂ¼</span></button>
+              <button class="dd-btn" id="bath-btn" onclick="toggleDD('bath')"><span id="bath-label">3 Baths</span><span class="dd-arrow">▼</span></button>
               <div class="dd-list" id="bath-list"></div>
             </div>
           </div>
@@ -514,16 +514,16 @@ footer,#footer,.footer{background:#0d0d0d!important;color:rgba(255,255,255,0.35)
         <h3 style="margin-bottom:6px;">Color Theme</h3>
         <p>Choose a look for your flyer.</p>
         <div class="option-grid-2" style="margin-bottom:20px;">
-          <button class="theme-btn theme-classic active" onclick="setTheme(this,'classic')">Classic<br><span style="font-size:11px;opacity:0.6;">White ÃÂ· Clean ÃÂ· Minimal</span></button>
-          <button class="theme-btn theme-dark" onclick="setTheme(this,'dark')">Dark<br><span style="font-size:11px;opacity:0.6;">Black ÃÂ· Bold ÃÂ· Dramatic</span></button>
-          <button class="theme-btn theme-warm" onclick="setTheme(this,'warm')">Warm<br><span style="font-size:11px;opacity:0.6;">Cream ÃÂ· Soft ÃÂ· Elegant</span></button>
-          <button class="theme-btn theme-bold" onclick="setTheme(this,'bold')">Navy ÃÂ· Sharp ÃÂ· Premium</button>
+          <button class="theme-btn theme-classic active" onclick="setTheme(this,'classic')">Classic<br><span style="font-size:11px;opacity:0.6;">White Ã· Clean Ã· Minimal</span></button>
+          <button class="theme-btn theme-dark" onclick="setTheme(this,'dark')">Dark<br><span style="font-size:11px;opacity:0.6;">Black Ã· Bold Ã· Dramatic</span></button>
+          <button class="theme-btn theme-warm" onclick="setTheme(this,'warm')">Warm<br><span style="font-size:11px;opacity:0.6;">Cream Ã· Soft Ã· Elegant</span></button>
+          <button class="theme-btn theme-bold" onclick="setTheme(this,'bold')">Navy Ã· Sharp Ã· Premium</button>
         </div>
         <h3 style="margin-bottom:6px;">Typography</h3>
         <p>Choose your text style.</p>
         <div class="option-grid-2">
-          <button class="opt-btn active" onclick="setTypo(this)" data-font="Georgia">Serif<br><span style="font-size:11px;opacity:0.6;">Classic ÃÂ· Elegant</span></button>
-          <button class="opt-btn" onclick="setTypo(this)" data-font="Arial">Sans-serif<br><span style="font-size:11px;opacity:0.6;">Clean ÃÂ· Modern</span></button>
+          <button class="opt-btn active" onclick="setTypo(this)" data-font="Georgia">Serif<br><span style="font-size:11px;opacity:0.6;">Classic Ã· Elegant</span></button>
+          <button class="opt-btn" onclick="setTypo(this)" data-font="Arial">Sans-serif<br><span style="font-size:11px;opacity:0.6;">Clean Ã· Modern</span></button>
         </div>
         <h3 style="margin-bottom:6px;">Divider Line</h3>
         <p>Accent between photo and text.</p>
@@ -581,14 +581,14 @@ footer,#footer,.footer{background:#0d0d0d!important;color:rgba(255,255,255,0.35)
           <div>
             <div class="field-label">Bedrooms</div>
             <div class="dd-wrap">
-              <button class="dd-btn" id="fl-bed-btn" onclick="toggleDD('fl-bed')"><span id="fl-bed-label">4 Beds</span><span class="dd-arrow">Ã¢ÂÂ¼</span></button>
+              <button class="dd-btn" id="fl-bed-btn" onclick="toggleDD('fl-bed')"><span id="fl-bed-label">4 Beds</span><span class="dd-arrow">▼</span></button>
               <div class="dd-list" id="fl-bed-list"></div>
             </div>
           </div>
           <div>
             <div class="field-label">Bathrooms</div>
             <div class="dd-wrap">
-              <button class="dd-btn" id="fl-bath-btn" onclick="toggleDD('fl-bath')"><span id="fl-bath-label">3 Baths</span><span class="dd-arrow">Ã¢ÂÂ¼</span></button>
+              <button class="dd-btn" id="fl-bath-btn" onclick="toggleDD('fl-bath')"><span id="fl-bath-label">3 Baths</span><span class="dd-arrow">▼</span></button>
               <div class="dd-list" id="fl-bath-list"></div>
             </div>
           </div>
@@ -621,7 +621,7 @@ footer,#footer,.footer{background:#0d0d0d!important;color:rgba(255,255,255,0.35)
   <p>Already a subscriber? Get 5% off your next shoot.</p>
   <span>Email qualitycapturevisuals@gmail.com with your subscription confirmation to claim your discount.</span>
 </div>
-<div class="powered">ÃÂ© 2026 Quality Capture Visuals ÃÂ· qualitycapturevisuals.com ÃÂ· All rights reserved.</div>
+<div class="powered">ÃÂ© 2026 Quality Capture Visuals Ã· qualitycapturevisuals.com Ã· All rights reserved.</div>
 
 <script src="https://www.paypal.com/sdk/js?client-id=AYl6LFRknGsNeJaIUOQYgZ-QUIfaQ8p5ABFit39YllonJNujySTlLgCZAkiWjj3MP_3gHhfqXHQ8Ply-&vault=true&intent=subscription" data-sdk-integration-source="button-factory"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
@@ -708,7 +708,7 @@ function wrapText(ctx,text,x,y,maxW,lineH,maxLines){var words=text.split(' '),li
 function drawDivider(ctx,t,y){if(selectedDivider==='none')return;ctx.strokeStyle=t.divider;ctx.lineWidth=Math.round(selectedW*0.002);if(selectedDivider==='solid'||selectedDivider==='double'){ctx.beginPath();ctx.moveTo(0,y);ctx.lineTo(selectedW,y);ctx.stroke();}if(selectedDivider==='double'){var gap=Math.round(selectedW*0.008);ctx.beginPath();ctx.moveTo(0,y+gap);ctx.lineTo(selectedW,y+gap);ctx.stroke();}}
 function getPhotoHeight(){var r=selectedW/selectedH;if(r<0.5)return Math.round(selectedH*0.52);if(r<0.7)return Math.round(selectedH*0.55);return Math.round(selectedH*0.58);}
 function generateFlyer(){if(!uploadedPhoto1){alert('Please upload at least one photo.');return;}if(photoCount>=2&&!uploadedPhoto2){alert('Please upload photo 2.');return;}if(photoCount>=3&&!uploadedPhoto3){alert('Please upload photo 3.');return;}var headline=document.getElementById('fl-headline').value||selectedOccasion,address=document.getElementById('fl-address').value,price=document.getElementById('fl-price').value,beds=selectedFlBeds+' bed / '+selectedFlBaths+' bath',sqft=document.getElementById('fl-sqft').value,agent=document.getElementById('fl-agent').value,phone=document.getElementById('fl-phone').value,brokerage=document.getElementById('fl-brokerage').value,qrUrl=document.getElementById('fl-qr').value.trim(),t=themes[selectedTheme];var canvas=document.getElementById('flyer-canvas');canvas.width=selectedW;canvas.height=selectedH;canvas.style.maxWidth='400px';canvas.style.height='auto';var ctx=canvas.getContext('2d');ctx.imageSmoothingEnabled=true;ctx.imageSmoothingQuality='high';ctx.fillStyle=t.bg;ctx.fillRect(0,0,selectedW,selectedH);var photoH=getPhotoHeight(),pad=Math.round(selectedW*0.07),borderPad=Math.round(selectedW*0.04),gap=6,loadCount=0,totalPhotos=photoCount,imgs=[null,null,null];function onImgLoad(idx,src){var img=new Image();img.onload=function(){imgs[idx]=img;loadCount++;if(loadCount===totalPhotos)renderFlyer();};img.src=src;}onImgLoad(0,uploadedPhoto1);if(photoCount>=2)onImgLoad(1,uploadedPhoto2);if(photoCount>=3)onImgLoad(2,uploadedPhoto3);function renderFlyer(){if(photoCount===1){if(selectedPhotoLayout==='single-full'){drawCover(ctx,imgs[0],0,0,selectedW,photoH);}else{drawCover(ctx,imgs[0],borderPad,borderPad,selectedW-borderPad*2,photoH-borderPad*2);}}else if(photoCount===2){if(selectedPhotoLayout==='double-side'){drawCover(ctx,imgs[0],0,0,(selectedW-gap)/2,photoH);drawCover(ctx,imgs[1],(selectedW+gap)/2,0,(selectedW-gap)/2,photoH);}else if(selectedPhotoLayout==='double-hero'){var hH=Math.round(photoH*0.65),aH=photoH-hH-gap;drawCover(ctx,imgs[0],0,0,selectedW,hH);drawCover(ctx,imgs[1],0,hH+gap,selectedW,aH);}else if(selectedPhotoLayout==='double-left'){var lW=Math.round(selectedW*0.62);drawCover(ctx,imgs[0],0,0,lW-gap,photoH);drawCover(ctx,imgs[1],lW,0,selectedW-lW,photoH);}else{var hfH=Math.round(photoH/2)-Math.round(gap/2);drawCover(ctx,imgs[0],0,0,selectedW,hfH);drawCover(ctx,imgs[1],0,hfH+gap,selectedW,hfH);}}else if(photoCount===3){var tH=Math.round(photoH*0.6),bH=photoH-tH-gap,hW=Math.round((selectedW-gap)/2);drawCover(ctx,imgs[0],0,0,selectedW,tH);drawCover(ctx,imgs[1],0,tH+gap,hW,bH);drawCover(ctx,imgs[2],hW+gap,tH+gap,selectedW-hW-gap,bH);}drawDivider(ctx,t,photoH);renderTextBlock(ctx,t,pad,photoH,headline,address,price,beds,sqft,agent,phone,brokerage,qrUrl);}}
-function renderTextBlock(ctx,t,pad,photoH,headline,address,price,beds,sqft,agent,phone,brokerage,qrUrl){var textAreaH=selectedH-photoH,fs=Math.min(Math.round(selectedW*0.042),Math.round(textAreaH*0.08)),lh=Math.round(fs*1.45),y=photoH+pad,bottomReserve=Math.round(selectedH*0.10),maxY=selectedH-bottomReserve,qrSize=Math.round(selectedW*0.16),maxW=selectedW-pad*2;if(qrUrl)maxW=selectedW-pad*2-qrSize-pad;function fits(ny){return ny<maxY;}ctx.fillStyle=t.accent;ctx.font='bold '+Math.round(fs*0.6)+'px '+selectedFont;if(fits(y)){ctx.fillText(selectedOccasion.toUpperCase(),pad,y);y+=Math.round(lh*0.8);}ctx.fillStyle=t.text;ctx.font='bold '+fs+'px '+selectedFont;var mhl=Math.max(1,Math.min(3,Math.floor((maxY-y-lh*4)/lh)));if(fits(y)){var hl=wrapText(ctx,headline,pad,y,maxW,lh,mhl);y+=hl*lh+Math.round(lh*0.15);}if(price&&fits(y)){ctx.fillStyle=t.text;ctx.font='bold '+Math.round(fs*0.98)+'px '+selectedFont;ctx.fillText(price,pad,y);y+=Math.round(lh*1.05);}ctx.fillStyle=t.sub;ctx.font=Math.round(fs*0.68)+'px '+selectedFont;if(address&&fits(y)){ctx.fillText(address,pad,y);y+=Math.round(lh*0.88);}var details=[beds,sqft].filter(Boolean).join('   ÃÂ·   ');if(details&&fits(y)){ctx.fillText(details,pad,y);y+=Math.round(lh*1.0);}ctx.fillStyle=t.text;ctx.font='bold '+Math.round(fs*0.7)+'px '+selectedFont;if(agent&&fits(y)){ctx.fillText(agent,pad,y);y+=Math.round(lh*0.82);}ctx.fillStyle=t.sub;ctx.font=Math.round(fs*0.6)+'px '+selectedFont;if(brokerage&&fits(y)){ctx.fillText(brokerage,pad,y);y+=Math.round(lh*0.75);}if(phone&&fits(y)){ctx.fillText(phone,pad,y);}if(qrUrl){try{var qrCanvas=generateQR(qrUrl,qrSize),qrX=selectedW-pad-qrSize,qrY=photoH+pad;ctx.fillStyle='#ffffff';ctx.fillRect(qrX-6,qrY-6,qrSize+12,qrSize+12);ctx.drawImage(qrCanvas,qrX,qrY,qrSize,qrSize);ctx.fillStyle=t.sub;ctx.font=Math.round(selectedW*0.017)+'px '+selectedFont;ctx.textAlign='center';ctx.fillText('Scan to view',qrX+qrSize/2,qrY+qrSize+Math.round(selectedW*0.022));ctx.textAlign='left';}catch(e){}}
+function renderTextBlock(ctx,t,pad,photoH,headline,address,price,beds,sqft,agent,phone,brokerage,qrUrl){var textAreaH=selectedH-photoH,fs=Math.min(Math.round(selectedW*0.042),Math.round(textAreaH*0.08)),lh=Math.round(fs*1.45),y=photoH+pad,bottomReserve=Math.round(selectedH*0.10),maxY=selectedH-bottomReserve,qrSize=Math.round(selectedW*0.16),maxW=selectedW-pad*2;if(qrUrl)maxW=selectedW-pad*2-qrSize-pad;function fits(ny){return ny<maxY;}ctx.fillStyle=t.accent;ctx.font='bold '+Math.round(fs*0.6)+'px '+selectedFont;if(fits(y)){ctx.fillText(selectedOccasion.toUpperCase(),pad,y);y+=Math.round(lh*0.8);}ctx.fillStyle=t.text;ctx.font='bold '+fs+'px '+selectedFont;var mhl=Math.max(1,Math.min(3,Math.floor((maxY-y-lh*4)/lh)));if(fits(y)){var hl=wrapText(ctx,headline,pad,y,maxW,lh,mhl);y+=hl*lh+Math.round(lh*0.15);}if(price&&fits(y)){ctx.fillStyle=t.text;ctx.font='bold '+Math.round(fs*0.98)+'px '+selectedFont;ctx.fillText(price,pad,y);y+=Math.round(lh*1.05);}ctx.fillStyle=t.sub;ctx.font=Math.round(fs*0.68)+'px '+selectedFont;if(address&&fits(y)){ctx.fillText(address,pad,y);y+=Math.round(lh*0.88);}var details=[beds,sqft].filter(Boolean).join('   Ã·   ');if(details&&fits(y)){ctx.fillText(details,pad,y);y+=Math.round(lh*1.0);}ctx.fillStyle=t.text;ctx.font='bold '+Math.round(fs*0.7)+'px '+selectedFont;if(agent&&fits(y)){ctx.fillText(agent,pad,y);y+=Math.round(lh*0.82);}ctx.fillStyle=t.sub;ctx.font=Math.round(fs*0.6)+'px '+selectedFont;if(brokerage&&fits(y)){ctx.fillText(brokerage,pad,y);y+=Math.round(lh*0.75);}if(phone&&fits(y)){ctx.fillText(phone,pad,y);}if(qrUrl){try{var qrCanvas=generateQR(qrUrl,qrSize),qrX=selectedW-pad-qrSize,qrY=photoH+pad;ctx.fillStyle='#ffffff';ctx.fillRect(qrX-6,qrY-6,qrSize+12,qrSize+12);ctx.drawImage(qrCanvas,qrX,qrY,qrSize,qrSize);ctx.fillStyle=t.sub;ctx.font=Math.round(selectedW*0.017)+'px '+selectedFont;ctx.textAlign='center';ctx.fillText('Scan to view',qrX+qrSize/2,qrY+qrSize+Math.round(selectedW*0.022));ctx.textAlign='left';}catch(e){}}
 if(uploadedLogo){var logoImg=new Image();logoImg.onload=function(){var maxLogoW=Math.round(selectedW*0.28),maxLogoH=Math.round(selectedH*0.06),logoAspect=logoImg.width/logoImg.height,logoW,logoH;if(logoAspect>maxLogoW/maxLogoH){logoW=maxLogoW;logoH=Math.round(maxLogoW/logoAspect);}else{logoH=maxLogoH;logoW=Math.round(maxLogoH*logoAspect);}ctx.drawImage(logoImg,pad,selectedH-Math.round(selectedH*0.04)-logoH,logoW,logoH);};logoImg.src=uploadedLogo;}else{ctx.fillStyle=t.sub;ctx.font=Math.round(selectedW*0.018)+'px '+selectedFont;ctx.fillText('Powered by Quality Capture Visuals',pad,selectedH-Math.round(selectedW*0.02));}
 document.getElementById('flyer-output').style.display='block';document.getElementById('flyer-output').scrollIntoView({behavior:'smooth'});}
 function generateQR(url,size){var div=document.createElement('div');new QRCode(div,{text:url,width:size,height:size,correctLevel:QRCode.CorrectLevel.M});return div.querySelector('canvas');}
